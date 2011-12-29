@@ -33,7 +33,7 @@ def extract(script):
     restructured text documentation.
 
     """
-    lines = [line.strip() for line in open(script).readlines()]
+    lines = [line.rstrip() for line in open(script).readlines()]
     first_line = lines.pop(0)
     code_lines = [first_line]
     doc_lines = []
