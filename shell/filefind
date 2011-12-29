@@ -1,4 +1,13 @@
 #!/bin/bash
+# Find filenames in the current directory:
+#
+# - It greps case-insensitive for patial matches, so 'htm' finds 'index.HTML'
+#   just fine.
+# - It ignores .svn and .hg directories.
+# - It doesn't color code the output to help with emacs integration.
+# - It adds :1: so that you can use it in emacs' grep viewer. Clicking on it
+#   opens that file.
+
 clear
 find -L . | grep --colour=never -i $1 | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
 # grep -i --color=auto $1

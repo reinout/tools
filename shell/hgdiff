@@ -1,4 +1,7 @@
 #!/bin/bash
+# Show colorized "hg diff" output for the current directory or for specific
+# files.
+
 if [[ $* ]]; then
   WHERE=$*;
 else WHERE=".";

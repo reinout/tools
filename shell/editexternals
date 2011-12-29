@@ -1,2 +1,4 @@
 #!/bin/bash
+# Shortcut for editing svn's externals property.
+
 svn propedit svn:externals .

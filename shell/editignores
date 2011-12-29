@@ -1,2 +1,4 @@
 #!/bin/bash
+# Shortcut for editing svn's ignore property.
+
 svn propedit svn:ignore .

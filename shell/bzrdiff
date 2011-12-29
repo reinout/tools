@@ -1,4 +1,7 @@
 #!/bin/bash
+# Show local differences in a bzr repository. In a bit nicer way than the bzr
+# default.
+
 if [[ $* ]]; then
     WHERE=$*;
 else
