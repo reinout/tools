@@ -1,0 +1,3 @@
+#!/bin/bash
+SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
+grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info| grep -v \\.po: | grep -v \\.pyc | grep -i --color=auto "$SEARCHFOR"

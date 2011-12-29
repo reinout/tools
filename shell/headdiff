@@ -1,0 +1,2 @@
+#!/bin/bash
+svn diff -rBASE:HEAD|colordiff|less

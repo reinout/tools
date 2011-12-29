@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ $* ]]; then
+  WHERE=$*;
+else WHERE=".";
+fi
+hg diff -g $WHERE | colordiff | less -R

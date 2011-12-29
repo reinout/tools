@@ -1,0 +1,4 @@
+#!/bin/bash
+clear
+find -L . | grep --colour=never -i $1 | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
+# grep -i --color=auto $1
