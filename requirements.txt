@@ -1,12 +1,12 @@
 # Ourselves.
-tools>=0.1.dev0
+# tools>=0.1.dev0
 
 # Local development packages.
-checkoutmanager>=1.10dev
-createcoverage>=1.2dev
-eolfixer>=1.2dev
-nensskel>=1.23dev
-zest.releaser>=3.31.dev0
+checkoutmanager>=1.9
+createcoverage>=1.1
+eolfixer>=1.1
+nensskel>=1.22
+zest.releaser>=3.30
 
 # Specific pins.
 
