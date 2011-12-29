@@ -2,8 +2,11 @@
 # Grep for a term in the current directory, but with some twists:
 #
 # - Multiple terms are taken to be one big space-separated term.
-# - .svn and .hg directories are ignored.
-# - Same with egg-info and *.pyc files.
+#
+# - ``.svn`` and ``.hg`` directories are ignored.
+#
+# - Same with ``egg-info`` and ``*.pyc`` files.
+#
 # - The search term is highlighted in the output.
 
 SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`

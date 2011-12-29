@@ -1,11 +1,14 @@
 #!/usr/bin/env python
-
-# Copied from somewhere, I don't know wherefrom anymore.
-# What it does is convert from \r\n to just \n in case you've got files with
-# windows lineendings.
-
-# TODO: clean up a bit, make it pep8-compliant. Check that it works (as I had
-# the impression it didn't work all the time).
+#
+# Copied from somewhere, I don't know wherefrom anymore.  What it does is
+# convert from ``\r\n`` to just ``\n`` in case you've got files with windows
+# line endings.
+#
+# TODO:
+#
+# - Clean up a bit, make it pep8-compliant.
+#
+# - Check that it works (as I had the impression it didn't work all the time).
 
 from string import split,join
 def dos2unix(data):

@@ -30,17 +30,19 @@ dos2unix.py
 ------------------------------------------------------------------------
 
 
+Copied from somewhere, I don't know wherefrom anymore.  What it does is
+convert from ``\r\n`` to just ``\n`` in case you've got files with windows
+line endings.
+
+TODO:
+
+- Clean up a bit, make it pep8-compliant.
+
+- Check that it works (as I had the impression it didn't work all the time).
 
 Source code::
 
     #!/usr/bin/env python
-    
-    # Copied from somewhere, I don't know wherefrom anymore.
-    # What it does is convert from \r\n to just \n in case you've got files with
-    # windows lineendings.
-    
-    # TODO: clean up a bit, make it pep8-compliant. Check that it works (as I had
-    # the impression it didn't work all the time).
     
     from string import split,join
     def dos2unix(data):
@@ -147,14 +149,14 @@ duh
 Just print out the disk usage *totals* for every directory in the current
 directory.
 
+-h = Human readable
+-c = Show the grand total, too.
+-s = Show only the total size of the arguments: don't display the recursive
+     information.
+
 Source code::
 
     #!/bin/bash
-    
-    # -h = Human readable
-    # -c = Show the grand total, too.
-    # -s = Show only the total size of the arguments: don't display the recursive
-    #      information.
     
     du -hcs *
 
@@ -190,6 +192,7 @@ es
 ------------------------------------------------------------------------
 
 Shortcut for starting emacs on OSX.
+
 Note that I've got it set up in server mode. I've got a bash alias "e" that
 edits a file with "emacsclient". So "es" stands for "emacs server" in my
 case, "e" is for editing with emacs itself :-)
@@ -205,14 +208,17 @@ Source code::
 filefind
 ------------------------------------------------------------------------
 
-Find filenames in the current directory:
+Find filenames in the current directory.
 
-- It greps case-insensitive for patial matches, so 'htm' finds 'index.HTML'
-  just fine.
-- It ignores .svn and .hg directories.
+- It greps case-insensitive for patial matches, so 'htm' finds
+  ``index.HTML`` just fine.
+
+- It ignores ``.svn`` and ``.hg`` directories.
+
 - It doesn't color code the output to help with emacs integration.
-- It adds :1: so that you can use it in emacs' grep viewer. Clicking on it
-  opens that file.
+
+- It adds ``:1:`` so that you can use it in emacs' grep viewer. Clicking on
+  it opens that file.
 
 Source code::
 
@@ -322,8 +328,11 @@ svngrep
 Grep for a term in the current directory, but with some twists:
 
 - Multiple terms are taken to be one big space-separated term.
-- .svn and .hg directories are ignored.
-- Same with egg-info and *.pyc files.
+
+- ``.svn`` and ``.hg`` directories are ignored.
+
+- Same with ``egg-info`` and ``*.pyc`` files.
+
 - The search term is highlighted in the output.
 
 Source code::
@@ -353,8 +362,9 @@ vlog
 
 Shows svn log, but with some better defaults:
 
-- It uses verbose mode ("-v"); this way it actually shows the files that
+- It uses verbose mode (``-v``); this way it actually shows the files that
   have been changed. This is often clearer than the log message itself.
+
 - It pipes it through "less" instead of blubbering your terminal full with
   several pages' worth of logs.
 
