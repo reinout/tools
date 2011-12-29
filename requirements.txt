@@ -1,3 +1,6 @@
+# Ourselves.
+tools>=0.1.dev0
+
 # Local development packages.
 checkoutmanager>=1.10dev
 createcoverage>=1.2dev
@@ -8,21 +11,18 @@ zest.releaser>=3.31.dev0
 # Specific pins.
 
 
-# Packages that we want (versions from "pip freeze").
-docutils==0.8.1
-dotfiles==0.5.1
-eazysvn==1.12.1
-pep8==0.6.0
-pyflakes==0.5.0
-zc.rst2==0.2
-
-
-# Dependencies (versions reported by "pip freeze").
+# Versions reported by "pip freeze".
 Cheetah==2.4.4
 Markdown==2.1.0
 Paste==1.7.5.1
 PasteDeploy==1.5.0
 PasteScript==1.7.5
 coverage==3.5.1
+docutils==0.8.1
+dotfiles==0.5.1
+eazysvn==1.12.1
+pep8==0.6.0
 py==1.4.6
+pyflakes==0.5.0
 wsgiref==0.1.2
+zc.rst2==0.2
