@@ -38,3 +38,13 @@ Two extra installation notes
 
 - Run ``bin/pip install -r requirements.txt`` to make sure you end up with the
   right versions.
+
+
+Documentation
+-------------
+
+I'm trying to do this the neat way: I've even added explanatory comments to
+all shell scripts. And I've got a ``generate_shell_docs.py`` that generates a
+README from those comments. Look in the shell directory (for instance `on
+github <https://github.com/reinout/tools/tree/master/shell>`_) and you'll see
+the nicely formatted README at the bottom.
