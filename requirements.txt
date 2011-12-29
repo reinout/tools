@@ -9,9 +9,12 @@ zest.releaser>=3.31.dev0
 
 
 # Packages that we want (versions from "pip freeze").
+docutils==0.8.1
 dotfiles==0.5.1
+eazysvn==1.12.1
 pep8==0.6.0
 pyflakes==0.5.0
+zc.rst2==0.2
 
 
 # Dependencies (versions reported by "pip freeze").
