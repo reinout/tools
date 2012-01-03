@@ -30,14 +30,14 @@ So putting it on github seems like a good idea.
 Two extra installation notes
 ----------------------------
 
-- ``./install_local_checkouts.sh`` runs ``pip install`` on several checkouts
-  of packages I develop myself, such as zest.releaser. So that I always run
-  trunk to make sure everything works fine. Run this after everything is in
-  place: we install checkoutmanager which we ourselves need as it does the
-  checkouts we want to ``pip install`` :-)
-
 - Run ``bin/pip install -r requirements.txt`` to make sure you end up with the
   right versions.
+
+- ``./install_local_checkouts.sh`` runs ``pip install -e`` on several
+  checkouts of packages I develop myself, such as zest.releaser. So that I
+  always run trunk to make sure everything works fine. Run this after
+  everything is in place: we install checkoutmanager which we ourselves need
+  as it does the checkouts we want to ``pip install -e`` :-)
 
 
 Documentation
@@ -48,3 +48,10 @@ all shell scripts. And I've got a ``generate_shell_docs.py`` that generates a
 README from those comments. Look in the shell directory (for instance `on
 github <https://github.com/reinout/tools/tree/master/shell>`_) and you'll see
 the nicely formatted README at the bottom.
+
+Likewise I've got a README for the python scripts. Look `on github
+<https://github.com/reinout/tools/tree/master/tools>`_ and you'll see the
+nicely formatted README at the bottom. This is generated from the scripts'
+docstrings with ``generate_python_docs.py`` (I just want a simple README, not
+full Sphinx documentation).
+
