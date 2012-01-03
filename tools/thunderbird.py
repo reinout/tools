@@ -1,18 +1,20 @@
+"""Fix the thunderbird newsrc settings
+
+The settings sometimes contain lines like::
+
+  gmane.comp.python.distutils.devel: 1-12428,12431-12446
+
+There's a two-article 'hole' in there that shows up as two unread messages.
+This script removes the holes.
+
+"""
+
 CONFIG_FILE = ('/Users/reinout/.thunderbird/fid7e99v.default/' +
                'News/newsrc-news.gmane.org')
 
 
 def fix_thunderbird():
-    """Fix the thunderbird newsrc settings
-
-    The settings sometimes contain lines like::
-
-      gmane.comp.python.distutils.devel: 1-12428,12431-12446
-
-    There's a two-article 'hole' in there that shows up as two unread
-    messages.  This script removes the holes.
-
-    """
+    """Remove holes in the config file."""
 
     lines = [line.strip() for line in open(CONFIG_FILE).readlines()]
     print "======= OLD ======="
