@@ -1,3 +1,16 @@
+"""
+Helper scripts for me to manage my blog.
+
+I write my blog entries as restructured text files. The ``copytoblog`` command
+copies the text file to the correct date's blog subdirectory, creating it if
+necessary.
+
+There's also a command to open today's entries in emacs.
+
+Note that some of this might be better placed inside my website project
+instead of here. TODO.
+
+"""
 from datetime import datetime
 import os
 import shutil
@@ -100,6 +113,7 @@ def makedocs():
 
 
 def list_todays_entries():
+    """Open today's entries in emacs (to correct mistakes, probably)."""
     now = datetime.now()
     y = '%04d' % now.year
     m = '%02d' % now.month
