@@ -1,7 +1,8 @@
 #!/bin/bash
-bin/pip install ~/git/zest.releaser/
-bin/pip install ~/git/pep8/
-bin/pip install ~/hg/checkoutmanager
-bin/pip install ~/git/nens/nensskel
-bin/pip install ~/hg/eolfixer
-bin/pip install ~/hg/createcoverage
+bin/pip install -e .
+bin/pip install -e ~/git/zest.releaser/
+bin/pip install -e ~/git/pep8/
+bin/pip install -e ~/hg/checkoutmanager
+bin/pip install -e ~/git/nens/nensskel
+bin/pip install -e ~/hg/eolfixer
+bin/pip install -e ~/hg/createcoverage

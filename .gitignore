@@ -2,4 +2,4 @@ bin/
 include/
 lib/
 tools.egg-info/
-
+*.pyc
