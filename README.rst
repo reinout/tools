@@ -27,10 +27,10 @@ colleague's computers, for instance.
 So putting it on github seems like a good idea.
 
 
-Two extra installation notes
-----------------------------
+Installation notes for myself
+---------------------------------------
 
-- Run ``bin/pip install -r requirements.txt`` to make sure you end up with the
+- Run ``bin/pip install . -r requirements.txt`` to make sure I end up with the
   right versions.
 
 - ``./install_local_checkouts.sh`` runs ``pip install -e`` on several
