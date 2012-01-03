@@ -9,8 +9,8 @@ This script removes the holes.
 
 """
 
-CONFIG_FILE = ('/Users/reinout/.thunderbird/fid7e99v.default/' +
-               'News/newsrc-news.gmane.org')
+CONFIG_FILE = ('/Users/reinout/Library/Thunderbird/Profiles/' +
+               'rbwhgkue.default/News/newsrc-news.gmane.org')
 
 
 def fix_thunderbird():
