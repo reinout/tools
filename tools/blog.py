@@ -75,7 +75,7 @@ def copytoblog():
     makedocs()
     html_file = target.replace('source', 'build/html').replace(
         '.txt', '.html')
-    webbrowser.open(html_file)
+    webbrowser.open('file://' + html_file)
     if 'y' in raw_input('Sync and commit? [y/N] '):
         subprocess.call(['syncweblog.sh'])
         os.chdir('/Users/reinout/buildout/reinout.vanrees.org'
