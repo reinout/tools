@@ -76,14 +76,14 @@ def copytoblog():
     # Add all updated files.
     subprocess.call(['git', 'add', '-u'])
     makedocs()
-    html_file = target.replace('source', 'build/html').replace(
-        '.txt', '.html')
+    html_file = target.replace('source', 'docs/build/html').replace(
+        '.txt', '.html').replace('websitecontent', 'reinout.vanrees.org')
     webbrowser.open('file://' + html_file)
     if 'y' in raw_input('Sync and commit? [y/N] '):
         subprocess.call(['syncweblog.sh'])
-        os.chdir('/Users/reinout/buildout/reinout.vanrees.org'
-                 '/docs/source/weblog')
+        os.chdir('/Users/reinout/git/websitecontent/')
         subprocess.call(['git', 'commit', '-m', 'new entry'])
+        subprocess.call(['git', 'push'])
         on_site = 'http://reinout.vanrees.org/weblog/%s/%s/%s/%s' % (
             y, m, d, filename.replace('.txt', '.html'))
         webbrowser.open(on_site)
