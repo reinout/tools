@@ -19,9 +19,9 @@ import sys
 import webbrowser
 
 
-DOCS = os.path.expanduser('~/buildout/reinout.vanrees.org/docs')
+DOCS = os.path.expanduser('~/git/reinout.vanrees.org/docs')
 BUILD = os.path.join(DOCS, 'build', 'html')
-WEBLOGSOURCE = os.path.join(DOCS, 'source', 'weblog')
+WEBLOGSOURCE = os.path.expanduser('~/git/websitecontent/source/weblog')
 
 
 def conditional_copy(source, target):
@@ -67,11 +67,14 @@ def copytoblog():
     for directory in add_index_dirs:
         index = os.path.join(directory, 'index.txt')
         open(index, 'w').write('temporary file\n')
-    # svn add toplevel-dir-that-we-added
+    # git add toplevel-dir-that-we-added
+    os.chdir(WEBLOGSOURCE)
     if toplevel_added_dir:
-        subprocess.call(['svn', 'add', toplevel_added_dir])
+        subprocess.call(['git', 'add', toplevel_added_dir])
     else:
-        subprocess.call(['svn', 'add', target])
+        subprocess.call(['git', 'add', target])
+    # Add all updated files.
+    subprocess.call(['git', 'add', '-u'])
     makedocs()
     html_file = target.replace('source', 'build/html').replace(
         '.txt', '.html')
@@ -80,7 +83,7 @@ def copytoblog():
         subprocess.call(['syncweblog.sh'])
         os.chdir('/Users/reinout/buildout/reinout.vanrees.org'
                  '/docs/source/weblog')
-        subprocess.call(['svn', 'commit', '-m', 'new entry'])
+        subprocess.call(['git', 'commit', '-m', 'new entry'])
         on_site = 'http://reinout.vanrees.org/weblog/%s/%s/%s/%s' % (
             y, m, d, filename.replace('.txt', '.html'))
         webbrowser.open(on_site)
@@ -93,23 +96,24 @@ def makedocs():
     """Call 'make html' in rvo's docs dir"""
     os.chdir(DOCS)
     subprocess.call(['make', 'html'])
-    print "Syncing copyover dir"
-    copydir = os.path.join(DOCS, 'copyover')
-    for dirpath, dirnames, filenames in os.walk(copydir):
-        if '.svn' in dirpath:
-            continue
-        targetdir = dirpath.replace('copyover', 'build/html')
-        if not os.path.exists(targetdir):
-            os.mkdir(targetdir)
-            print "Created dir", targetdir
-        for filename in filenames:
-            if filename in ['.DS_Store']:
-                continue
-            if '~' in filename:
-                continue
-            source = os.path.join(dirpath, filename)
-            target = source.replace('copyover', 'build/html')
-            conditional_copy(source, target)
+    # Not needed anymore: we do a simple "copy -r" in the makefile.
+    # print "Syncing copyover dir"
+    # copydir = os.path.join(DOCS, 'copyover')
+    # for dirpath, dirnames, filenames in os.walk(copydir):
+    #     if '.svn' in dirpath:
+    #         continue
+    #     targetdir = dirpath.replace('copyover', 'build/html')
+    #     if not os.path.exists(targetdir):
+    #         os.mkdir(targetdir)
+    #         print "Created dir", targetdir
+    #     for filename in filenames:
+    #         if filename in ['.DS_Store']:
+    #             continue
+    #         if '~' in filename:
+    #             continue
+    #         source = os.path.join(dirpath, filename)
+    #         target = source.replace('copyover', 'build/html')
+    #         conditional_copy(source, target)
 
 
 def list_todays_entries():

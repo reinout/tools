@@ -26,10 +26,13 @@ def fix_thunderbird():
         if not line:
             continue
         newsgroup, messages = line.split(': ')
-        parts = messages.split('-')
-        new = '%s: %s-%s\n' % (newsgroup,
-                             parts[0],
-                             parts[-1])
+        messages = messages.replace('-', ' ').replace(',', ' ')
+        parts = messages.split()
+        # new = '%s: %s-%s\n' % (newsgroup,
+        #                        parts[0],
+        #                        parts[-1])
+        new = '%s: 1-%s\n' % (newsgroup,
+                              parts[-1])
         print new,
         outfile.write(new)
     outfile.close()
