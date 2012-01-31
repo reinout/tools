@@ -27,17 +27,22 @@ colleague's computers, for instance.
 So putting it on github seems like a good idea.
 
 
-Installation notes for myself
+Bootstrap installation notes for myself
 ---------------------------------------
 
 - Run ``bin/pip install . -r requirements.txt`` to make sure I end up with the
   right versions.
+
+- Do a git pull of ``ssh://vanrees.org/~/git/Dotfiles`` into my homedir and
+  run ``dotfiles --sync``: this gives me my dotfiles, including the
+  checkoutmanager configuration.
 
 - ``./install_local_checkouts.sh`` runs ``pip install -e`` on several
   checkouts of packages I develop myself, such as zest.releaser. So that I
   always run trunk to make sure everything works fine. Run this after
   everything is in place: we install checkoutmanager which we ourselves need
   as it does the checkouts we want to ``pip install -e`` :-)
+
 
 
 Documentation
