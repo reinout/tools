@@ -1,9 +1,11 @@
 #!/bin/sh
-
 # Shell script to install your public key on a remote machine
 # Takes the remote machine name as an argument.
 # Obviously, the remote machine must accept password authentication,
 # or one of the other keys in your ssh-agent, for this to work.
+#
+# Note from Reinout: copied from somewhere, it is not mine.
+# In ubuntu it is included, but not on my OSX.
 
 ID_FILE="${HOME}/.ssh/id_rsa.pub"
 
