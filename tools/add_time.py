@@ -1,20 +1,42 @@
-import sys
-import Image
-import ImageFont, ImageDraw, ImageOps
+"""
+Simple script to add the current time to a screenshot.
+
+Pass in the filename of the screenshot as an argument and the script will
+create a new file (named after the time, in the current directory) with the
+time written in the lower right corner.
+
+The location of the time string and the location of the font to use is
+hardcoded.
+
+"""
 import datetime
+import sys
 
-filename = sys.argv[1]
-im = Image.open(filename)
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+from PIL import ImageOps
 
-f = ImageFont.truetype("/Users/reinout/Library/Fonts/nobile_bold.ttf", 80)
-txt = Image.new('L', (800,100))
-d = ImageDraw.Draw(txt)
-date_string = str(datetime.datetime.now().strftime('%H:%M'))
-#date_string = '10:21'
-d.text( (0, 0), date_string,  font=f, fill=255)
-w = txt.rotate(0,  expand=2)
 
-im.paste( ImageOps.colorize(w, (0,0,0), (30,30,30)), (1200, 800),  w)
+FONT = "/Users/reinout/Library/Fonts/nobile_bold.ttf"
 
-out_filename = date_string.replace(':', '_') + '.png'
-im.save(out_filename, "png")
+
+def main():
+    filename = sys.argv[1]
+    image = Image.open(filename)
+    font = ImageFont.truetype(FONT, 80)
+    txt_image = Image.new('L', (800, 100))
+    drawable = ImageDraw.Draw(txt_image)
+
+    date_string = str(datetime.datetime.now().strftime('%H:%M'))
+    #date_string = '10:21'
+
+    drawable.text((0, 0), date_string,  font=font, fill=255)
+    txt_image = txt_image.rotate(0, expand=2)
+    image.paste(ImageOps.colorize(txt_image, (0, 0, 0), (30, 30, 30)),
+                (1200, 800),
+                txt_image)
+
+    out_filename = date_string.replace(':', '_') + '.png'
+    image.save(out_filename, "png")
+    print("Saved %s" % out_filename)
