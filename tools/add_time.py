@@ -19,6 +19,7 @@ from PIL import ImageOps
 
 
 FONT = "/Users/reinout/Library/Fonts/nobile_bold.ttf"
+LOCATION_IN_IMAGE = (1200, 800)  # Lower left corner where the text is placed.
 
 
 def main():
@@ -34,7 +35,7 @@ def main():
     drawable.text((0, 0), date_string,  font=font, fill=255)
     txt_image = txt_image.rotate(0, expand=2)
     image.paste(ImageOps.colorize(txt_image, (0, 0, 0), (30, 30, 30)),
-                (1200, 800),
+                LOCATION_IN_IMAGE,
                 txt_image)
 
     out_filename = date_string.replace(':', '_') + '.png'
