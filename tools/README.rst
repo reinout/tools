@@ -7,6 +7,25 @@ top of the Python scripts.
 
 
 
+add_time.py
+------------------------------------------------------------------------
+
+
+Simple script to add the current time to a screenshot.
+
+Pass in the filename of the screenshot as an argument and the script will
+create a new file (named after the time, in the current directory) with the
+time written in the lower right corner.
+
+The location of the time string and the location of the font to use is
+hardcoded.
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/add_time.py>`_).
+
+
+
 blog.py
 ------------------------------------------------------------------------
 
