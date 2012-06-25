@@ -12,6 +12,7 @@ zest.releaser>=3.30
 
 
 # Versions reported by "pip freeze".
+# zc.rst2==0.2
 Cheetah==2.4.4
 Markdown==2.1.0
 Paste==1.7.5.1
@@ -19,6 +20,7 @@ PasteDeploy==1.5.0
 PasteScript==1.7.5
 bzr==2.6b1
 coverage==3.5.1
+distribute==0.6.27
 docutils==0.8.1
 dotfiles==0.5.1
 eazysvn==1.12.1
@@ -27,4 +29,3 @@ pep8==0.6.0
 py==1.4.6
 pyflakes==0.5.0
 wsgiref==0.1.2
-# zc.rst2==0.2
