@@ -1,0 +1,5 @@
+#!/bin/bash
+# Create a local postgis database for the 'buildout' database user.
+
+echo "(The password is your sudo password)"
+sudo -u postgres createdb --template=template_postgis --owner=buildout $1

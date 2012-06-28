@@ -62,6 +62,20 @@ Source code::
 
 
 
+create_postgis_db
+------------------------------------------------------------------------
+
+Create a local postgis database for the 'buildout' database user.
+
+Source code::
+
+    #!/bin/bash
+    
+    echo "(The password is your sudo password)"
+    sudo -u postgres createdb --template=template_postgis --owner=buildout $1
+
+
+
 dos2unix.py
 ------------------------------------------------------------------------
 
