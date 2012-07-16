@@ -68,6 +68,26 @@ what this script does.
 
 
 
+github.py
+------------------------------------------------------------------------
+
+
+Open github page for your current directory in your browser.
+
+You're working on the commandline and want to check something for the github
+project you're working on. This script (called ``gh``) looks up the github url
+for your project and opens it in your webbrowser.
+
+If you call it like ``gh issues``, you'll get the issues page.
+
+I got the idea from https://github.com/myusuf3/octogit.
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/github.py>`_).
+
+
+
 jshint.py
 ------------------------------------------------------------------------
 
@@ -76,6 +96,21 @@ Script for running the jshint.js javascript checker on a file or directory.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/jshint.py>`_).
+
+
+
+jsonformatter.py
+------------------------------------------------------------------------
+
+(Re-)indent json on stdin and send it to stdout.
+
+Handy for webservices that return json as one big long string. With ``curl
+http://the.json.url/ | jsonformatter`` you can actually read it.
+
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/jsonformatter.py>`_).
 
 
 
