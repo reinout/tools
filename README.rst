@@ -30,6 +30,10 @@ So putting it on github seems like a good idea.
 Bootstrap installation notes for myself
 ---------------------------------------
 
+- Set up a virtualenv **with** access to the system's site packages::
+
+   $ virtualenv --system-site-packages .
+
 - Run ``bin/pip install . -r requirements.txt`` to make sure I end up with the
   right versions.
 
