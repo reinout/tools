@@ -37,6 +37,8 @@ Bootstrap installation notes for myself
 - Run ``bin/pip install . -r requirements.txt`` to make sure I end up with the
   right versions.
 
+  On OSX, also run ``bin/pip install . -r requirements_osx.txt``
+
 - Do a git pull of ``ssh://vanrees.org/~/git/Dotfiles`` into my homedir and
   run ``dotfiles --sync``: this gives me my dotfiles, including the
   checkoutmanager configuration.
@@ -46,6 +48,9 @@ Bootstrap installation notes for myself
   always run trunk to make sure everything works fine. Run this after
   everything is in place: we install checkoutmanager which we ourselves need
   as it does the checkouts we want to ``pip install -e`` :-)
+
+  Note that this won't work on my vagrant homedirs as I don't have those
+  checkouts there.
 
 
 
@@ -63,4 +68,3 @@ Likewise I've got a README for the python scripts. Look `on github
 nicely formatted README at the bottom. This is generated from the scripts'
 docstrings with ``generate_python_docs.py`` (I just want a simple README, not
 full Sphinx documentation).
-
