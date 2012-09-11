@@ -21,7 +21,7 @@ coverage==3.5.1
 distribute==0.6.27
 docutils==0.8.1
 dotfiles==0.5.1
-pep8==0.6.0
+pep8
 py==1.4.6
 pyflakes==0.5.0
 wsgiref==0.1.2
