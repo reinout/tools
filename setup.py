@@ -22,13 +22,11 @@ setup(name='tools',
           'createcoverage',
           'docutils',
           'dotfiles',
-          'eazysvn',
           'eolfixer',
           'nensskel',
           'pep8',
           'pyflakes',
           'zest.releaser',
-          'PIL',
           ],
       entry_points={
         'console_scripts': [
