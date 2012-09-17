@@ -141,3 +141,39 @@ This script removes the holes.
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/thunderbird.py>`_).
 
+
+
+vagrant.py
+------------------------------------------------------------------------
+
+
+Script to run a command via ssh inside vagrant.
+
+What it does: we're inside a directory that we know has been mounted in a
+local vagrant box. We ``cd`` to the corresponding directory and run the
+command there.
+
+There are quite some assumptions in here, they match the way I (Reinout) has
+set it all up:
+
+- Virtual machines are inside ``~/vm/VM_NAME/``.
+
+- That ``~/vm/VM_NAME/`` directory is mounted as ``/vagrant/`` inside the VM.
+
+- The vm name is "django" for a vm inside ~/vm/django/`` and it has a
+  corresponding alias inside your ssh config file. So ssh'ing to "django"
+  means you connect just fine to the right VM with the vagrant user. An
+  example of such a config that ought to go inside ``~/.ssh/config`` ::
+
+     Host django
+         HostName 33.33.33.20
+         User vagrant
+
+  Oh, and make sure you use ``ssh-copy-id`` to copy your ssh key to the
+  vagrant box, otherwise you'll go mad typing your password all the time.
+
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/vagrant.py>`_).
+

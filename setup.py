@@ -40,6 +40,7 @@ setup(name='tools',
             'latestentries = tools.blog:list_todays_entries',
             'makedocs = tools.blog:makedocs',
             'sommen = tools.sommen:main',
+            'vc = tools.vagrant:main',
             ],
         },
       )
