@@ -53,7 +53,6 @@ Bootstrap installation notes for myself
   checkouts there.
 
 
-
 Documentation
 -------------
 
