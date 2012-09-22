@@ -53,6 +53,20 @@ Bootstrap installation notes for myself
   checkouts there.
 
 
+OSX install notes
+-----------------
+
+Install `homebrew <http://mxcl.github.com/homebrew/>`_ and install a couple of
+utilities that are missing from OSX (or that are too old)::
+
+    $ brew install wget gpg bash-completion svn htop siege
+
+And, for the `git annex <http://git-annex.branchable.com/>`_ dependencies,
+install::
+
+    $ brew install haskell-platform git ossp-uuid md5sha1sum coreutils pcre
+
+
 Documentation
 -------------
 
