@@ -33,6 +33,7 @@ from fabric.api import cd
 from fabric.api import env
 from fabric.api import execute
 from fabric.api import run
+from fabric.operations import open_shell
 
 HOMEDIR = os.path.expanduser('~')
 VM_BASEDIR = os.path.join(HOMEDIR, 'vm')
@@ -58,11 +59,18 @@ def run_cmd():
         run(env.my_cmd)
 
 
+def give_me_a_shell():
+    open_shell("cd {}".format(env.my_path))
+
+
 def main():
     env.use_ssh_config = True
     vm_name, path = vm_and_path()
     cmd = ' '.join(sys.argv[1:])
     env.hosts = [vm_name]
-    env.my_cmd = cmd
     env.my_path = path
-    execute(run_cmd)
+    if cmd:
+        env.my_cmd = cmd
+        execute(run_cmd)
+    else:
+        execute(give_me_a_shell)
