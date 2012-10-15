@@ -20,7 +20,7 @@ def main():
         print('\n\n\n')
         print("Untracked files; do a manual 'git add -A'.")
         sys.exit(1)
-    input("Hit enter to continue add/commit/push cycle, ctrl-c to quit. ")
+    raw_input("Hit enter to continue add/commit/push cycle, ctrl-c to quit. ")
     print(commands.getoutput('git add -u'))
     print(commands.getoutput('git commit -m "Update"'))
     print(commands.getoutput('git push'))
