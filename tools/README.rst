@@ -68,6 +68,25 @@ what this script does.
 
 
 
+git.py
+------------------------------------------------------------------------
+
+
+Add/commit/push a git checkout in one command ("gac", for "Git Add Commit").
+
+Lots of my personal stuff is in git, so I need to do a lot of ``git add -u``,
+``git commit -m "update"`` and ``git push``. Note the ``"update"``
+message. I'm often not bothering with more descriptive commit messages.
+
+The script *does* ask for confirmation after first showing the status:
+prevent accidents.
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/git.py>`_).
+
+
+
 github.py
 ------------------------------------------------------------------------
 

@@ -41,6 +41,7 @@ setup(name='tools',
             'makedocs = tools.blog:makedocs',
             'sommen = tools.sommen:main',
             'vc = tools.vagrant:main',
+            'gac = tools.git:main',
             ],
         },
       )
