@@ -12,10 +12,13 @@ hardcoded.
 import datetime
 import sys
 
-from PIL import Image
-from PIL import ImageDraw
-from PIL import ImageFont
-from PIL import ImageOps
+try:
+    from PIL import Image
+    from PIL import ImageDraw
+    from PIL import ImageFont
+    from PIL import ImageOps
+except ImportError:
+    print("No PIL available.")
 
 
 FONT = "/Users/reinout/Library/Fonts/nobile_bold.ttf"
