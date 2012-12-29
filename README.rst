@@ -7,14 +7,14 @@ on. In this project, I collect most of them.
 
 The idea is that this directory's bin subdirectory is on my path.
 
-- Shell scripts go in ``shell/``. Running ``./install_shell_scripts.sh``
-  symlinks these into the ``bin/`` directory.
+- Shell scripts are located in ``shell/``. Running
+  ``./install_shell_scripts.sh`` symlinks these into the ``bin/`` directory.
 
 - The ``setup.py`` lists dependencies, such as pep8, pyflakes and
-  zest.releaser. ``pip install .`` installs them all.
+  zest.releaser.  Buildout installs those.
 
 - The ``setup.py`` also has a couple of scripts of its own, in the ``tools/``
-  directory. ``pip install .`` also installs those.
+  directory.  These are also installed by buildout.
 
 
 Useful to others? Yes, as examples and for copy-pasting of handy scripts
@@ -30,31 +30,22 @@ So putting it on github seems like a good idea.
 Bootstrap installation notes for myself
 ---------------------------------------
 
-- Set up a virtualenv **with** access to the system's site packages::
-
-   $ virtualenv --system-site-packages .
-
-- Run ``bin/pip install . -r requirements.txt`` to make sure I end up with the
-  right versions.
-
-  On OSX, also run ``bin/pip install . -r requirements_osx.txt``
-
 - Do a git pull of ``ssh://vanrees.org/~/git/Dotfiles`` into my homedir and
   run ``dotfiles --sync``: this gives me my dotfiles, including the
-  checkoutmanager configuration.
+  checkoutmanager configuration. I need this because there are local
+  development items I need to run.
 
-- ``./install_local_checkouts.sh`` runs ``pip install -e`` on several
-  checkouts of packages I develop myself, such as zest.releaser. So that I
-  always run trunk to make sure everything works fine. Run this after
-  everything is in place: we install checkoutmanager which we ourselves need
-  as it does the checkouts we want to ``pip install -e`` :-)
+- Symlink ``osx.cfg`` (on osx) or ``django.cfg`` (in my django vagrant box) to
+  ``buildout.cfg`` first.
 
-  Note that this won't work on my vagrant homedirs as I don't have those
-  checkouts there.
+- Run ``/usr/bin/python2.7 bootstrap.py -t``. The ``-t`` is needed until
+  buildout 2 is final.
+
+- Run ``bin/buildout``
 
 
-OSX install notes
------------------
+Extra OSX install notes
+-----------------------
 
 Install `homebrew <http://mxcl.github.com/homebrew/>`_ and install a couple of
 utilities that are missing from OSX (or that are too old)::

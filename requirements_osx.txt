@@ -1,3 +1,0 @@
-bzr==2.6b1
-mercurial==2.0.2
-

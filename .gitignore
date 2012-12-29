@@ -7,3 +7,6 @@ tools.egg-info/
 *.pyc
 man/
 local/
+develop-eggs/
+buildout.cfg
+.installed.cfg
