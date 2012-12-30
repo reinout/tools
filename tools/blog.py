@@ -12,7 +12,9 @@ instead of here. TODO.
 
 """
 from datetime import datetime
+from string import Template
 import os
+import readline
 import shutil
 import subprocess
 import sys
@@ -22,6 +24,7 @@ import webbrowser
 DOCS = os.path.expanduser('~/git/reinout.vanrees.org/docs')
 BUILD = os.path.join(DOCS, 'build', 'html')
 WEBLOGSOURCE = os.path.expanduser('~/git/websitecontent/source/weblog')
+SERMONSOURCE = os.path.expanduser('~/git/websitecontent/source/preken')
 
 
 def conditional_copy(source, target):
@@ -134,3 +137,87 @@ def list_todays_entries():
     entries = [os.path.join(daydir, entry) for entry in entries]
     subprocess.call(['emacs']
                     + entries)
+
+
+def _complete(text, state, tags):
+    for tag in tags:
+        if tag.startswith(text):
+            # print("\n" + tag)
+            if not state:
+                return tag
+            else:
+                state -= 1
+
+
+def complete_churches(text, state):
+    churches_dir = os.path.join(SERMONSOURCE, 'kerken')
+    churches = [f[:-4] for f in os.listdir(churches_dir)
+                if f.endswith('.txt')]
+    return _complete(text, state, churches)
+
+
+def complete_referents(text, state):
+    referents_dir = os.path.join(SERMONSOURCE, 'predikanten')
+    referents = [f[:-4] for f in os.listdir(referents_dir)
+                if f.endswith('.txt')]
+    return _complete(text, state, referents)
+
+
+def new_sermon():
+    """Create a new file for my sermon weblog."""
+    now = datetime.now()
+    added = '%04d-%02d-%02d' % (now.year, now.month, now.day)
+
+    # http://stackoverflow.com/questions/7116038/python-tab-completion-mac-osx-10-7-lion
+    if 'libedit' in readline.__doc__:
+        readline.parse_and_bind("bind ^I rl_complete")
+    else:
+        readline.parse_and_bind("tab: complete")
+
+    date = None
+    while not date:
+        date = raw_input('Datum (yyyy-mm-dd): ')
+    yyyy = str(int(date[:4]))
+    yeardir = os.path.join(SERMONSOURCE, yyyy)
+    if not os.path.exists(yeardir):
+        os.mkdir(yeardir)
+        print "Created", yeardir
+
+    title = None
+    while not title:
+        title = raw_input('Titel: ')
+
+    filename = title.replace(' ', '-').lower()[:50] + '.txt'
+    full_filename = os.path.join(yeardir, filename)
+    print("Using filename {}".format(full_filename))
+
+    readline.set_completer(complete_churches)
+    church = None
+    while not church:
+        church = raw_input('Kerk: ')
+
+    readline.set_completer(complete_referents)
+    referent = None
+    while not referent:
+        referent = raw_input('Predikant: ')
+    # ^^^ Refactor the while loops above.
+
+    template = Template("""${title}
+======================================================================
+
+.. preek::
+   :kerk: ${church}
+   :toegevoegd: ${added}
+   :datum: ${date}
+   :predikant: ${referent}
+   :tekst: TODO
+   :tags:
+
+""")
+    output = template.substitute(title=title,
+                                 church=church,
+                                 added=added,
+                                 date=date,
+                                 referent=referent)
+    open(full_filename, 'w').write(output)
+    subprocess.call(['emacs', full_filename])
