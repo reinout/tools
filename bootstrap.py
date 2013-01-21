@@ -40,7 +40,7 @@ parser.add_option("-v", "--version", help="use a specific zc.buildout version")
 
 parser.add_option("-t", "--accept-buildout-test-releases",
                   dest='accept_buildout_test_releases',
-                  action="store_true", default=True,
+                  action="store_true", default=False,
                   help=("Normally, if you do not specify a --version, the "
                         "bootstrap script and buildout gets the newest "
                         "*final* versions of zc.buildout and its recipes and "
@@ -98,7 +98,7 @@ cmd = [sys.executable, '-c',
 find_links = os.environ.get(
     'bootstrap-testing-find-links',
     options.find_links or
-    ('https://github.com/buildout/buildout/downloads'
+    ('http://downloads.buildout.org/'
      if options.accept_buildout_test_releases else None)
     )
 if find_links:
@@ -154,9 +154,8 @@ ws.add_entry(tmpeggs)
 ws.require(requirement)
 import zc.buildout.buildout
 
-if not args:
-    # Note that if there are args, they may be for another command, say, init.
-    args = ['bootstrap']
+if not [a for a in args if '=' not in a]:
+    args.append('bootstrap')
 
 # if -c was provided, we push it back into args for buildout' main function
 if options.config_file is not None:
