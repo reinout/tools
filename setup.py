@@ -33,6 +33,7 @@ setup(name='tools',
           'pyflakes',
           'readline',
           'zest.releaser',
+          'z3c.dependencychecker',
           ],
       entry_points={
         'console_scripts': [
