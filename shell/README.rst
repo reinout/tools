@@ -280,6 +280,25 @@ Source code::
 
 
 
+fixvagrantnetwork
+------------------------------------------------------------------------
+
+Fix the vagrant box' network after changing wifi connections.
+When I go home from work (or the other way), the vagrant box has no
+network connections anymore. This script uses the solution from
+http://stackoverflow.com/a/10388844/27401.
+
+Note: I use my own ``bin/vc`` command, so this script needs to be executed
+inside the vm's directory (``~/vm/django/`` for instance).
+
+Source code::
+
+    #!/bin/bash
+    
+    vc sudo /etc/init.d/networking restart
+
+
+
 headdiff
 ------------------------------------------------------------------------
 
@@ -324,6 +343,21 @@ Source code::
     #!/bin/bash
     
     hg -v log | less
+
+
+
+makegitdir.sh
+------------------------------------------------------------------------
+
+
+
+Source code::
+
+    #!/bin/bash
+    cd ~/repos
+    mkdir $1
+    cd $1
+    git init --bare
 
 
 
