@@ -30,16 +30,16 @@ So putting it on github seems like a good idea.
 Bootstrap installation notes for myself
 ---------------------------------------
 
-- Do a git pull of ``ssh://vanrees.org/~/git/Dotfiles`` into my homedir and
-  run ``dotfiles --sync``: this gives me my dotfiles, including the
+- Do a git pull of ``ssh://new.vanrees.org/~/repos/Dotfiles`` into my homedir
+  and run ``dotfiles --sync``: this gives me my dotfiles, including the
   checkoutmanager configuration. I need this because there are local
-  development items I need to run.
+  development items I need to run. There's a bit of a bootstrap problem that
+  ``dotfiles`` is actually installed by this tools dir :-)
 
 - Symlink ``osx.cfg`` (on osx) or ``django.cfg`` (in my django vagrant box) to
   ``buildout.cfg`` first.
 
-- Run ``/usr/bin/python2.7 bootstrap.py -t``. The ``-t`` is needed until
-  buildout 2 is final.
+- Run ``/usr/bin/python2.7 bootstrap.py``.
 
 - Run ``bin/buildout``
 
