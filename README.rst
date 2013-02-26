@@ -40,7 +40,7 @@ Bootstrap installation notes for myself
   ``checkoutmanager`` in it.
 
 - Symlink ``osx.cfg`` (on osx) or ``django.cfg`` (in my django vagrant box) to
-  ``buildout.cfg`` first.
+  ``buildout.cfg`` first. On the server, pick ``newvanreesorg.cfg``.
 
 - Run ``/usr/bin/python2.7 bootstrap.py``.
 
