@@ -36,6 +36,9 @@ Bootstrap installation notes for myself
   development items I need to run. There's a bit of a bootstrap problem that
   ``dotfiles`` is actually installed by this tools dir :-)
 
+- Create a temporary virtualenv somewhere and install ``dotfiles`` and
+  ``checkoutmanager`` in it.
+
 - Symlink ``osx.cfg`` (on osx) or ``django.cfg`` (in my django vagrant box) to
   ``buildout.cfg`` first.
 
