@@ -10,3 +10,4 @@ local/
 develop-eggs/
 buildout.cfg
 .installed.cfg
+parts/
