@@ -107,17 +107,6 @@ I got the idea from https://github.com/myusuf3/octogit.
 
 
 
-jshint.py
-------------------------------------------------------------------------
-
-
-Script for running the jshint.js javascript checker on a file or directory.
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/jshint.py>`_).
-
-
-
 jsonformatter.py
 ------------------------------------------------------------------------
 
