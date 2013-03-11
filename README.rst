@@ -16,6 +16,11 @@ The idea is that this directory's bin subdirectory is on my path.
 - The ``setup.py`` also has a couple of scripts of its own, in the ``tools/``
   directory.  These are also installed by buildout.
 
+- I use the `gp.recipe.node <https://pypi.python.org/pypi/gp.recipe.node>`_
+  recipe to install some node/npm packages like jshint and lessc. Node is
+  compiled locally and the scripts are installed simply into the ``bin/``
+  directory with the rest.
+
 
 Useful to others? Yes, as examples and for copy-pasting of handy scripts
 ------------------------------------------------------------------------
