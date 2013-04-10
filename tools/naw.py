@@ -45,7 +45,12 @@ def main():
         pattern = ''
 
     print('   Gericht overnemen: *59 / Prefix interne nummers: 030 2330')
-    print(63 * '-')
+    print(TEMPLATE.format(NAAM='Naam',
+                          INTERN='Intern',
+                          MOBIEL='Mobiel',
+                          PRESENCE='Aanwezig?'))
+
+    print(68 * '-')
 
     for elem in data[:-1]:
         if elem['in_office']:
