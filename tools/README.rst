@@ -122,6 +122,27 @@ http://the.json.url/ | jsonformatter`` you can actually read it.
 
 
 
+naw.py
+------------------------------------------------------------------------
+
+
+Company-internal script to query our telephone list.
+
+We have an internal tool that regularly pings laptops to see if somebody's in
+the house. That data, combined with a telephone number list, is available as a
+JSON file.
+
+This script reads the json and prints it, optionally filtered with
+
+(Script is from Arjan Verkerk, not me, btw. Though I modified it a bit to run
+as a setuptools console script.)
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/naw.py>`_).
+
+
+
 sommen.py
 ------------------------------------------------------------------------
 
