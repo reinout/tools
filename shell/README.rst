@@ -255,6 +255,19 @@ Source code::
 
 
 
+et
+------------------------------------------------------------------------
+
+Edit the gtimelog time logfile.
+
+Source code::
+
+    #!/bin/bash
+    
+    /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n ~/.gtimelog/timelog.txt
+
+
+
 filefind
 ------------------------------------------------------------------------
 

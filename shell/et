@@ -1,0 +1,4 @@
+#!/bin/bash
+# Edit the gtimelog time logfile.
+
+/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n ~/.gtimelog/timelog.txt

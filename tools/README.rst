@@ -172,6 +172,24 @@ This script removes the holes.
 
 
 
+timelog.py
+------------------------------------------------------------------------
+
+
+This is a gtimelog variant/hack for the commandline.
+
+`gtimelog <http://mg.pov.lt/gtimelog/>`_ requires gtk, which isn't handy on
+OSX. Years ago I already hacked up a modified version that only requires the
+commandline. I've now copy/pasted it again and cleaned it up a bit.
+
+gtimelog is (c) Marius Gedminas, GPL. My stuff is GPL'ed too, so that fits :-)
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/timelog.py>`_).
+
+
+
 vagrant.py
 ------------------------------------------------------------------------
 
