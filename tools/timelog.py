@@ -8,7 +8,6 @@ commandline. I've now copy/pasted it again and cleaned it up a bit.
 gtimelog is (c) Marius Gedminas, GPL. My stuff is GPL'ed too, so that fits :-)
 
 """
-import ConfigParser
 import calendar
 import csv
 import datetime
@@ -16,7 +15,6 @@ import os
 import re
 import sys
 import time
-import urllib
 
 FILENAME = os.path.expanduser('~/.gtimelog/timelog.txt')
 VIRTUAL_MIDNIGHT = datetime.time(5, 0)
@@ -24,7 +22,7 @@ VIRTUAL_MIDNIGHT = datetime.time(5, 0)
 
 def add_timelog_entry():
     """Main script to add an entry."""
-    args =  sys.argv[1:]
+    args = sys.argv[1:]
     if args[0].endswith('_'):
         first_argument = args[0]
         first_argument = first_argument[:-1]
@@ -298,7 +296,7 @@ class TimeWindow(object):
         try:
             import socket
             idhost = socket.getfqdn()
-        except: # can it actually ever fail?
+        except:  # can it actually ever fail?
             idhost = 'localhost'
         dtstamp = datetime.datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
         for start, stop, duration, entry in self.all_entries():
@@ -324,7 +322,7 @@ class TimeWindow(object):
         work, slack = self.grouped_entries()
         work = [(entry, as_minutes(duration))
                 for start, entry, duration in work
-                if duration] # skip empty "arrival" entries
+                if duration]  # skip empty "arrival" entries
         work.sort()
         writer.writerows(work)
 
@@ -437,7 +435,7 @@ class TimeWindow(object):
             work.sort()
             for entry, duration in work:
                 if not duration:
-                    continue # skip empty "arrival" entries
+                    continue  # skip empty "arrival" entries
                 entry = entry[:1].upper() + entry[1:]
                 if estimated_column:
                     print >> output, (u"%-46s  %-14s  %s" %
@@ -505,122 +503,6 @@ class TimeLog(object):
         self.raw_append(line)
 
 
-class TaskList(object):
-    """Task list.
-
-    You can have a list of common tasks in a text file that looks like this
-
-        Arrived **
-        Reading mail
-        Project1: do some task
-        Project2: do some other task
-        Project1: do yet another task
-
-    These tasks are grouped by their common prefix (separated with ':').
-    Tasks without a ':' are grouped under "Other".
-
-    A TaskList has an attribute 'groups' which is a list of tuples
-    (group_name, list_of_group_items).
-    """
-
-    other_title = 'Other'
-
-    loading_callback = None
-    loaded_callback = None
-    error_callback = None
-
-    def __init__(self, filename):
-        self.filename = filename
-        self.load()
-
-    def check_reload(self):
-        """Look at the mtime of tasks.txt, and reload it if necessary.
-
-        Returns True if the file was reloaded.
-        """
-        mtime = self.get_mtime()
-        if mtime != self.last_mtime:
-            self.load()
-            return True
-        else:
-            return False
-
-    def get_mtime(self):
-        """Return the mtime of self.filename, or None if the file doesn't
-        exist."""
-        try:
-            return os.stat(self.filename).st_mtime
-        except OSError:
-            return None
-
-    def load(self):
-        """Load task list from a file named self.filename."""
-        groups = {}
-        self.last_mtime = self.get_mtime()
-        try:
-            for line in file(self.filename):
-                line = line.strip()
-                if not line or line.startswith('#'):
-                    continue
-                if ':' in line:
-                    group, task = [s.strip() for s in line.split(':', 1)]
-                else:
-                    group, task = self.other_title, line
-                groups.setdefault(group, []).append(task)
-        except IOError:
-            pass # the file's not there, so what?
-        self.groups = groups.items()
-        self.groups.sort()
-
-    def reload(self):
-        """Reload the task list."""
-        self.load()
-
-
-class RemoteTaskList(TaskList):
-    """Task list stored on a remote server.
-
-    Keeps a cached copy of the list in a local file, so you can use it offline.
-    """
-
-    def __init__(self, url, cache_filename):
-        self.url = url
-        TaskList.__init__(self, cache_filename)
-        self.first_time = True
-
-    def check_reload(self):
-        """Check whether the task list needs to be reloaded.
-
-        Download the task list if this is the first time, and a cached copy is
-        not found.
-
-        Returns True if the file was reloaded.
-        """
-        if self.first_time:
-            self.first_time = False
-            if not os.path.exists(self.filename):
-                self.download()
-                return True
-        return TaskList.check_reload(self)
-
-    def download(self):
-        """Download the task list from the server."""
-        if self.loading_callback:
-            self.loading_callback()
-        try:
-            urllib.urlretrieve(self.url, self.filename)
-        except IOError:
-            if self.error_callback:
-                self.error_callback()
-        self.load()
-        if self.loaded_callback:
-            self.loaded_callback()
-
-    def reload(self):
-        """Reload the task list."""
-        self.download()
-
-
 def print_day(day, timelog):
     min = datetime.datetime.combine(day, VIRTUAL_MIDNIGHT)
     max = min + datetime.timedelta(1)
@@ -636,7 +518,7 @@ def main():
         printWeek = False
     configdir = os.path.expanduser('~/.gtimelog')
     try:
-        os.makedirs(configdir) # create it if it doesn't exist
+        os.makedirs(configdir)  # create it if it doesn't exist
     except OSError:
         pass
     timelog = TimeLog(os.path.join(configdir, 'timelog.txt'),
@@ -670,6 +552,6 @@ def main():
             info.print_today()
             print
             worked, slacked = info.totals()
-            total = (worked.seconds / 60.0/ 60) + (worked.days * 24)
+            total = (worked.seconds / 60.0 / 60) + (worked.days * 24)
             print "Week %s van %s-%02s-%02s: %s uur" % (
                 mon.strftime('%V'), mon.year, mon.month, mon.day, total)
