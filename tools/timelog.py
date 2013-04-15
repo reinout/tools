@@ -370,15 +370,16 @@ class TimeWindow(object):
         print >> output, ("Time spent slacking: %s" %
                           format_duration_long(total_slacking))
 
-    def print_today(self):
+    def print_today(self, show_most_recent=True):
         items = list(self.all_entries())
         if not items:
             print "No work done today."
             return
         start, stop, duration, entry = items[0]
         entry = entry[:1].upper() + entry[1:]
-        print "%s at %s" % (entry, start.strftime('%H:%M'))
-        print
+        if show_most_recent:
+            print "Most recent entry: %s at %s" % (entry, start.strftime('%H:%M'))
+            print
         work, slack = self.grouped_entries()
         lengths = [len(entry[1]) for entry in work + slack]
         lengths.sort()
@@ -406,7 +407,7 @@ class TimeWindow(object):
                 print u"%-62s  %s" % (entry,
                                                 format_duration_long(duration))
             print
-        print ("Time spent slacking: %s" %
+        print ("Not-work-time:: %s" %
                           format_duration_long(total_slacking))
 
     def weekly_report(self, output, email, who, estimated_column=False):
@@ -529,9 +530,9 @@ def main():
         print_day(day, timelog)
     else:
         now = datetime.datetime.now()
-        zeroToSeven = range(36)
-        zeroToSeven.reverse()
-        for nDays in zeroToSeven:
+        thirty_days = range(30)
+        thirty_days.reverse()
+        for nDays in thirty_days:
             day = now - datetime.timedelta(nDays)
             print
             print "*********************"
@@ -542,16 +543,29 @@ def main():
         # .totals()
         cal = calendar.Calendar()
         weeks = cal.monthdatescalendar(today.year, today.month)
-        print "Weekly overview"
+        if today.day < 15:
+            # Also add the previous month.
+            in_last_month = today - datetime.timedelta(days=20)
+            last_months_weeks = cal.monthdatescalendar(in_last_month.year,
+                                                       in_last_month.month)
+            weeks = last_months_weeks + weeks
+
+        print "\n\n\n\nWeekly overview"
+        print "===============\n"
         for week in weeks:
             mon = week[0]
             sun = week[6]
             first = datetime.datetime(mon.year, mon.month, mon.day)
+            if today < first:
+                # Future week, don't bother.
+                continue
             last = datetime.datetime(sun.year, sun.month, sun.day)
             info = timelog.window_for(first, last)
-            info.print_today()
-            print
             worked, slacked = info.totals()
             total = (worked.seconds / 60.0 / 60) + (worked.days * 24)
-            print "Week %s van %s-%02s-%02s: %s uur" % (
+            print "\nWeek %s van %s-%02s-%02s: %s uur" % (
                 mon.strftime('%V'), mon.year, mon.month, mon.day, total)
+            print "--------------------------------\n"
+
+            info.print_today(show_most_recent=False)
+            print
