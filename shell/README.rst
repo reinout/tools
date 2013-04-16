@@ -293,6 +293,21 @@ Source code::
 
 
 
+fixopenwith
+------------------------------------------------------------------------
+
+Remove duplicates from OSX's 'open with' menu. Tip taken from
+http://www.leancrew.com/all-this/2013/02/getting-rid-of-open-with-duplicates/
+
+Source code::
+
+    #!/bin/bash
+    
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+    killall Finder
+
+
+
 fixvagrantnetwork
 ------------------------------------------------------------------------
 
