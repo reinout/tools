@@ -180,9 +180,50 @@ This is a gtimelog variant/hack for the commandline.
 
 `gtimelog <http://mg.pov.lt/gtimelog/>`_ requires gtk, which isn't handy on
 OSX. Years ago I already hacked up a modified version that only requires the
-commandline. I've now copy/pasted it again and cleaned it up a bit.
+commandline. I've dug it up again.
 
 gtimelog is (c) Marius Gedminas, GPL. My stuff is GPL'ed too, so that fits :-)
+
+My variant works on the commandline and provides two commands:
+
+tl
+    Add a timelog entry to the logfile. The entry to add is passed on the
+    commandline, for instance ``tl weblog`` for when I worked on a blog
+    entry.
+
+    The logfile is ``~/.gtimelog/timelog.txt``.
+
+pt
+    Short for "print today", it prints an overview of how much time I spend on
+    what today. Call it like ``pt week`` to get an overview of the whole week
+    (and a couple of earlier weeks, in case I need that).
+
+The ``tl`` command works best when you add tab completion. Add a
+``~/.gtimelog/tasks.txt`` file, which should have one word per line, each
+being a task you want to log with ``tl``. Hook up the following into your bash completion::
+
+    _timelog()
+    {
+        local cur prev
+        COMMAND_NAME='timelog'
+        COMPREPLY=()
+        # Word that is currently being expanded:
+        cur=${COMP_WORDS[COMP_CWORD]}
+        # Previous expanded word:
+        prev=${COMP_WORDS[COMP_CWORD-1]}
+
+        # We look for ~/.gtimelog/tasks.txt, which should have one word
+        # per line, each being a project.
+        CONFIGDIR=~/.gtimelog
+        if test ! -d $CONFIGDIR; then
+            return 0
+        fi
+        PROJECTS="$(cat $CONFIGDIR/tasks.txt | grep -v \#)"
+        COMPREPLY=( $(compgen -W '$PROJECTS' -- $cur ) )
+    }
+    complete -F _timelog tl
+
+Works quite well!
 
 
 
