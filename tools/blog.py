@@ -187,7 +187,8 @@ def new_sermon():
     while not title:
         title = raw_input('Titel: ')
 
-    filename = title.replace(' ', '-').replace(',', '').lower()[:50] + '.txt'
+    filename = title.replace(' ', '-').replace(',', '').replace(
+        "'", '').lower()[:50] + '.txt'
     full_filename = os.path.join(yeardir, filename)
     print("Using filename {}".format(full_filename))
 
