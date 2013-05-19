@@ -224,4 +224,4 @@ def new_sermon():
     print("Opening with emacs: " + full_filename)
     emacs = '/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
     # subprocess.call(['emacs', full_filename])
-    os.execvp(emacs, ['-n "%s"' % full_filename])
+    os.execl(emacs, '-n', full_filename)
