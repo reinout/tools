@@ -31,7 +31,7 @@ def main():
             GREEN = '\x1b[1m\x1b[32m{}\x1b(B\x1b[m'
             RED = '\x1b[1m\x1b[31m{}\x1b(B\x1b[m'
 
-    TEMPLATE = '{NAAM:<35}{INTERN:>9}{MOBIEL:>13}  {PRESENCE:<20}'
+    TEMPLATE = '{NAAM:<35}{number:>9}{MOBIEL:>13}  {PRESENCE:<20}'
 
     jsonfile = urllib2.urlopen(
         'http://buildbot.lizardsystem.nl/gis/aanwezigheid.json',
@@ -46,7 +46,7 @@ def main():
 
     print('   Gericht overnemen: *59 / Prefix interne nummers: 030 2330')
     print(TEMPLATE.format(NAAM='Naam',
-                          INTERN='Intern',
+                          number='Nummer',
                           MOBIEL='Mobiel',
                           PRESENCE='Aanwezig?'))
 
