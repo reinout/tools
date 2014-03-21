@@ -22,17 +22,12 @@ import urllib2
 import sys
 import re
 
+GREEN = '\x1b[1m\x1b[32m{}\x1b(B\x1b[m'
+RED = '\x1b[1m\x1b[31m{}\x1b(B\x1b[m'
+TEMPLATE = '{NAAM:<35}{number:>9}{MOBIEL:>13}  {PRESENCE:<20}'
+
 
 def main():
-    if sys.platform.startswith('win'):
-            GREEN = '{}'
-            RED = '{}'
-    else:
-            GREEN = '\x1b[1m\x1b[32m{}\x1b(B\x1b[m'
-            RED = '\x1b[1m\x1b[31m{}\x1b(B\x1b[m'
-
-    TEMPLATE = '{NAAM:<35}{number:>9}{MOBIEL:>13}  {PRESENCE:<20}'
-
     jsonfile = urllib2.urlopen(
         'http://buildbot.lizardsystem.nl/gis/aanwezigheid.json',
     )
@@ -53,10 +48,13 @@ def main():
     print(68 * '-')
 
     for elem in data[:-1]:
-        if elem['in_office']:
-            presence = GREEN.format('wel')
-        else:
+        if not elem['in_office']:
             presence = RED.format('niet')
+        elif elem['in_drieharingen']:
+            presence = GREEN.format('3 Haringen')
+        else:
+            presence = GREEN.format('Zakkendrager')
+
         elem.update(PRESENCE=presence)
         text = TEMPLATE.format(**elem)
         if re.search(pattern, text, flags=re.IGNORECASE):
