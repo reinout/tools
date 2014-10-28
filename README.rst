@@ -32,10 +32,13 @@ colleague's computers, for instance.
 So putting it on github seems like a good idea.
 
 
-Bootstrap installation notes for myself
----------------------------------------
+Bootstrap installation notes for myself, to use on OSX
+------------------------------------------------------
 
-- Do a git pull of ``ssh://new.vanrees.org/~/repos/Dotfiles`` into my homedir
+I work on a mac. So these are the installations for really bootstrapping
+without anything present.
+
+- Do a git pull of ``ssh://vanrees.org/~/repos/Dotfiles`` into my homedir
   and run ``dotfiles --sync``: this gives me my dotfiles, including the
   checkoutmanager configuration. I need this because there are local
   development items I need to run. There's a bit of a bootstrap problem that
@@ -66,8 +69,24 @@ install::
     $ brew install haskell-platform git ossp-uuid md5sha1sum coreutils pcre
 
 
-Documentation
--------------
+Installation on a VM
+--------------------
+
+I want most of my bash settings and helper scripts also in ubuntu VMs. I use
+vmware fusion (and I used to use virtualbox+vagrant). I have a fabfile to do
+the bootstrapping in there.
+
+Prerequisites for vmware:
+
+- I must be able to ssh into the machine (so "openssh-server" must be
+  installed).
+
+- My home dir must be mounted on ``/mnt/hgfs/reinout``.
+
+
+
+Documentation generation
+------------------------
 
 I'm trying to do this the neat way: I've even added explanatory comments to
 all shell scripts. And I've got a ``generate_shell_docs.py`` that generates a
