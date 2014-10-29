@@ -38,21 +38,19 @@ Bootstrap installation notes for myself, to use on OSX
 I work on a mac. So these are the installations for really bootstrapping
 without anything present.
 
+- Create a temporary virtualenv somewhere and install ``dotfiles`` and
+  ``checkoutmanager`` in it.
+
 - Do a git pull of ``ssh://vanrees.org/~/repos/Dotfiles`` into my homedir
   and run ``dotfiles --sync``: this gives me my dotfiles, including the
   checkoutmanager configuration. I need this because there are local
   development items I need to run. There's a bit of a bootstrap problem that
   ``dotfiles`` is actually installed by this tools dir :-)
 
-- Create a temporary virtualenv somewhere and install ``dotfiles`` and
-  ``checkoutmanager`` in it.
+- Symlink ``osx.cfg`` (on osx) to buildout.cfg`` first. The other ``.cfg`` are
+  used inside virtualbox/vmware machines or on my own webserver.
 
-- Symlink ``osx.cfg`` (on osx) or ``django.cfg`` (in my django vagrant box) to
-  ``buildout.cfg`` first. On the server, pick ``newvanreesorg.cfg``.
-
-- Run ``/usr/bin/python2.7 bootstrap.py``.
-
-- Run ``bin/buildout``
+- Run ``/usr/bin/python2.7 bootstrap.py`` and ``bin/buildout``.
 
 
 Extra OSX install notes
