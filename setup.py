@@ -21,11 +21,11 @@ setup(name='tools',
           # 'media-manager',
           # ^^^ Only on osx at the moment,included in the buildout
 
-          # 'createcoverage',
           # 'eolfixer',
           # 'nensbuild',
           # 'nenslint',
           # 'z3c.dependencychecker',
+          'createcoverage',
           'checkoutmanager',
           'docutils',
           'dotfiles',
