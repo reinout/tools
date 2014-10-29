@@ -81,8 +81,15 @@ Prerequisites for vmware:
 - I must be able to ssh into the machine (so "openssh-server" must be
   installed).
 
-- My home dir must be mounted on ``/mnt/hgfs/reinout``.
+- My home dir must be mounted on ``/mnt/hgfs/reinout``. The vmware tools must
+  be installed for this. On ubuntu server images this might fail initially as
+  the ``build-essential`` package isn't installed. After installing that, run
+  ``vmware-config-tools.pl -d`` to get your vmware tools build with the
+  defaults.
 
+- Problem: files on that share are owned by ``501:dialout``, so modify the
+  ``vmware_mount_vmhgfs`` function in ``/etc/vmware-tools/services.sh`` and
+  add ``-o uid=1000,gid=1000`` to the mount command.
 
 
 Documentation generation
