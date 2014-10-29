@@ -78,7 +78,7 @@ Prerequisites for vmware:
 
 - I must be able to ssh into the machine, so "openssh-server" must be
   installed. This was missing from the two ubuntu server ISOs that I used, so
-  that's something you need to do by hand.
+  that's something I need to do by hand.
 
 - My home dir must be mounted on ``/mnt/hgfs/reinout``. Simply add my homedir
   in the "share" menu of the vmware config.
