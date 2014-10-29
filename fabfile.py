@@ -10,15 +10,28 @@ env.forward_agent = True
 
 def vmware_bootstrap():
     """Bootstrap my setup on vmware."""
+    sudo("aptitude install git python-dev ncurses-dev build-essential -y")
+    # ^^^ Git is needed for checkouts, python-dev and ncursus-dev for
+    # compiling several python packages we want to install.
     if not exists("~/Dotfiles"):
-        sudo("aptitude install git -y")
         run("git clone ssh://vanrees.org/~/repos/Dotfiles")
     if not exists("~/tools"):
         run("git clone git@github.com:reinout/tools.git")
     if not exists("~/utils"):
         run("ln -s /mnt/hgfs/reinout/utils utils")
+
+    # Create a /Users symlink to /home: this helps with the buildout default
+    # config file that doesn't do tilde expansion.
+    if not exists("/Users"):
+        sudo("ln -s /home /Users")
+    run("mkdir -p ~/.buildout/eggs")
+    run("mkdir -p ~/.buildout/downloads")
+    run("mkdir -p ~/.buildout/configs")
+
     with cd("~/tools"):
+        run("git pull")
         if not exists("buildout.cfg"):
             run("ln -s vmware.cfg buildout.cfg")
         run("python bootstrap.py")
         run("bin/buildout")
+    run("~/tools/bin/dotfiles --sync --force")
