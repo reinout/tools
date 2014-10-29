@@ -76,14 +76,17 @@ the bootstrapping in there.
 
 Prerequisites for vmware:
 
-- I must be able to ssh into the machine (so "openssh-server" must be
-  installed).
+- I must be able to ssh into the machine, so "openssh-server" must be
+  installed. This was missing from the two ubuntu server ISOs that I used, so
+  that's something you need to do by hand.
 
-- My home dir must be mounted on ``/mnt/hgfs/reinout``. The vmware tools must
-  be installed for this. On ubuntu server images this might fail initially as
-  the ``build-essential`` package isn't installed. After installing that, run
-  ``vmware-config-tools.pl -d`` to get your vmware tools build with the
-  defaults.
+- My home dir must be mounted on ``/mnt/hgfs/reinout``. Simply add my homedir
+  in the "share" menu of the vmware config.
+
+  The vmware tools must be installed for this. On ubuntu server images this
+  might fail initially as the ``build-essential`` package isn't installed.
+  After installing that, run ``vmware-config-tools.pl -d`` to get your vmware
+  tools build with the defaults.
 
 - Problem: files on that share are owned by ``501:dialout``, so modify the
   ``vmware_mount_vmhgfs`` function in ``/etc/vmware-tools/services.sh`` and
