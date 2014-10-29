@@ -92,6 +92,12 @@ Prerequisites for vmware:
   add ``-o uid=1000,gid=1000`` to the mount command.
 
 
+To install the tools and the dotfiles on the VM to prepare it so that I can
+develop on it with pleasure, run::
+
+    $ bin/fab -H VM_HOSTNAME vmware_bootstrap
+
+
 Documentation generation
 ------------------------
 
