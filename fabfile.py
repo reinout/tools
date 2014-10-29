@@ -34,4 +34,12 @@ def vmware_bootstrap():
             run("ln -s vmware.cfg buildout.cfg")
         run("python bootstrap.py")
         run("bin/buildout")
+    with cd("~/Dotfiles"):
+        run("git pull")
     run("~/tools/bin/dotfiles --sync --force")
+
+
+# TODO: vmware setup (build-essentials, vmware tools, mount options.
+
+# TODO: hostname in the vm, hostname in our local /etc/hosts, hostname in the
+# ssh config
