@@ -34,10 +34,13 @@ def vmware_bootstrap():
             run("ln -s vmware.cfg buildout.cfg")
         run("python bootstrap.py")
         run("bin/buildout")
+        run("./install_shell_scripts.sh")
     with cd("~/Dotfiles"):
         run("git pull")
     run("~/tools/bin/dotfiles --sync --force")
 
+    if not exists("~/%s" % env.host):
+        run("ln -s /mnt/hgfs/reinout/%s %s" % (env.host, env.host))
 
 # TODO: vmware setup (build-essentials, vmware tools, mount options.
 
