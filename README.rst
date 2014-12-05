@@ -59,7 +59,7 @@ Extra OSX install notes
 Install `homebrew <http://mxcl.github.com/homebrew/>`_ and install a couple of
 utilities that are missing from OSX (or that are too old)::
 
-    $ brew install wget gpg bash-completion svn htop siege
+    $ brew install wget gpg bash-completion svn htop siege python
 
 And, for the `git annex <http://git-annex.branchable.com/>`_ dependencies,
 install::
@@ -67,8 +67,8 @@ install::
     $ brew install haskell-platform git ossp-uuid md5sha1sum coreutils pcre
 
 
-Installation on a VM
---------------------
+Installation on a VM TODO: update for ansible/vmware
+----------------------------------------------------
 
 I want most of my bash settings and helper scripts also in ubuntu VMs. I use
 vmware fusion (and I used to use virtualbox+vagrant). I have a fabfile to do
