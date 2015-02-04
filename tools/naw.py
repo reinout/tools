@@ -12,15 +12,15 @@ This script reads the json and prints it, optionally filtered with
 as a setuptools console script.)
 
 """
-from __future__ import print_function
-from __future__ import unicode_literals
 from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import json
-import urllib2
-import sys
 import re
+import sys
+import urllib2
 
 GREEN = '\x1b[1m\x1b[32m{}\x1b(B\x1b[m'
 RED = '\x1b[1m\x1b[31m{}\x1b(B\x1b[m'

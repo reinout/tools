@@ -14,7 +14,6 @@ what this script does.
 import logging
 import os
 
-
 LOGFILE = "~/engineer.log"
 # ^^^ This one should be symlinked into some version controlled directory.
 SEPARATOR = '\n-----'

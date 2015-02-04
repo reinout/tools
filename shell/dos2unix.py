@@ -10,7 +10,10 @@
 #
 # - Check that it works (as I had the impression it didn't work all the time).
 
-from string import split,join
+from string import join
+from string import split
+
+
 def dos2unix(data):
     return join(split(data,'\r\n'),'\n')
 

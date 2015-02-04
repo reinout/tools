@@ -11,15 +11,14 @@ Note that some of this might be better placed inside my website project
 instead of here. TODO.
 
 """
-from datetime import datetime
-from string import Template
 import os
 import readline
 import shutil
 import subprocess
 import sys
 import webbrowser
-
+from datetime import datetime
+from string import Template
 
 DOCS = os.path.expanduser('~/git/reinout.vanrees.org/docs')
 BUILD = os.path.join(DOCS, 'build', 'html')

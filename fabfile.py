@@ -4,7 +4,6 @@ from fabric.api import run
 from fabric.api import sudo
 from fabric.contrib.files import exists
 
-
 env.forward_agent = True
 
 

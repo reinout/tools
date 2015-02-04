@@ -2,8 +2,8 @@
 Small utility script for printing a bunch of calculations for my kids.
 """
 import random
-import webbrowser
 import sys
+import webbrowser
 
 NUMBER_OF_LINES = 100
 if 'floris' in sys.argv:
@@ -48,4 +48,3 @@ def main():
         outfile.write(line)
     outfile.close()
     webbrowser.open('file:///tmp/sommen.txt')
-
