@@ -1,5 +1,4 @@
-"""
-This is a gtimelog variant/hack for the commandline.
+"""This is a gtimelog variant/hack for the commandline.
 
 `gtimelog <http://mg.pov.lt/gtimelog/>`_ requires gtk, which isn't handy on
 OSX. Years ago I already hacked up a modified version that only requires the
@@ -23,7 +22,8 @@ pt
 
 The ``tl`` command works best when you add tab completion. Add a
 ``~/.gtimelog/tasks.txt`` file, which should have one word per line, each
-being a task you want to log with ``tl``. Hook up the following into your bash completion::
+being a task you want to log with ``tl``. Hook up the following into your bash
+completion::
 
     _timelog()
     {
@@ -400,8 +400,8 @@ class TimeWindow(object):
         if work:
             for start, entry, duration in work:
                 entry = entry[:1].upper() + entry[1:]
-                print >> output, u"%-62s  %s" % (entry,
-                                                format_duration_long(duration))
+                print >> output, u"%-62s  %s" % (
+                    entry, format_duration_long(duration))
             print >> output
         print >> output, ("Total work done: %s" %
                           format_duration_long(total_work))
@@ -409,8 +409,8 @@ class TimeWindow(object):
         if slack:
             for start, entry, duration in slack:
                 entry = entry[:1].upper() + entry[1:]
-                print >> output, u"%-62s  %s" % (entry,
-                                                format_duration_long(duration))
+                print >> output, u"%-62s  %s" % (
+                    entry, format_duration_long(duration))
             print >> output
         print >> output, ("Time spent slacking: %s" %
                           format_duration_long(total_slacking))
@@ -420,10 +420,11 @@ class TimeWindow(object):
         if not items:
             print "No work done today."
             return
-        start, stop, duration, entry = items[0]
-        entry = entry[:1].upper() + entry[1:]
+        start, stop, duration, first_entry = items[0]
+        first_entry = first_entry[:1].upper() + first_entry[1:]
         if show_most_recent:
-            print "Most recent entry: %s at %s" % (entry, start.strftime('%H:%M'))
+            print "Most recent entry: %s at %s" % (
+                first_entry, start.strftime('%H:%M'))
             print
         work, slack = self.grouped_entries()
         lengths = [len(entry[1]) for entry in work + slack]
@@ -444,16 +445,16 @@ class TimeWindow(object):
             print '\n'.join(output)
             print
         print ("Total work done: %s" %
-                          format_duration_long(total_work))
+               format_duration_long(total_work))
         print
         if slack:
             for start, entry, duration in slack:
                 entry = entry[:1].upper() + entry[1:]
-                print u"%-62s  %s" % (entry,
-                                                format_duration_long(duration))
+                print u"%-62s  %s" % (
+                    entry, format_duration_long(duration))
             print
         print ("Not-work-time:: %s" %
-                          format_duration_long(total_slacking))
+               format_duration_long(total_slacking))
 
     def weekly_report(self, output, email, who, estimated_column=False):
         """Format a weekly report.
@@ -485,10 +486,12 @@ class TimeWindow(object):
                 entry = entry[:1].upper() + entry[1:]
                 if estimated_column:
                     print >> output, (u"%-46s  %-14s  %s" %
-                                (entry, '-', format_duration_long(duration)))
+                                      (entry, '-',
+                                       format_duration_long(duration)))
                 else:
                     print >> output, (u"%-62s  %s" %
-                                (entry, format_duration_long(duration)))
+                                      (entry,
+                                       format_duration_long(duration)))
             print >> output
         print >> output, ("Total work done this week: %s" %
                           format_duration_long(total_work))

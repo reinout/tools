@@ -33,7 +33,6 @@ def main():
     drawable = ImageDraw.Draw(txt_image)
 
     date_string = str(datetime.datetime.now().strftime('%H:%M'))
-    #date_string = '10:21'
 
     drawable.text((0, 0), date_string,  font=font, fill=255)
     txt_image = txt_image.rotate(0, expand=2)

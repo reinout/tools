@@ -158,7 +158,7 @@ def complete_churches(text, state):
 def complete_referents(text, state):
     referents_dir = os.path.join(SERMONSOURCE, 'predikanten')
     referents = [f[:-4] for f in os.listdir(referents_dir)
-                if f.endswith('.txt')]
+                 if f.endswith('.txt')]
     return _complete(text, state, referents)
 
 
