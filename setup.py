@@ -41,7 +41,7 @@ setup(name='tools',
           'pyroma',
           'readline',
           'sphinx',
-          'zest.releaser',
+          'zest.releaser[recommended]',
           ],
       entry_points={
         'console_scripts': [
