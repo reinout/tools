@@ -45,7 +45,8 @@ def vm_and_path():
     cur_dir = os.getcwd()
     if not cur_dir.startswith(VM_BASEDIR):
         raise RuntimeError("We're not inside {}".format(VM_BASEDIR))
-    remainder = cur_dir.lstrip(VM_BASEDIR)
+    remainder = cur_dir[len(VM_BASEDIR):]
+    remainder = remainder.lstrip('/')
     parts = remainder.split('/')
     if not parts:
         raise RuntimeError("We're not inside {}/VM_NAME".format(VM_BASEDIR))
