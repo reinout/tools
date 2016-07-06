@@ -1,0 +1,10 @@
+#!/bin/bash
+# Remove all the intermediary/on-the-fly docker images that aren't used
+# anymore. Every time you run a docker/docker-compose command a new image is
+# created and stored. Probably not big, but you don't need it.
+#
+# You can start docker-compose with the ``--rm`` option to clean up after
+# itself. This ``drm`` command cleans up the cases where you didn't use
+# ``--rm``.
+
+docker rm $(docker ps -aq)
