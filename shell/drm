@@ -6,5 +6,8 @@
 # You can start docker-compose with the ``--rm`` option to clean up after
 # itself. This ``drm`` command cleans up the cases where you didn't use
 # ``--rm``.
+#
+# The second command removes intermediary dangling images.
 
 docker rm $(docker ps -aq)
+docker rmi $(docker images --quiet --filter "dangling=true")
