@@ -216,11 +216,15 @@ You can start docker-compose with the ``--rm`` option to clean up after
 itself. This ``drm`` command cleans up the cases where you didn't use
 ``--rm``.
 
+The second command removes intermediary dangling images.
+
 Source code::
 
     #!/bin/bash
     
     docker rm $(docker ps -aq)
+    echo "If there is nothing to remove, the next command will raise an error. That's OK."
+    docker rmi $(docker images --quiet --filter "dangling=true")
 
 
 
