@@ -78,7 +78,7 @@ def copytoblog():
     # Add all updated files.
     subprocess.call(['git', 'add', '-u'])
     makedocs()
-    html_file = target.replace('source', 'docs/build/html').replace(
+    html_file = target.replace('source/', 'docs/build/html/').replace(
         '.txt', '.html').replace('websitecontent', 'reinout.vanrees.org')
     webbrowser.open('file://' + html_file)
     if 'y' in raw_input('Sync and commit? [y/N] '):
