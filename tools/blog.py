@@ -221,6 +221,6 @@ def new_sermon():
                                  referent=referent)
     open(full_filename, 'w').write(output)
     print("Opening with emacs: " + full_filename)
-    emacs = '/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+    emacs = '/usr/local/bin/emacsclient'
     # subprocess.call(['emacs', full_filename])
     os.execl(emacs, '-n', full_filename)
