@@ -2,4 +2,5 @@
 # Run Django, also on the external interfaces for iPad testing.
 # 'bdr' is a mnemonic for 'bin django runserver'.
 
-bin/django runserver 0.0.0.0:8000
+#bin/django runserver 0.0.0.0:8000
+docker-compose run --service-ports web bin/django runserver 0.0.0.0:5000
