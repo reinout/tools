@@ -46,6 +46,7 @@ setup(name='tools',
           'pyserial',
           'qgispluginreleaser',
           'readline',
+          'six', # Trying to make it explicit
           'sphinx',
           'virtualenv',
           'z3c.dependencychecker',
