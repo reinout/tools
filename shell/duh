@@ -2,9 +2,7 @@
 # Just print out the disk usage *totals* for every directory in the current
 # directory.
 #
-# -h = Human readable
-# -c = Show the grand total, too.
-# -s = Show only the total size of the arguments: don't display the recursive
-#      information.
+# -m  = In megabytes (for easy "| sort -n")
+# -d1 = Current directory + one level below
 
-du -hcs *
+du -m -d1
