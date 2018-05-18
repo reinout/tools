@@ -27,7 +27,7 @@ Useful to others? Yes, as examples and for copy-pasting of handy scripts
 
 The code in here can be useful to others: ideas for shell scripts and small
 Python utilities. The ``svngrep`` shell script has found its way to several
-colleague's computers, for instance.
+colleagues' computers, for instance.
 
 So putting it on github seems like a good idea.
 
