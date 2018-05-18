@@ -10,16 +10,8 @@ The idea is that this directory's bin subdirectory is on my path.
 - Shell scripts are located in ``shell/``. Running
   ``./install_shell_scripts.sh`` symlinks these into the ``bin/`` directory.
 
-- The ``setup.py`` lists dependencies, such as pep8, pyflakes and
-  zest.releaser.  Buildout installs those.
-
-- The ``setup.py`` also has a couple of scripts of its own, in the ``tools/``
-  directory.  These are also installed by buildout.
-
-- I use the `gp.recipe.node <https://pypi.python.org/pypi/gp.recipe.node>`_
-  recipe to install some node/npm packages like jshint and lessc. Node is
-  compiled locally and the scripts are installed simply into the ``bin/``
-  directory with the rest.
+- The ``setup.py`` lists the python scripts, in the ``tools/`` directory.
+  These are installed with pipenv.
 
 
 Useful to others? Yes, as examples and for copy-pasting of handy scripts
@@ -30,6 +22,50 @@ Python utilities. The ``svngrep`` shell script has found its way to several
 colleagues' computers, for instance.
 
 So putting it on github seems like a good idea.
+
+
+Bootstrap installation notes for myself, to use on linux
+--------------------------------------------------------
+
+These are the installations for really bootstrapping without anything present.
+
+- ``apt install python3-pip build-essential virtualenv``
+
+- ``pip3 install pyenv``
+
+- ``pyenv install 3.6.5`` and the same for 2.7.15
+
+- Install pipsi: ``curl
+  https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py |
+  python``
+
+With pipsi, you can then install various packages nicely isolated in their own
+virtualenvs. First install "dotfiles" and "checkoutmanager" as we need them to
+set up the rest.
+
+- Do a git pull of ``ssh://vanrees.org/~/repos/Dotfiles`` into my homedir
+  and run ``dotfiles --sync``: this gives me my dotfiles, including the
+  checkoutmanager configuration. I need this because there are local
+  development items I need to run.
+
+- Symlink the desired checkoutmanager config in the homedir (``ln -s
+  .checkoutmanager_linux.cfg .checkoutmanager.cfg``).
+
+- Run ``checkoutmanager co``.
+
+- Now go to ``~/zelf/tools/`` and run ``pipsi install -e .``.
+
+- Run ``./install_shell_scripts.sh`` which installs the shell scripts into the
+  ``bin/`` folder.
+
+Use pipsi to install a bunch of packages::
+
+  pipsi install flake8
+  pipsi install cookiecutter
+  pipsi install docutils
+  pipsi install isort
+  pipsi install legit
+  pipsi install oplop
 
 
 Bootstrap installation notes for myself, to use on OSX
@@ -65,38 +101,6 @@ And, for the `git annex <http://git-annex.branchable.com/>`_ dependencies,
 install::
 
     $ brew install haskell-platform git ossp-uuid md5sha1sum coreutils pcre
-
-
-Installation on a VM TODO: update for ansible/vmware
-----------------------------------------------------
-
-I want most of my bash settings and helper scripts also in ubuntu VMs. I use
-vmware fusion (and I used to use virtualbox+vagrant). I have a fabfile to do
-the bootstrapping in there.
-
-Prerequisites for vmware:
-
-- I must be able to ssh into the machine, so "openssh-server" must be
-  installed. This was missing from the two ubuntu server ISOs that I used, so
-  that's something I need to do by hand.
-
-- My home dir must be mounted on ``/mnt/hgfs/reinout``. Simply add my homedir
-  in the "share" menu of the vmware config.
-
-  The vmware tools must be installed for this. On ubuntu server images this
-  might fail initially as the ``build-essential`` package isn't installed.
-  After installing that, run ``vmware-config-tools.pl -d`` to get your vmware
-  tools build with the defaults.
-
-- Problem: files on that share are owned by ``501:dialout``, so modify the
-  ``vmware_mount_vmhgfs`` function in ``/etc/vmware-tools/services.sh`` and
-  add ``-o uid=1000,gid=1000`` to the mount command.
-
-
-To install the tools and the dotfiles on the VM to prepare it so that I can
-develop on it with pleasure, run::
-
-    $ bin/fab -H VM_HOSTNAME vmware_bootstrap
 
 
 Documentation generation
