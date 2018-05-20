@@ -1,8 +1,8 @@
 #!/bin/bash
-# Shortcut for starting emacs on OSX.
+# Shortcut for starting emacs
 #
 # Note that I've got it set up in server mode. I've got a bash alias "e" that
 # edits a file with "emacsclient". So "es" stands for "emacs server" in my
 # case, "e" is for editing with emacs itself :-)
 
-/Applications/Emacs.app/Contents/MacOS/Emacs &
+/usr/bin/emacs &
