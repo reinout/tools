@@ -20,10 +20,10 @@ import subprocess
 import sys
 import webbrowser
 
-DOCS = os.path.expanduser('~/git/reinout.vanrees.org/docs')
+DOCS = os.path.expanduser('~/zelf/reinout.vanrees.org/docs')
 BUILD = os.path.join(DOCS, 'build', 'html')
-WEBLOGSOURCE = os.path.expanduser('~/git/websitecontent/source/weblog')
-SERMONSOURCE = os.path.expanduser('~/git/websitecontent/source/preken')
+WEBLOGSOURCE = os.path.expanduser('~/zelf/websitecontent/source/weblog')
+SERMONSOURCE = os.path.expanduser('~/zelf/websitecontent/source/preken')
 
 
 def conditional_copy(source, target):
@@ -34,16 +34,16 @@ def conditional_copy(source, target):
     new = open(source, 'r').read()
     if new != old:
         open(target, 'w').write(new)
-        print '.',
+        print('.',)
 
 
 def copytoblog():
     """Copy text file to current date's blog dir"""
     if len(sys.argv) < 2:
-        print "pass along filename!"
+        print("pass along filename!")
     filename = sys.argv[1]
     if not os.path.exists(filename):
-        print filename, "doesn't exist"
+        print("%s doesn't exist" % filename)
 
     now = datetime.now()
     y = '%04d' % now.year
@@ -91,7 +91,7 @@ def copytoblog():
         webbrowser.open(on_site)
         if 'y' in raw_input('Delete file in ~/blog/? [y/N] '):
             os.remove(os.path.join('/Users/reinout/blog', filename))
-            print "%s removed" % filename
+            print("%s removed" % filename)
 
 
 def makedocs():
@@ -128,7 +128,7 @@ def list_todays_entries():
     monthdir = os.path.join(yeardir, m)
     daydir = os.path.join(monthdir, d)
     if not os.path.exists(daydir):
-        print "Nothing posted yet in %s" % daydir
+        print("Nothing posted yet in %s" % daydir)
         sys.exit(1)
     entries = [entry for entry in os.listdir(daydir)
                if entry.endswith('.txt') and
@@ -180,7 +180,7 @@ def new_sermon():
     yeardir = os.path.join(SERMONSOURCE, yyyy)
     if not os.path.exists(yeardir):
         os.mkdir(yeardir)
-        print "Created", yeardir
+        print("Created %s" % yeardir)
 
     title = None
     while not title:
@@ -221,6 +221,6 @@ def new_sermon():
                                  referent=referent)
     open(full_filename, 'w').write(output)
     print("Opening with emacs: " + full_filename)
-    emacs = '/usr/local/bin/emacsclient'
+    emacs = '/usr/bin/emacsclient'
     # subprocess.call(['emacs', full_filename])
     os.execl(emacs, '-n', full_filename)
