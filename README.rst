@@ -53,10 +53,9 @@ set up the rest.
 
 - Run ``checkoutmanager co``.
 
-- Now go to ``~/zelf/tools/`` and run ``pipsi install -e .``.
+Now you can install this repo itself with a quick ``make install`` in
+``~/zelf/tools``. It installs itself with pipsi.
 
-- Run ``./install_shell_scripts.sh`` which installs the shell scripts into the
-  ``bin/`` folder.
 
 Use pipsi to install a bunch of packages::
 
