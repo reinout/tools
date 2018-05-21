@@ -65,6 +65,7 @@ Use pipsi to install a bunch of packages::
   pipsi install isort
   pipsi install legit
   pipsi install oplop
+  pipsi install ansible
 
 
 Bootstrap installation notes for myself, to use on OSX
