@@ -67,6 +67,10 @@ Use pipsi to install a bunch of packages::
   pipsi install oplop
   pipsi install ansible
 
+And, as documentation, some of the debian packages I install::
+
+  apt install etckeeper curl gpg xclip emacs25 evolution evolution-ews
+
 
 Bootstrap installation notes for myself, to use on OSX
 ------------------------------------------------------
