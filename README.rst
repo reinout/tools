@@ -67,6 +67,9 @@ Use pipsi to install a bunch of packages::
   pipsi install oplop
   pipsi install ansible
 
+Note: I installed flake8 also with "pip install flake8" because that helps
+emacs' flycheck to pick it up.
+
 And, as documentation, some of the debian packages I install::
 
   apt install etckeeper curl gpg xclip emacs25 evolution evolution-ews
