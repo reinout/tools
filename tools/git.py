@@ -9,18 +9,22 @@ The script *does* ask for confirmation after first showing the status:
 prevent accidents.
 
 """
-import commands
+import subprocess
 import sys
 
 
 def main():
-    output = commands.getoutput('git status')
+    output = subprocess.check_output(['git', 'status'],
+                                     universal_newlines=True)
     print(output)
     if "Untracked files" in output:
         print('\n\n\n')
         print("Untracked files; do a manual 'git add -A'.")
         sys.exit(1)
-    raw_input("Hit enter to continue add/commit/push cycle, ctrl-c to quit. ")
-    print(commands.getoutput('git add -u'))
-    print(commands.getoutput('git commit -m "Update"'))
-    print(commands.getoutput('git push'))
+    input("Hit enter to continue add/commit/push cycle, ctrl-c to quit. ")
+    print(subprocess.check_output(['git', 'add', '-u'],
+                                  universal_newlines=True))
+    print(subprocess.check_output(['git', 'commit', '-m', '"Update"'],
+                                  universal_newlines=True))
+    print(subprocess.check_output(['git', 'push'],
+                                  universal_newlines=True))

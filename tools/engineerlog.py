@@ -25,7 +25,7 @@ def grab_input():
     """Grab and return input until the first empty line"""
     lines = []
     while 1:
-        line = raw_input()
+        line = input()
         # TODO: readline module gebruiken.
         if not line.strip():
             break

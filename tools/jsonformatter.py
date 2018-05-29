@@ -11,4 +11,4 @@ import sys
 
 def main():
     the_json = json.loads(sys.stdin.read())
-    print json.dumps(the_json, indent=4)
+    print(json.dumps(the_json, indent=4))

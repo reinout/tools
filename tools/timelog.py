@@ -81,7 +81,7 @@ def add_timelog_entry():
         f = open(FILENAME, "a")
     except IOError:
         f = open(FILENAME, "w")
-    print line
+    print(line)
     print >> f, line
     f.close()
 

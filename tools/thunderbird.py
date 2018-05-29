@@ -17,10 +17,10 @@ def fix_thunderbird():
     """Remove holes in the config file."""
 
     lines = [line.strip() for line in open(CONFIG_FILE).readlines()]
-    print "======= OLD ======="
+    print("======= OLD =======")
     for line in lines:
-        print line
-    print "======= NEW ======="
+        print(line)
+    print("======= NEW =======")
     outfile = open(CONFIG_FILE, 'w')
     for line in lines:
         if not line:

@@ -22,6 +22,7 @@ import webbrowser
 
 DOCS = os.path.expanduser('~/zelf/reinout.vanrees.org/docs')
 BUILD = os.path.join(DOCS, 'build', 'html')
+WEBSITECONTENT = os.path.expanduser('~/zelf/websitecontent')
 WEBLOGSOURCE = os.path.expanduser('~/zelf/websitecontent/source/weblog')
 SERMONSOURCE = os.path.expanduser('~/zelf/websitecontent/source/preken')
 
@@ -81,16 +82,16 @@ def copytoblog():
     html_file = target.replace('source/', 'docs/build/html/').replace(
         '.txt', '.html').replace('websitecontent', 'reinout.vanrees.org')
     webbrowser.open('file://' + html_file)
-    if 'y' in raw_input('Sync and commit? [y/N] '):
+    if 'y' in input('Sync and commit? [y/N] '):
         subprocess.call(['syncweblog.sh'])
-        os.chdir('/Users/reinout/git/websitecontent/')
+        os.chdir(WEBSITECONTENT)
         subprocess.call(['git', 'commit', '-m', 'new entry'])
         subprocess.call(['git', 'push'])
         on_site = 'http://reinout.vanrees.org/weblog/%s/%s/%s/%s' % (
             y, m, d, filename.replace('.txt', '.html'))
         webbrowser.open(on_site)
-        if 'y' in raw_input('Delete file in ~/blog/? [y/N] '):
-            os.remove(os.path.join('/Users/reinout/blog', filename))
+        if 'y' in input('Delete file in ~/blog/? [y/N] '):
+            os.remove(os.path.join('/home/reinout/blog', filename))
             print("%s removed" % filename)
 
 
@@ -175,7 +176,7 @@ def new_sermon():
 
     date = None
     while not date:
-        date = raw_input('Datum (yyyy-mm-dd): ')
+        date = input('Datum (yyyy-mm-dd): ')
     yyyy = str(int(date[:4]))
     yeardir = os.path.join(SERMONSOURCE, yyyy)
     if not os.path.exists(yeardir):
@@ -184,7 +185,7 @@ def new_sermon():
 
     title = None
     while not title:
-        title = raw_input('Titel: ')
+        title = input('Titel: ')
 
     filename = title.replace(' ', '-').replace(',', '').replace(
         "'", '').lower()[:50] + '.txt'
@@ -194,12 +195,12 @@ def new_sermon():
     readline.set_completer(complete_churches)
     church = None
     while not church:
-        church = raw_input('Kerk: ')
+        church = input('Kerk: ')
 
     readline.set_completer(complete_referents)
     referent = None
     while not referent:
-        referent = raw_input('Predikant: ')
+        referent = input('Predikant: ')
     # ^^^ Refactor the while loops above.
 
     template = Template("""${title}
