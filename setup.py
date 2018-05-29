@@ -30,11 +30,11 @@ setup(name='tools',
           'nose',
           'pyserial',
           'readline',
-          'six', # Trying to make it explicit
+          'six',  # Trying to make it explicit
           ],
       entry_points={
         'console_scripts': [
-            'L = tools.engineerlog:main',
+            'log = tools.engineerlog:main',
             'add_time = tools.add_time:main',
             'copytoblog = tools.blog:copytoblog',
             'new_sermon = tools.blog:new_sermon',
