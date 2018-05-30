@@ -1,3 +1,3 @@
 install:
-	pipsi install -e . || true
+	pipsi upgrade -e . || true
 	./install_shell_scripts.sh
