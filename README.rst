@@ -29,15 +29,18 @@ Bootstrap installation notes for myself, to use on linux
 
 These are the installations for really bootstrapping without anything present.
 
-- ``apt install python3-pip build-essential virtualenv``
+- ``sudo apt install python3-pip build-essential virtualenv git curl``
 
-- ``pip3 install pyenv``
+- ``sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev``
 
-- ``pyenv install 3.6.5`` and the same for 2.7.15
+- ``curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash``
 
-- Install pipsi: ``curl
-  https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py |
-  python``
+- ``pyenv install 3.6.5`` and the same for 2.7.15 (an run the "export ..."
+  instructions in the current shell, the rest ought to be in the Dotfiles'
+  bash settings).
+
+- Install pipsi:
+  ``curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python``
 
 With pipsi, you can then install various packages nicely isolated in their own
 virtualenvs. First install "dotfiles" and "checkoutmanager" as we need them to
@@ -72,7 +75,7 @@ emacs' flycheck to pick it up.
 
 And, as documentation, some of the debian packages I install::
 
-  apt install etckeeper curl gpg xclip emacs25 evolution evolution-ews
+  apt install etckeeper gpg xclip emacs25 evolution evolution-ews
 
 
 Bootstrap installation notes for myself, to use on OSX
