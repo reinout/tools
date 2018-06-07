@@ -75,7 +75,7 @@ emacs' flycheck to pick it up.
 
 And, as documentation, some of the debian packages I install::
 
-  apt install etckeeper gpg xclip emacs25 evolution evolution-ews
+  apt install etckeeper gpg xclip emacs25 evolution evolution-ews xclip
 
 
 Bootstrap installation notes for myself, to use on OSX
