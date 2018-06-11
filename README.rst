@@ -77,6 +77,9 @@ And, as documentation, some of the debian packages I install::
 
   apt install etckeeper gpg xclip emacs25 evolution evolution-ews xclip
 
+For nextcloud, I `used the PPA
+<https://launchpad.net/~nextcloud-devs/+archive/ubuntu/client>`_.
+
 
 Bootstrap installation notes for myself, to use on OSX
 ------------------------------------------------------
@@ -118,11 +121,11 @@ Documentation generation
 
 I'm trying to do this the neat way: I've even added explanatory comments to
 all shell scripts. And I've got a ``generate_shell_docs.py`` that generates a
-README from those comments. Look in the shell directory (for instance `on
-github <https://github.com/reinout/tools/tree/master/shell>`_) and you'll see
-the nicely formatted README at the bottom.
+README from those comments. Look in the shell directory (for instance `;ppl at
+shell on github <https://github.com/reinout/tools/tree/master/shell>`_) and
+you'll see the nicely formatted README at the bottom.
 
-Likewise I've got a README for the python scripts. Look `on github
+Likewise I've got a README for the python scripts. Look `at /tools on github
 <https://github.com/reinout/tools/tree/master/tools>`_ and you'll see the
 nicely formatted README at the bottom. This is generated from the scripts'
 docstrings with ``generate_python_docs.py`` (I just want a simple README, not
