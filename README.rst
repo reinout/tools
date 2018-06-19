@@ -75,7 +75,7 @@ emacs' flycheck to pick it up.
 
 And, as documentation, some of the debian packages I install::
 
-  apt install etckeeper gpg xclip emacs25 evolution evolution-ews xclip
+  apt install etckeeper gpg xclip emacs25 evolution evolution-ews
 
 For nextcloud, I `used the PPA
 <https://launchpad.net/~nextcloud-devs/+archive/ubuntu/client>`_.
