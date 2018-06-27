@@ -59,7 +59,6 @@ set up the rest.
 Now you can install this repo itself with a quick ``make install`` in
 ``~/zelf/tools``. It installs itself with pipsi.
 
-
 Use pipsi to install a bunch of packages::
 
   pipsi install flake8
@@ -75,17 +74,18 @@ emacs' flycheck to pick it up.
 
 And, as documentation, some of the debian packages I install::
 
-  apt install etckeeper gpg xclip emacs25 evolution evolution-ews
+  apt install etckeeper gpg xclip emacs25 gnome-tweaks
 
 For nextcloud, I `used the PPA
 <https://launchpad.net/~nextcloud-devs/+archive/ubuntu/client>`_.
 
 
+
 Bootstrap installation notes for myself, to use on OSX
 ------------------------------------------------------
 
-I work on a mac. So these are the installations for really bootstrapping
-without anything present.
+These are the installations for OSX for really bootstrapping without anything
+present.
 
 - Create a temporary virtualenv somewhere and install ``dotfiles`` and
   ``checkoutmanager`` in it.
