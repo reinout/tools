@@ -29,22 +29,20 @@ Bootstrap installation notes for myself, to use on linux
 
 These are the installations for really bootstrapping without anything present.
 
-- ``sudo apt install python3-pip build-essential virtualenv git curl``
+- ``sudo apt install python3-pip build-essential virtualenv git curl pipsi``
 
 - ``sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev``
 
 - ``curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash``
 
-- ``pyenv install 3.6.5`` and the same for 2.7.15 (an run the "export ..."
-  instructions in the current shell, the rest ought to be in the Dotfiles'
-  bash settings).
-
-- Install pipsi:
-  ``curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python``
+- ``pyenv install 3.6.5`` and the same for ``2.7.15`` and ``3.7.1`` (an run
+  the "export ..."  instructions in the current shell (for use during this
+  bootstrapping session, they're already in my Dotfiles' bash profile
+  settings).
 
 With pipsi, you can then install various packages nicely isolated in their own
 virtualenvs. First install "dotfiles" and "checkoutmanager" as we need them to
-set up the rest.
+set up the rest: ``pipsi install dotfiles`` (idem checkoutmanager).
 
 - Do a git pull of ``ssh://vanrees.org/~/repos/Dotfiles`` into my homedir
   and run ``dotfiles --sync``: this gives me my dotfiles, including the
@@ -78,7 +76,6 @@ And, as documentation, some of the debian packages I install::
 
 For nextcloud, I `used the PPA
 <https://launchpad.net/~nextcloud-devs/+archive/ubuntu/client>`_.
-
 
 
 Bootstrap installation notes for myself, to use on OSX
