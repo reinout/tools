@@ -59,13 +59,14 @@ Now you can install this repo itself with a quick ``make install`` in
 
 Use pipsi to install a bunch of packages::
 
-  pipsi install flake8
+  pipsi install ansible
   pipsi install cookiecutter
   pipsi install docutils
+  pipsi install flake8
   pipsi install isort
   pipsi install legit
   pipsi install oplop
-  pipsi install ansible
+  pipsi install pipenv
 
 Note: I installed flake8 also with "pip install flake8" because that helps
 emacs' flycheck to pick it up.
