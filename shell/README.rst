@@ -7,36 +7,202 @@ shell scripts.
 
 
 
-bdr
+et
 ------------------------------------------------------------------------
 
-Run Django, also on the external interfaces for iPad testing.
-'bdr' is a mnemonic for 'bin django runserver'.
+Edit the gtimelog time logfile.
 
 Source code::
 
     #!/bin/bash
     
-    bin/django runserver 0.0.0.0:8000
+    emacsclient -n ~/.gtimelog/timelog.txt
 
 
 
-bzrdiff
+hgdiff
 ------------------------------------------------------------------------
 
-Show local differences in a bzr repository. In a bit nicer way than the bzr
-default.
+Show colorized "hg diff" output for the current directory or for specific
+files.
 
 Source code::
 
     #!/bin/bash
     
     if [[ $* ]]; then
-        WHERE=$*;
-    else
-        WHERE=".";
+      WHERE=$*;
+    else WHERE=".";
     fi
-    bzr diff $WHERE | colordiff | less -R
+    hg diff -g $WHERE | colordiff | less -R
+
+
+
+editignores
+------------------------------------------------------------------------
+
+Shortcut for editing svn's ignore property.
+
+Source code::
+
+    #!/bin/bash
+    
+    svn propedit svn:ignore .
+
+
+
+svngrep
+------------------------------------------------------------------------
+
+Grep for a term in the current directory, but with some twists:
+
+- Multiple terms are taken to be one big space-separated term.
+
+- ``.svn`` and ``.hg`` directories are ignored.
+
+- Same with ``egg-info`` and ``*.pyc`` files.
+
+- The search term is highlighted in the output.
+
+Source code::
+
+    #!/bin/bash
+    
+    SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
+    grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
+
+
+
+filefind
+------------------------------------------------------------------------
+
+Find filenames in the current directory.
+
+- It greps case-insensitive for patial matches, so 'htm' finds
+  ``index.HTML`` just fine.
+
+- It ignores ``.svn`` and ``.hg`` directories.
+
+- It doesn't color code the output to help with emacs integration.
+
+- It adds ``:1:`` so that you can use it in emacs' grep viewer. Clicking on
+  it opens that file.
+
+Source code::
+
+    #!/bin/bash
+    
+    clear
+    find -L . | grep --colour=never -i $1 | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
+    # grep -i --color=auto $1
+
+
+
+create_postgis_db
+------------------------------------------------------------------------
+
+Create a local postgis database for the 'buildout' database user.
+
+Source code::
+
+    #!/bin/bash
+    
+    echo "(The password is your sudo password)"
+    sudo -u postgres createdb --template=template_postgis --owner=buildout $1
+
+
+
+syncweblog.sh
+------------------------------------------------------------------------
+
+Purely personal. rsyncs my local html files with my webserver :-)
+
+Source code::
+
+    #!/bin/bash
+    
+    rsync -av /home/reinout/zelf/reinout.vanrees.org/docs/build/html/ vanrees.org:/srv/reinout.vanrees.org/var/www
+
+
+
+headdiff
+------------------------------------------------------------------------
+
+Show the changes made since our last "svn up" to trunk on the server.
+Very handy if you suspect someone changed a lot and you want to review
+whatever it is that an "svn up" is going to dump on your plate.
+
+Source code::
+
+    #!/bin/bash
+    
+    svn diff -rBASE:HEAD|colordiff|less
+
+
+
+duh
+------------------------------------------------------------------------
+
+Just print out the disk usage *totals* for every directory in the current
+directory.
+
+-m  = In megabytes (for easy "| sort -n")
+-d1 = Current directory + one level below
+
+Source code::
+
+    #!/bin/bash
+    
+    du -m -d1
+
+
+
+bdr
+------------------------------------------------------------------------
+
+Run Django, also on the external interfaces for iPad testing.
+'bdr' is a mnemonic for 'bin django runserver'.
+Note that I'm mostly running django inside dockers nowadays :-)
+
+Source code::
+
+    #!/bin/bash
+    
+    docker-compose run --service-ports web bin/django runserver 0.0.0.0:5000
+
+
+
+makegitdir.sh
+------------------------------------------------------------------------
+
+
+
+Source code::
+
+    #!/bin/bash
+    cd ~/repos
+    mkdir $1
+    cd $1
+    git init --bare
+
+
+
+vlog
+------------------------------------------------------------------------
+
+Shows svn log, but with some better defaults:
+
+- It uses verbose mode (``-v``); this way it actually shows the files that
+  have been changed. This is often clearer than the log message itself.
+
+- It pipes it through "less" instead of blubbering your terminal full with
+  several pages' worth of logs.
+
+Source code::
+
+    #!/bin/bash
+    
+    svn -v log | less
 
 
 
@@ -62,17 +228,61 @@ Source code::
 
 
 
-create_postgis_db
+drm
 ------------------------------------------------------------------------
 
-Create a local postgis database for the 'buildout' database user.
+Remove all the intermediary/on-the-fly docker images that aren't used
+anymore. Every time you run a docker/docker-compose command a new image is
+created and stored. Probably not big, but you don't need it.
+
+You can start docker-compose with the ``--rm`` option to clean up after
+itself. This ``drm`` command cleans up the cases where you didn't use
+``--rm``.
 
 Source code::
 
     #!/bin/bash
     
-    echo "(The password is your sudo password)"
-    sudo -u postgres createdb --template=template_postgis --owner=buildout $1
+    echo "If there is nothing to remove, some commands will raise an error. That's OK."
+    docker rm $(docker ps -aq)
+    docker rm -v $(docker ps --filter status=exited -q 2>/dev/null)
+    docker rmi $(docker images --quiet --filter "dangling=true")
+
+
+
+es
+------------------------------------------------------------------------
+
+Shortcut for starting emacs
+
+Note that I've got it set up in server mode. I've got a bash alias "e" that
+edits a file with "emacsclient". So "es" stands for "emacs server" in my
+case, "e" is for editing with emacs itself :-)
+
+Source code::
+
+    #!/bin/bash
+    
+    /usr/bin/emacs &
+
+
+
+fixvagrantnetwork
+------------------------------------------------------------------------
+
+Fix the vagrant box' network after changing wifi connections.
+When I go home from work (or the other way), the vagrant box has no
+network connections anymore. This script uses the solution from
+http://stackoverflow.com/a/10388844/27401.
+
+Note: I use my own ``bin/vc`` command, so this script needs to be executed
+inside the vm's directory (``~/vm/django/`` for instance).
+
+Source code::
+
+    #!/bin/bash
+    
+    vc sudo /etc/init.d/networking restart
 
 
 
@@ -94,8 +304,6 @@ Source code::
 
     #!/usr/bin/env python
     
-    from string import join
-    from string import split
     import getopt
     import os
     import re
@@ -104,11 +312,11 @@ Source code::
     
     
     def dos2unix(data):
-        return join(split(data, '\r\n'), '\n')
+        return '\n'.join(data.split('\r\n'))
     
     
     def unix2dos(data):
-        return join(split(dos2unix(data), '\n'), '\r\n')
+        return '\r\n'.join(dos2unix(data).split('\n'))
     
     
     def confirm(file_):
@@ -117,7 +325,7 @@ Source code::
     
     
     def usage():
-        print """\
+        print("""\
     USAGE
         dos2unix.py [-iuvnfcd] [-b extension] file {file}
     DESCRIPTION
@@ -133,7 +341,7 @@ Source code::
         -b ext  use 'ext' as backup extension (default .bak)
         -c      don't make a backup
         -d      keep modification date and mode
-    """
+    """)
         sys.exit()
     
     
@@ -180,7 +388,7 @@ Source code::
                 newdata = convert(data)
                 if newdata != data:
                     if verbose and not interactive:
-                        print file_
+                        print(file_)
                     if not interactive or confirm(file_):
                         if not noaction:
                             newfile = file_+'.@'
@@ -202,252 +410,6 @@ Source code::
         main()
     except KeyboardInterrupt:
         pass
-
-
-
-drm
-------------------------------------------------------------------------
-
-Remove all the intermediary/on-the-fly docker images that aren't used
-anymore. Every time you run a docker/docker-compose command a new image is
-created and stored. Probably not big, but you don't need it.
-
-You can start docker-compose with the ``--rm`` option to clean up after
-itself. This ``drm`` command cleans up the cases where you didn't use
-``--rm``.
-
-The second command removes intermediary dangling images.
-
-Source code::
-
-    #!/bin/bash
-    
-    docker rm $(docker ps -aq)
-    echo "If there is nothing to remove, the next command will raise an error. That's OK."
-    docker rmi $(docker images --quiet --filter "dangling=true")
-
-
-
-duh
-------------------------------------------------------------------------
-
-Just print out the disk usage *totals* for every directory in the current
-directory.
-
--h = Human readable
--c = Show the grand total, too.
--s = Show only the total size of the arguments: don't display the recursive
-     information.
-
-Source code::
-
-    #!/bin/bash
-    
-    du -hcs *
-
-
-
-editexternals
-------------------------------------------------------------------------
-
-Shortcut for editing svn's externals property.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn propedit svn:externals .
-
-
-
-editignores
-------------------------------------------------------------------------
-
-Shortcut for editing svn's ignore property.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn propedit svn:ignore .
-
-
-
-es
-------------------------------------------------------------------------
-
-Shortcut for starting emacs on OSX.
-
-Note that I've got it set up in server mode. I've got a bash alias "e" that
-edits a file with "emacsclient". So "es" stands for "emacs server" in my
-case, "e" is for editing with emacs itself :-)
-
-Source code::
-
-    #!/bin/bash
-    
-    /Applications/Emacs.app/Contents/MacOS/Emacs &
-
-
-
-et
-------------------------------------------------------------------------
-
-Edit the gtimelog time logfile.
-
-Source code::
-
-    #!/bin/bash
-    
-    /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n ~/.gtimelog/timelog.txt
-
-
-
-filefind
-------------------------------------------------------------------------
-
-Find filenames in the current directory.
-
-- It greps case-insensitive for patial matches, so 'htm' finds
-  ``index.HTML`` just fine.
-
-- It ignores ``.svn`` and ``.hg`` directories.
-
-- It doesn't color code the output to help with emacs integration.
-
-- It adds ``:1:`` so that you can use it in emacs' grep viewer. Clicking on
-  it opens that file.
-
-Source code::
-
-    #!/bin/bash
-    
-    clear
-    find -L . | grep --colour=never -i $1 | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
-    # grep -i --color=auto $1
-
-
-
-fixopenwith
-------------------------------------------------------------------------
-
-Remove duplicates from OSX's 'open with' menu. Tip taken from
-http://www.leancrew.com/all-this/2013/02/getting-rid-of-open-with-duplicates/
-
-Source code::
-
-    #!/bin/bash
-    
-    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-    killall Finder
-
-
-
-fixvagrantnetwork
-------------------------------------------------------------------------
-
-Fix the vagrant box' network after changing wifi connections.
-When I go home from work (or the other way), the vagrant box has no
-network connections anymore. This script uses the solution from
-http://stackoverflow.com/a/10388844/27401.
-
-Note: I use my own ``bin/vc`` command, so this script needs to be executed
-inside the vm's directory (``~/vm/django/`` for instance).
-
-Source code::
-
-    #!/bin/bash
-    
-    vc sudo /etc/init.d/networking restart
-
-
-
-headdiff
-------------------------------------------------------------------------
-
-Show the changes made since our last "svn up" to trunk on the server.
-Very handy if you suspect someone changed a lot and you want to review
-whatever it is that an "svn up" is going to dump on your plate.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn diff -rBASE:HEAD|colordiff|less
-
-
-
-hgdiff
-------------------------------------------------------------------------
-
-Show colorized "hg diff" output for the current directory or for specific
-files.
-
-Source code::
-
-    #!/bin/bash
-    
-    if [[ $* ]]; then
-      WHERE=$*;
-    else WHERE=".";
-    fi
-    hg diff -g $WHERE | colordiff | less -R
-
-
-
-hglog
-------------------------------------------------------------------------
-
-Handy way to look at "hg log" without having to pipe it through "less"
-ourselves. It uses the "-v" verbose flag, too.
-
-Source code::
-
-    #!/bin/bash
-    
-    hg -v log | less
-
-
-
-makegitdir.sh
-------------------------------------------------------------------------
-
-
-
-Source code::
-
-    #!/bin/bash
-    cd ~/repos
-    mkdir $1
-    cd $1
-    git init --bare
-
-
-
-pychecker.sh
-------------------------------------------------------------------------
-
-Runs both pyflakes and pep8 on the current directory or on a specific
-file. Very handy for code quality checks.
-
-Note that it excludes the "migrations" directory that exists in Django
-projects where you use South for database migrations. Those south-generated
-files aren't the best pep8/pyflakes citizens (nor do they need to be).
-
-Tip: add this to your emacs configuration and hook it up to ctrl-c ctrl-w
-(which normally runs pychecker, hence the name) in python-mode::
-
-    '(py-pychecker-command "pychecker.sh")
-    '(py-pychecker-command-args (quote ("")))
-    '(python-check-command "pychecker.sh")
-
-Source code::
-
-    #!/bin/bash
-    
-    pyflakes $1 | grep -v /migrations/
-    echo "## pyflakes above, pep8 below ##"
-    pep8 --repeat --exclude migrations $1
 
 
 
@@ -512,6 +474,95 @@ Source code::
 
 
 
+bzrdiff
+------------------------------------------------------------------------
+
+Show local differences in a bzr repository. In a bit nicer way than the bzr
+default.
+
+Source code::
+
+    #!/bin/bash
+    
+    if [[ $* ]]; then
+        WHERE=$*;
+    else
+        WHERE=".";
+    fi
+    bzr diff $WHERE | colordiff | less -R
+
+
+
+fixopenwith
+------------------------------------------------------------------------
+
+Remove duplicates from OSX's 'open with' menu. Tip taken from
+http://www.leancrew.com/all-this/2013/02/getting-rid-of-open-with-duplicates/
+
+Source code::
+
+    #!/bin/bash
+    
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+    killall Finder
+
+
+
+hglog
+------------------------------------------------------------------------
+
+Handy way to look at "hg log" without having to pipe it through "less"
+ourselves. It uses the "-v" verbose flag, too.
+
+Source code::
+
+    #!/bin/bash
+    
+    hg -v log | less
+
+
+
+pychecker.sh
+------------------------------------------------------------------------
+
+Runs both pyflakes and pep8 on the current directory or on a specific
+file. Very handy for code quality checks.
+
+Note that it excludes the "migrations" directory that exists in Django
+projects where you use South for database migrations. Those south-generated
+files aren't the best pep8/pyflakes citizens (nor do they need to be).
+
+Tip: add this to your emacs configuration and hook it up to ctrl-c ctrl-w
+(which normally runs pychecker, hence the name) in python-mode::
+
+    '(py-pychecker-command "pychecker.sh")
+    '(py-pychecker-command-args (quote ("")))
+    '(python-check-command "pychecker.sh")
+
+Source code::
+
+    #!/bin/bash
+    
+    # pyflakes $1 | grep -v /migrations/
+    # echo "## pyflakes above, pep8 below ##"
+    # pep8 --repeat --exclude migrations $1
+    flake8 $1
+
+
+
+editexternals
+------------------------------------------------------------------------
+
+Shortcut for editing svn's externals property.
+
+Source code::
+
+    #!/bin/bash
+    
+    svn propedit svn:externals .
+
+
+
 svndiff
 ------------------------------------------------------------------------
 
@@ -527,58 +578,4 @@ Source code::
         WHERE=".";
     fi
     svn diff $WHERE | colordiff | less -R
-
-
-
-svngrep
-------------------------------------------------------------------------
-
-Grep for a term in the current directory, but with some twists:
-
-- Multiple terms are taken to be one big space-separated term.
-
-- ``.svn`` and ``.hg`` directories are ignored.
-
-- Same with ``egg-info`` and ``*.pyc`` files.
-
-- The search term is highlighted in the output.
-
-Source code::
-
-    #!/bin/bash
-    
-    SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
-    grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
-
-
-
-syncweblog.sh
-------------------------------------------------------------------------
-
-Purely personal. rsyncs my local html files with my webserver :-)
-
-Source code::
-
-    #!/bin/bash
-    
-    rsync -av /Users/reinout/git/reinout.vanrees.org/docs/build/html/ vanrees.org:git/reinout.vanrees.org/docs/build/html
-
-
-
-vlog
-------------------------------------------------------------------------
-
-Shows svn log, but with some better defaults:
-
-- It uses verbose mode (``-v``); this way it actually shows the files that
-  have been changed. This is often clearer than the log message itself.
-
-- It pipes it through "less" instead of blubbering your terminal full with
-  several pages' worth of logs.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn -v log | less
 
