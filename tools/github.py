@@ -10,7 +10,7 @@ If you call it like ``gh issues``, you'll get the issues page.
 I got the idea from https://github.com/myusuf3/octogit.
 
 """
-import commands
+import subprocess
 import re
 import sys
 import webbrowser
@@ -24,7 +24,7 @@ def find_git_url(url_template):
     # origin	git@github.com:reinout/tools.git (fetch)
     pattern = r"git@github.com:([^/]+)/(.+)\.git"
     regex = re.compile(pattern)
-    output = commands.getoutput("git remote -v")
+    output = subprocess.check_output(["git", "remote", "-v"], universal_newlines=True)
     for line in output.split("\n"):
         matches = regex.search(line)
         if matches:

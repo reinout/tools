@@ -9,8 +9,10 @@ This script removes the holes.
 
 """
 
-CONFIG_FILE = ('/Users/reinout/Library/Thunderbird/Profiles/' +
-               'rbwhgkue.default/News/newsrc-news.gmane.org')
+CONFIG_FILE = (
+    "/Users/reinout/Library/Thunderbird/Profiles/"
+    + "rbwhgkue.default/News/newsrc-news.gmane.org"
+)
 
 
 def fix_thunderbird():
@@ -21,18 +23,17 @@ def fix_thunderbird():
     for line in lines:
         print(line)
     print("======= NEW =======")
-    outfile = open(CONFIG_FILE, 'w')
+    outfile = open(CONFIG_FILE, "w")
     for line in lines:
         if not line:
             continue
-        newsgroup, messages = line.split(': ')
-        messages = messages.replace('-', ' ').replace(',', ' ')
+        newsgroup, messages = line.split(": ")
+        messages = messages.replace("-", " ").replace(",", " ")
         parts = messages.split()
         # new = '%s: %s-%s\n' % (newsgroup,
         #                        parts[0],
         #                        parts[-1])
-        new = '%s: 1-%s\n' % (newsgroup,
-                              parts[-1])
-        print new,
+        new = "%s: 1-%s\n" % (newsgroup, parts[-1])
+        print(new)
         outfile.write(new)
     outfile.close()

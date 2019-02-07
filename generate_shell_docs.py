@@ -2,8 +2,7 @@
 """Generate a readme for the shell scripts."""
 import os
 
-OMIT = ['README.rst',
-        ]
+OMIT = ["README.rst"]
 README_HEADER = """
 Shell script documentation
 ==========================
@@ -40,33 +39,32 @@ def extract(script):
     in_doc_part = True
     for line in lines:
         if in_doc_part:
-            if line.startswith('#'):
+            if line.startswith("#"):
                 doc_lines.append(line[2:])
                 continue
             else:
                 in_doc_part = False
         code_lines.append(line)
 
-    doc = '\n'.join(doc_lines)
-    code_lines = ['    ' + line for line in code_lines]
-    code = '\n'.join(code_lines)
+    doc = "\n".join(doc_lines)
+    code_lines = ["    " + line for line in code_lines]
+    code = "\n".join(code_lines)
     return code, doc
 
 
 def main():
     """Find the shell files and collect their inline documentation."""
     readme = README_HEADER
-    os.chdir('shell')
-    scripts = [script for script in os.listdir('.')
-               if script not in OMIT]
+    os.chdir("shell")
+    scripts = [script for script in os.listdir(".") if script not in OMIT]
     for script in scripts:
         code, documentation = extract(script)
-        readme += SCRIPT_TEMPLATE.format(script=script,
-                                         code=code,
-                                         documentation=documentation)
-    open('README.rst', 'w').write(readme)
-    print "Wrote shell/README.rst"
+        readme += SCRIPT_TEMPLATE.format(
+            script=script, code=code, documentation=documentation
+        )
+    open("README.rst", "w").write(readme)
+    print("Wrote shell/README.rst")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
