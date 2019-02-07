@@ -20,22 +20,22 @@ import subprocess
 import sys
 import webbrowser
 
-DOCS = os.path.expanduser('~/zelf/reinout.vanrees.org/docs')
-BUILD = os.path.join(DOCS, 'build', 'html')
-WEBSITECONTENT = os.path.expanduser('~/zelf/websitecontent')
-WEBLOGSOURCE = os.path.expanduser('~/zelf/websitecontent/source/weblog')
-SERMONSOURCE = os.path.expanduser('~/zelf/websitecontent/source/preken')
+DOCS = os.path.expanduser("~/zelf/reinout.vanrees.org/docs")
+BUILD = os.path.join(DOCS, "build", "html")
+WEBSITECONTENT = os.path.expanduser("~/zelf/websitecontent")
+WEBLOGSOURCE = os.path.expanduser("~/zelf/websitecontent/source/weblog")
+SERMONSOURCE = os.path.expanduser("~/zelf/websitecontent/source/preken")
 
 
 def conditional_copy(source, target):
     if os.path.exists(target):
-        old = open(target, 'r').read()
+        old = open(target, "r").read()
     else:
         old = None
-    new = open(source, 'r').read()
+    new = open(source, "r").read()
     if new != old:
-        open(target, 'w').write(new)
-        print('.',)
+        open(target, "w").write(new)
+        print(".")
 
 
 def copytoblog():
@@ -47,9 +47,9 @@ def copytoblog():
         print("%s doesn't exist" % filename)
 
     now = datetime.now()
-    y = '%04d' % now.year
-    m = '%02d' % now.month
-    d = '%02d' % now.day
+    y = "%04d" % now.year
+    m = "%02d" % now.month
+    d = "%02d" % now.day
     yeardir = os.path.join(WEBLOGSOURCE, y)
     monthdir = os.path.join(yeardir, m)
     daydir = os.path.join(monthdir, d)
@@ -68,37 +68,44 @@ def copytoblog():
     shutil.copyfile(filename, target)
     # touch missing index files
     for directory in add_index_dirs:
-        index = os.path.join(directory, 'index.txt')
-        open(index, 'w').write('temporary file\n')
+        index = os.path.join(directory, "index.txt")
+        open(index, "w").write("temporary file\n")
     # git add toplevel-dir-that-we-added
     os.chdir(WEBLOGSOURCE)
     if toplevel_added_dir:
-        subprocess.call(['git', 'add', toplevel_added_dir])
+        subprocess.call(["git", "add", toplevel_added_dir])
     else:
-        subprocess.call(['git', 'add', target])
+        subprocess.call(["git", "add", target])
     # Add all updated files.
-    subprocess.call(['git', 'add', '-u'])
+    subprocess.call(["git", "add", "-u"])
     makedocs()
-    html_file = target.replace('source/', 'docs/build/html/').replace(
-        '.txt', '.html').replace('websitecontent', 'reinout.vanrees.org')
-    webbrowser.open('file://' + html_file)
-    if 'y' in input('Sync and commit? [y/N] '):
-        subprocess.call(['syncweblog.sh'])
+    html_file = (
+        target.replace("source/", "docs/build/html/")
+        .replace(".txt", ".html")
+        .replace("websitecontent", "reinout.vanrees.org")
+    )
+    webbrowser.open("file://" + html_file)
+    if "y" in input("Sync and commit? [y/N] "):
+        subprocess.call(["syncweblog.sh"])
         os.chdir(WEBSITECONTENT)
-        subprocess.call(['git', 'commit', '-m', 'new entry'])
-        subprocess.call(['git', 'push'])
-        on_site = 'http://reinout.vanrees.org/weblog/%s/%s/%s/%s' % (
-            y, m, d, filename.replace('.txt', '.html'))
+        subprocess.call(["git", "commit", "-m", "new entry"])
+        subprocess.call(["git", "push"])
+        on_site = "http://reinout.vanrees.org/weblog/%s/%s/%s/%s" % (
+            y,
+            m,
+            d,
+            filename.replace(".txt", ".html"),
+        )
         webbrowser.open(on_site)
-        if 'y' in input('Delete file in ~/blog/? [y/N] '):
-            os.remove(os.path.join('/home/reinout/blog', filename))
+        if "y" in input("Delete file in ~/blog/? [y/N] "):
+            os.remove(os.path.join("/home/reinout/blog", filename))
             print("%s removed" % filename)
 
 
 def makedocs():
     """Call 'make html' in rvo's docs dir"""
     os.chdir(DOCS)
-    subprocess.call(['make', 'html'])
+    subprocess.call(["make", "html"])
     # Not needed anymore: we do a simple "copy -r" in the makefile.
     # print "Syncing copyover dir"
     # copydir = os.path.join(DOCS, 'copyover')
@@ -122,21 +129,22 @@ def makedocs():
 def list_todays_entries():
     """Open today's entries in emacs (to correct mistakes, probably)."""
     now = datetime.now()
-    y = '%04d' % now.year
-    m = '%02d' % now.month
-    d = '%02d' % now.day
+    y = "%04d" % now.year
+    m = "%02d" % now.month
+    d = "%02d" % now.day
     yeardir = os.path.join(WEBLOGSOURCE, y)
     monthdir = os.path.join(yeardir, m)
     daydir = os.path.join(monthdir, d)
     if not os.path.exists(daydir):
         print("Nothing posted yet in %s" % daydir)
         sys.exit(1)
-    entries = [entry for entry in os.listdir(daydir)
-               if entry.endswith('.txt') and
-               not entry == 'index.txt']
+    entries = [
+        entry
+        for entry in os.listdir(daydir)
+        if entry.endswith(".txt") and not entry == "index.txt"
+    ]
     entries = [os.path.join(daydir, entry) for entry in entries]
-    subprocess.call(['emacs']
-                    + entries)
+    subprocess.call(["emacs"] + entries)
 
 
 def _complete(text, state, tags):
@@ -150,33 +158,31 @@ def _complete(text, state, tags):
 
 
 def complete_churches(text, state):
-    churches_dir = os.path.join(SERMONSOURCE, 'kerken')
-    churches = [f[:-4] for f in os.listdir(churches_dir)
-                if f.endswith('.txt')]
+    churches_dir = os.path.join(SERMONSOURCE, "kerken")
+    churches = [f[:-4] for f in os.listdir(churches_dir) if f.endswith(".txt")]
     return _complete(text, state, churches)
 
 
 def complete_referents(text, state):
-    referents_dir = os.path.join(SERMONSOURCE, 'predikanten')
-    referents = [f[:-4] for f in os.listdir(referents_dir)
-                 if f.endswith('.txt')]
+    referents_dir = os.path.join(SERMONSOURCE, "predikanten")
+    referents = [f[:-4] for f in os.listdir(referents_dir) if f.endswith(".txt")]
     return _complete(text, state, referents)
 
 
 def new_sermon():
     """Create a new file for my sermon weblog."""
     now = datetime.now()
-    added = '%04d-%02d-%02d' % (now.year, now.month, now.day)
+    added = "%04d-%02d-%02d" % (now.year, now.month, now.day)
 
     # http://stackoverflow.com/questions/7116038/python-tab-completion-mac-osx-10-7-lion
-    if 'libedit' in readline.__doc__:
+    if "libedit" in readline.__doc__:
         readline.parse_and_bind("bind ^I rl_complete")
     else:
         readline.parse_and_bind("tab: complete")
 
     date = None
     while not date:
-        date = input('Datum (yyyy-mm-dd): ')
+        date = input("Datum (yyyy-mm-dd): ")
     yyyy = str(int(date[:4]))
     yeardir = os.path.join(SERMONSOURCE, yyyy)
     if not os.path.exists(yeardir):
@@ -185,25 +191,27 @@ def new_sermon():
 
     title = None
     while not title:
-        title = input('Titel: ')
+        title = input("Titel: ")
 
-    filename = title.replace(' ', '-').replace(',', '').replace(
-        "'", '').lower()[:50] + '.txt'
+    filename = (
+        title.replace(" ", "-").replace(",", "").replace("'", "").lower()[:50] + ".txt"
+    )
     full_filename = os.path.join(yeardir, filename)
     print("Using filename {}".format(full_filename))
 
     readline.set_completer(complete_churches)
     church = None
     while not church:
-        church = input('Kerk: ')
+        church = input("Kerk: ")
 
     readline.set_completer(complete_referents)
     referent = None
     while not referent:
-        referent = input('Predikant: ')
+        referent = input("Predikant: ")
     # ^^^ Refactor the while loops above.
 
-    template = Template("""${title}
+    template = Template(
+        """${title}
 ======================================================================
 
 .. preek::
@@ -214,14 +222,13 @@ def new_sermon():
    :tekst: TODO
    :tags:
 
-""")
-    output = template.substitute(title=title,
-                                 church=church,
-                                 added=added,
-                                 date=date,
-                                 referent=referent)
-    open(full_filename, 'w').write(output)
+"""
+    )
+    output = template.substitute(
+        title=title, church=church, added=added, date=date, referent=referent
+    )
+    open(full_filename, "w").write(output)
     print("Opening with emacs: " + full_filename)
-    emacs = '/usr/bin/emacsclient'
+    emacs = "/usr/bin/emacsclient"
     # subprocess.call(['emacs', full_filename])
-    os.execl(emacs, '-n', full_filename)
+    os.execl(emacs, "-n", full_filename)

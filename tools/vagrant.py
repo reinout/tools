@@ -35,9 +35,9 @@ from fabric.api import execute
 from fabric.api import run
 from fabric.operations import open_shell
 
-HOMEDIR = os.path.expanduser('~')
-VM_BASEDIR = os.path.join(HOMEDIR, 'vm')
-BASEDIR_IN_VAGRANT = '/vagrant/'
+HOMEDIR = os.path.expanduser("~")
+VM_BASEDIR = os.path.join(HOMEDIR, "vm")
+BASEDIR_IN_VAGRANT = "/vagrant/"
 
 
 def vm_and_path():
@@ -45,13 +45,13 @@ def vm_and_path():
     cur_dir = os.getcwd()
     if not cur_dir.startswith(VM_BASEDIR):
         raise RuntimeError("We're not inside {}".format(VM_BASEDIR))
-    remainder = cur_dir[len(VM_BASEDIR):]
-    remainder = remainder.lstrip('/')
-    parts = remainder.split('/')
+    remainder = cur_dir[len(VM_BASEDIR) :]
+    remainder = remainder.lstrip("/")
+    parts = remainder.split("/")
     if not parts:
         raise RuntimeError("We're not inside {}/VM_NAME".format(VM_BASEDIR))
     vm_name = parts[0]
-    vagrant_path = BASEDIR_IN_VAGRANT + '/'.join(parts[1:])
+    vagrant_path = BASEDIR_IN_VAGRANT + "/".join(parts[1:])
     return vm_name, vagrant_path
 
 
@@ -67,7 +67,7 @@ def give_me_a_shell():
 def main():
     env.use_ssh_config = True
     vm_name, path = vm_and_path()
-    cmd = ' '.join(sys.argv[1:])
+    cmd = " ".join(sys.argv[1:])
     env.hosts = [vm_name]
     env.my_path = path
     if cmd:

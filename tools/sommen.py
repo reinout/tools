@@ -6,7 +6,7 @@ import sys
 import webbrowser
 
 NUMBER_OF_LINES = 100
-if 'floris' in sys.argv:
+if "floris" in sys.argv:
     PLUS_MAX = 10
     MINUS_MAX = 5
     TIMES_MAX = 5
@@ -36,15 +36,16 @@ def times():
 
 
 def main():
-    outfile = open('/tmp/sommen.txt', 'w')
-    if 'floris' in sys.argv:
+    outfile = open("/tmp/sommen.txt", "w")
+    if "floris" in sys.argv:
         actions = [plus, minus, times]
     else:
         actions = [plus, minus, times]
     for i in range(NUMBER_OF_LINES):
-        line = '%s                          %s\n\n' % (
+        line = "%s                          %s\n\n" % (
             random.choice(actions)(),
-            random.choice(actions)())
+            random.choice(actions)(),
+        )
         outfile.write(line)
     outfile.close()
-    webbrowser.open('file:///tmp/sommen.txt')
+    webbrowser.open("file:///tmp/sommen.txt")

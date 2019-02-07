@@ -16,9 +16,9 @@ import os
 
 LOGFILE = "~/engineer.log"
 # ^^^ This one should be symlinked into some version controlled directory.
-SEPARATOR = '\n-----'
+SEPARATOR = "\n-----"
 
-logger = logging.getLogger('engineer')
+logger = logging.getLogger("engineer")
 
 
 def grab_input():
@@ -35,10 +35,10 @@ def grab_input():
 
 def main():
     logfile = os.path.expanduser(LOGFILE)
-    logging.basicConfig(level=logging.INFO,
-                        filename=logfile,
-                        format="%(asctime)s %(message)s")
-    entry = '\n'.join(grab_input())
+    logging.basicConfig(
+        level=logging.INFO, filename=logfile, format="%(asctime)s %(message)s"
+    )
+    entry = "\n".join(grab_input())
     if not entry:
         return
     entry += SEPARATOR

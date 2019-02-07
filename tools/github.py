@@ -15,8 +15,8 @@ import re
 import sys
 import webbrowser
 
-URL = 'https://github.com/{user}/{project}'
-ISSUES_URL = 'https://github.com/{user}/{project}/issues'
+URL = "https://github.com/{user}/{project}"
+ISSUES_URL = "https://github.com/{user}/{project}/issues"
 
 
 def find_git_url(url_template):
@@ -24,8 +24,8 @@ def find_git_url(url_template):
     # origin	git@github.com:reinout/tools.git (fetch)
     pattern = r"git@github.com:([^/]+)/(.+)\.git"
     regex = re.compile(pattern)
-    output = commands.getoutput('git remote -v')
-    for line in output.split('\n'):
+    output = commands.getoutput("git remote -v")
+    for line in output.split("\n"):
         matches = regex.search(line)
         if matches:
             user, project = matches.groups()
@@ -33,7 +33,7 @@ def find_git_url(url_template):
 
 
 def main():
-    if 'issues' in sys.argv:
+    if "issues" in sys.argv:
         url_template = ISSUES_URL
     else:
         url_template = URL
