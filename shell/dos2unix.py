@@ -10,8 +10,6 @@
 #
 # - Check that it works (as I had the impression it didn't work all the time).
 
-from string import join
-from string import split
 import getopt
 import os
 import re
@@ -20,11 +18,11 @@ import sys
 
 
 def dos2unix(data):
-    return join(split(data, '\r\n'), '\n')
+    return '\n'.join(data.split('\r\n'))
 
 
 def unix2dos(data):
-    return join(split(dos2unix(data), '\n'), '\r\n')
+    return '\r\n'.join(dos2unix(data).split('\n'))
 
 
 def confirm(file_):
@@ -33,7 +31,7 @@ def confirm(file_):
 
 
 def usage():
-    print """\
+    print("""\
 USAGE
     dos2unix.py [-iuvnfcd] [-b extension] file {file}
 DESCRIPTION
@@ -49,7 +47,7 @@ OPTIONS
     -b ext  use 'ext' as backup extension (default .bak)
     -c      don't make a backup
     -d      keep modification date and mode
-"""
+""")
     sys.exit()
 
 
@@ -96,7 +94,7 @@ def main():
             newdata = convert(data)
             if newdata != data:
                 if verbose and not interactive:
-                    print file_
+                    print(file_)
                 if not interactive or confirm(file_):
                     if not noaction:
                         newfile = file_+'.@'
