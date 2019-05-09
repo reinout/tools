@@ -29,7 +29,7 @@ setup(name='tools',
           'future',
           'nose',
           'pyserial',
-          'readline',
+          # 'readline',
           'six',  # Trying to make it explicit
           ],
       entry_points={

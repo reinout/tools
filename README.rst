@@ -85,8 +85,16 @@ Bootstrap installation notes for myself, to use on OSX
 These are the installations for OSX for really bootstrapping without anything
 present.
 
-- Create a temporary virtualenv somewhere and install ``dotfiles`` and
-  ``checkoutmanager`` in it.
+homebrew
+
+brew install python3
+
+pip3 install pipx
+
+pipx install dotfiles
+
+pipx install checkoutmanager
+
 
 - Do a git pull of ``ssh://vanrees.org/~/repos/Dotfiles`` into my homedir
   and run ``dotfiles --sync``: this gives me my dotfiles, including the
@@ -97,7 +105,7 @@ present.
 - Symlink ``osx.cfg`` (on osx) to buildout.cfg`` first. The other ``.cfg`` are
   used inside virtualbox/vmware machines or on my own webserver.
 
-- Run ``/usr/bin/python2.7 bootstrap.py`` and ``bin/buildout``.
+- Run ``make`` inside this directory.
 
 
 Extra OSX install notes

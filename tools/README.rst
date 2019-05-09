@@ -7,25 +7,6 @@ top of the Python scripts.
 
 
 
-add_time.py
-------------------------------------------------------------------------
-
-
-Simple script to add the current time to a screenshot.
-
-Pass in the filename of the screenshot as an argument and the script will
-create a new file (named after the time, in the current directory) with the
-time written in the lower right corner.
-
-The location of the time string and the location of the font to use is
-hardcoded.
-
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/add_time.py>`_).
-
-
-
 engineerlog.py
 ------------------------------------------------------------------------
 
@@ -44,31 +25,6 @@ what this script does.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/engineerlog.py>`_).
-
-
-
-sommen.py
-------------------------------------------------------------------------
-
-
-Small utility script for printing a bunch of calculations for my kids.
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/sommen.py>`_).
-
-
-
-mkinit.py
-------------------------------------------------------------------------
-
-
-Create a directory and pre-fill it with an ``__init__.py``
-
-Basically: mkdir plus the creation of the init file. Handy for creating a
-django app's ``$APP/management/commands/`` directory.
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/mkinit.py>`_).
 
 
 
@@ -91,6 +47,54 @@ prevent accidents.
 
 
 
+jsonformatter.py
+------------------------------------------------------------------------
+
+(Re-)indent json on stdin and send it to stdout.
+
+Handy for webservices that return json as one big long string. With ``curl
+http://the.json.url/ | jsonformatter`` you can actually read it.
+
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/jsonformatter.py>`_).
+
+
+
+mkinit.py
+------------------------------------------------------------------------
+
+
+Create a directory and pre-fill it with an ``__init__.py``
+
+Basically: mkdir plus the creation of the init file. Handy for creating a
+django app's ``$APP/management/commands/`` directory.
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/mkinit.py>`_).
+
+
+
+add_time.py
+------------------------------------------------------------------------
+
+
+Simple script to add the current time to a screenshot.
+
+Pass in the filename of the screenshot as an argument and the script will
+create a new file (named after the time, in the current directory) with the
+time written in the lower right corner.
+
+The location of the time string and the location of the font to use is
+hardcoded.
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/add_time.py>`_).
+
+
+
 thunderbird.py
 ------------------------------------------------------------------------
 
@@ -106,6 +110,17 @@ This script removes the holes.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/thunderbird.py>`_).
+
+
+
+sommen.py
+------------------------------------------------------------------------
+
+
+Small utility script for printing a bunch of calculations for my kids.
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/sommen.py>`_).
 
 
 
@@ -127,21 +142,6 @@ instead of here. TODO.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/blog.py>`_).
-
-
-
-jsonformatter.py
-------------------------------------------------------------------------
-
-(Re-)indent json on stdin and send it to stdout.
-
-Handy for webservices that return json as one big long string. With ``curl
-http://the.json.url/ | jsonformatter`` you can actually read it.
-
-
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/jsonformatter.py>`_).
 
 
 
