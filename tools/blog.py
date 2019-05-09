@@ -98,7 +98,7 @@ def copytoblog():
         )
         webbrowser.open(on_site)
         if "y" in input("Delete file in ~/blog/? [y/N] "):
-            os.remove(os.path.join("/home/reinout/blog", filename))
+            os.remove(os.path.join(os.path.expanduser("~/blog"), filename))
             print("%s removed" % filename)
 
 
