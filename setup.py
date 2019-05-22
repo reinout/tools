@@ -48,6 +48,7 @@ setup(name='tools',
             # 'pt = tools.timelog:main',
             'gac = tools.git:main',
             'mkinit = tools.mkinit:main',
+            'python_coding_cleanup = tools.python_coding_cleanup:main',
             ],
         },
       )
