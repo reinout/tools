@@ -7,47 +7,22 @@ shell scripts.
 
 
 
-et
+bzrdiff
 ------------------------------------------------------------------------
 
-Edit the gtimelog time logfile.
-
-Source code::
-
-    #!/bin/bash
-    
-    emacsclient -n ~/.gtimelog/timelog.txt
-
-
-
-hgdiff
-------------------------------------------------------------------------
-
-Show colorized "hg diff" output for the current directory or for specific
-files.
+Show local differences in a bzr repository. In a bit nicer way than the bzr
+default.
 
 Source code::
 
     #!/bin/bash
     
     if [[ $* ]]; then
-      WHERE=$*;
-    else WHERE=".";
+        WHERE=$*;
+    else
+        WHERE=".";
     fi
-    hg diff -g $WHERE | colordiff | less -R
-
-
-
-editignores
-------------------------------------------------------------------------
-
-Shortcut for editing svn's ignore property.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn propedit svn:ignore .
+    bzr diff $WHERE | colordiff | less -R
 
 
 
@@ -73,161 +48,6 @@ Source code::
 
 
 
-filefind
-------------------------------------------------------------------------
-
-Find filenames in the current directory.
-
-- It greps case-insensitive for patial matches, so 'htm' finds
-  ``index.HTML`` just fine.
-
-- It ignores ``.svn`` and ``.hg`` directories.
-
-- It doesn't color code the output to help with emacs integration.
-
-- It adds ``:1:`` so that you can use it in emacs' grep viewer. Clicking on
-  it opens that file.
-
-Source code::
-
-    #!/bin/bash
-    
-    clear
-    find -L . | grep --colour=never -i $1 | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
-    # grep -i --color=auto $1
-
-
-
-create_postgis_db
-------------------------------------------------------------------------
-
-Create a local postgis database for the 'buildout' database user.
-
-Source code::
-
-    #!/bin/bash
-    
-    echo "(The password is your sudo password)"
-    sudo -u postgres createdb --template=template_postgis --owner=buildout $1
-
-
-
-syncweblog.sh
-------------------------------------------------------------------------
-
-Purely personal. rsyncs my local html files with my webserver :-)
-
-Source code::
-
-    #!/bin/bash
-    
-    rsync -av ~/zelf/reinout.vanrees.org/docs/build/html/ vanrees.org:/srv/reinout.vanrees.org/var/www
-
-
-
-headdiff
-------------------------------------------------------------------------
-
-Show the changes made since our last "svn up" to trunk on the server.
-Very handy if you suspect someone changed a lot and you want to review
-whatever it is that an "svn up" is going to dump on your plate.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn diff -rBASE:HEAD|colordiff|less
-
-
-
-duh
-------------------------------------------------------------------------
-
-Just print out the disk usage *totals* for every directory in the current
-directory.
-
--m  = In megabytes (for easy "| sort -n")
--d1 = Current directory + one level below
-
-Source code::
-
-    #!/bin/bash
-    
-    du -m -d1
-
-
-
-bdr
-------------------------------------------------------------------------
-
-Run Django, also on the external interfaces for iPad testing.
-'bdr' is a mnemonic for 'bin django runserver'.
-Note that I'm mostly running django inside dockers nowadays :-)
-
-Source code::
-
-    #!/bin/bash
-    
-    docker-compose run --service-ports web bin/django runserver 0.0.0.0:5000
-
-
-
-makegitdir.sh
-------------------------------------------------------------------------
-
-
-
-Source code::
-
-    #!/bin/bash
-    cd ~/repos
-    mkdir $1
-    cd $1
-    git init --bare
-
-
-
-vlog
-------------------------------------------------------------------------
-
-Shows svn log, but with some better defaults:
-
-- It uses verbose mode (``-v``); this way it actually shows the files that
-  have been changed. This is often clearer than the log message itself.
-
-- It pipes it through "less" instead of blubbering your terminal full with
-  several pages' worth of logs.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn -v log | less
-
-
-
-create_git_repo.sh
-------------------------------------------------------------------------
-
-Initialize a git repository in the temp directory and push it to my own
-server. I should have created a repository there on the server already with
-``git init ~/repos/the_project_name --bare``.
-
-Source code::
-
-    #!/bin/bash
-    
-    cd /tmp
-    git init $1
-    cd $1
-    echo "hurray" > README.rst
-    git add README.rst
-    git commit -m "Added readme"
-    git remote add origin ssh://vanrees.org/~/repos/$1
-    git push origin master
-
-
-
 drm
 ------------------------------------------------------------------------
 
@@ -250,23 +70,6 @@ Source code::
 
 
 
-es
-------------------------------------------------------------------------
-
-Shortcut for starting emacs
-
-Note that I've got it set up in server mode. I've got a bash alias "e" that
-edits a file with "emacsclient". So "es" stands for "emacs server" in my
-case, "e" is for editing with emacs itself :-)
-
-Source code::
-
-    #!/bin/bash
-    
-    /usr/bin/emacs &
-
-
-
 fixvagrantnetwork
 ------------------------------------------------------------------------
 
@@ -283,6 +86,80 @@ Source code::
     #!/bin/bash
     
     vc sudo /etc/init.d/networking restart
+
+
+
+fixopenwith
+------------------------------------------------------------------------
+
+Remove duplicates from OSX's 'open with' menu. Tip taken from
+http://www.leancrew.com/all-this/2013/02/getting-rid-of-open-with-duplicates/
+
+Source code::
+
+    #!/bin/bash
+    
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+    killall Finder
+
+
+
+svndiff
+------------------------------------------------------------------------
+
+Show "svn diff", but colorized and piped through "less".
+
+Source code::
+
+    #!/bin/bash
+    
+    if [[ $* ]]; then
+        WHERE=$*;
+    else
+        WHERE=".";
+    fi
+    svn diff $WHERE | colordiff | less -R
+
+
+
+hglog
+------------------------------------------------------------------------
+
+Handy way to look at "hg log" without having to pipe it through "less"
+ourselves. It uses the "-v" verbose flag, too.
+
+Source code::
+
+    #!/bin/bash
+    
+    hg -v log | less
+
+
+
+create_postgis_db
+------------------------------------------------------------------------
+
+Create a local postgis database for the 'buildout' database user.
+
+Source code::
+
+    #!/bin/bash
+    
+    echo "(The password is your sudo password)"
+    sudo -u postgres createdb --template=template_postgis --owner=buildout $1
+
+
+
+editignores
+------------------------------------------------------------------------
+
+Shortcut for editing svn's ignore property.
+
+Source code::
+
+    #!/bin/bash
+    
+    svn propedit svn:ignore .
 
 
 
@@ -413,6 +290,160 @@ Source code::
 
 
 
+bdr
+------------------------------------------------------------------------
+
+Run Django, also on the external interfaces for iPad testing.
+'bdr' is a mnemonic for 'bin django runserver'.
+Note that I'm mostly running django inside dockers nowadays :-)
+
+Source code::
+
+    #!/bin/bash
+    
+    docker-compose run --service-ports web bin/django runserver 0.0.0.0:5000
+
+
+
+editexternals
+------------------------------------------------------------------------
+
+Shortcut for editing svn's externals property.
+
+Source code::
+
+    #!/bin/bash
+    
+    svn propedit svn:externals .
+
+
+
+syncweblog.sh
+------------------------------------------------------------------------
+
+Purely personal. rsyncs my local html files with my webserver :-)
+
+Source code::
+
+    #!/bin/bash
+    
+    rsync -av ~/zelf/reinout.vanrees.org/docs/build/html/ vanrees.org:/srv/reinout.vanrees.org/var/www
+
+
+
+hgdiff
+------------------------------------------------------------------------
+
+Show colorized "hg diff" output for the current directory or for specific
+files.
+
+Source code::
+
+    #!/bin/bash
+    
+    if [[ $* ]]; then
+      WHERE=$*;
+    else WHERE=".";
+    fi
+    hg diff -g $WHERE | colordiff | less -R
+
+
+
+headdiff
+------------------------------------------------------------------------
+
+Show the changes made since our last "svn up" to trunk on the server.
+Very handy if you suspect someone changed a lot and you want to review
+whatever it is that an "svn up" is going to dump on your plate.
+
+Source code::
+
+    #!/bin/bash
+    
+    svn diff -rBASE:HEAD|colordiff|less
+
+
+
+create_git_repo.sh
+------------------------------------------------------------------------
+
+Initialize a git repository in the temp directory and push it to my own
+server. I should have created a repository there on the server already with
+``git init ~/repos/the_project_name --bare``.
+
+Source code::
+
+    #!/bin/bash
+    
+    cd /tmp
+    git init $1
+    cd $1
+    echo "hurray" > README.rst
+    git add README.rst
+    git commit -m "Added readme"
+    git remote add origin ssh://vanrees.org/~/repos/$1
+    git push origin master
+
+
+
+pychecker.sh
+------------------------------------------------------------------------
+
+Runs both pyflakes and pep8 on the current directory or on a specific
+file. Very handy for code quality checks.
+
+Note that it excludes the "migrations" directory that exists in Django
+projects where you use South for database migrations. Those south-generated
+files aren't the best pep8/pyflakes citizens (nor do they need to be).
+
+Tip: add this to your emacs configuration and hook it up to ctrl-c ctrl-w
+(which normally runs pychecker, hence the name) in python-mode::
+
+    '(py-pychecker-command "pychecker.sh")
+    '(py-pychecker-command-args (quote ("")))
+    '(python-check-command "pychecker.sh")
+
+Source code::
+
+    #!/bin/bash
+    
+    # pyflakes $1 | grep -v /migrations/
+    # echo "## pyflakes above, pep8 below ##"
+    # pep8 --repeat --exclude migrations $1
+    flake8 $1
+
+
+
+es
+------------------------------------------------------------------------
+
+Shortcut for starting emacs
+
+Note that I've got it set up in server mode. I've got a bash alias "e" that
+edits a file with "emacsclient". So "es" stands for "emacs server" in my
+case, "e" is for editing with emacs itself :-)
+
+Source code::
+
+    #!/bin/bash
+    
+    /usr/bin/emacs &
+
+
+
+et
+------------------------------------------------------------------------
+
+Edit the gtimelog time logfile.
+
+Source code::
+
+    #!/bin/bash
+    
+    emacsclient -n ~/.gtimelog/timelog.txt
+
+
+
 ssh-copy-id
 ------------------------------------------------------------------------
 
@@ -474,108 +505,77 @@ Source code::
 
 
 
-bzrdiff
+makegitdir.sh
 ------------------------------------------------------------------------
 
-Show local differences in a bzr repository. In a bit nicer way than the bzr
-default.
+
+
+Source code::
+
+    #!/bin/bash
+    cd ~/repos
+    mkdir $1
+    cd $1
+    git init --bare
+
+
+
+filefind
+------------------------------------------------------------------------
+
+Find filenames in the current directory.
+
+- It greps case-insensitive for patial matches, so 'htm' finds
+  ``index.HTML`` just fine.
+
+- It ignores ``.svn`` and ``.hg`` directories.
+
+- It doesn't color code the output to help with emacs integration.
+
+- It adds ``:1:`` so that you can use it in emacs' grep viewer. Clicking on
+  it opens that file.
 
 Source code::
 
     #!/bin/bash
     
-    if [[ $* ]]; then
-        WHERE=$*;
-    else
-        WHERE=".";
-    fi
-    bzr diff $WHERE | colordiff | less -R
+    clear
+    find -L . | grep --colour=never -i $1 | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
+    # grep -i --color=auto $1
 
 
 
-fixopenwith
+duh
 ------------------------------------------------------------------------
 
-Remove duplicates from OSX's 'open with' menu. Tip taken from
-http://www.leancrew.com/all-this/2013/02/getting-rid-of-open-with-duplicates/
+Just print out the disk usage *totals* for every directory in the current
+directory.
+
+-m  = In megabytes (for easy "| sort -n")
+-d1 = Current directory + one level below
 
 Source code::
 
     #!/bin/bash
     
-    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-    killall Finder
+    du -m -d1
 
 
 
-hglog
+vlog
 ------------------------------------------------------------------------
 
-Handy way to look at "hg log" without having to pipe it through "less"
-ourselves. It uses the "-v" verbose flag, too.
+Shows svn log, but with some better defaults:
+
+- It uses verbose mode (``-v``); this way it actually shows the files that
+  have been changed. This is often clearer than the log message itself.
+
+- It pipes it through "less" instead of blubbering your terminal full with
+  several pages' worth of logs.
 
 Source code::
 
     #!/bin/bash
     
-    hg -v log | less
-
-
-
-pychecker.sh
-------------------------------------------------------------------------
-
-Runs both pyflakes and pep8 on the current directory or on a specific
-file. Very handy for code quality checks.
-
-Note that it excludes the "migrations" directory that exists in Django
-projects where you use South for database migrations. Those south-generated
-files aren't the best pep8/pyflakes citizens (nor do they need to be).
-
-Tip: add this to your emacs configuration and hook it up to ctrl-c ctrl-w
-(which normally runs pychecker, hence the name) in python-mode::
-
-    '(py-pychecker-command "pychecker.sh")
-    '(py-pychecker-command-args (quote ("")))
-    '(python-check-command "pychecker.sh")
-
-Source code::
-
-    #!/bin/bash
-    
-    # pyflakes $1 | grep -v /migrations/
-    # echo "## pyflakes above, pep8 below ##"
-    # pep8 --repeat --exclude migrations $1
-    flake8 $1
-
-
-
-editexternals
-------------------------------------------------------------------------
-
-Shortcut for editing svn's externals property.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn propedit svn:externals .
-
-
-
-svndiff
-------------------------------------------------------------------------
-
-Show "svn diff", but colorized and piped through "less".
-
-Source code::
-
-    #!/bin/bash
-    
-    if [[ $* ]]; then
-        WHERE=$*;
-    else
-        WHERE=".";
-    fi
-    svn diff $WHERE | colordiff | less -R
+    svn -v log | less
 
