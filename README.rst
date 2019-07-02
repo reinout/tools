@@ -29,49 +29,39 @@ Bootstrap installation notes for myself, to use on linux
 
 These are the installations for really bootstrapping without anything present.
 
-- ``sudo apt install python3-pip build-essential virtualenv git curl pipsi``
+On **linux**, first some apt-get::
 
-- ``sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev``
+  sudo apt install python3-pip build-essential python3-venv git curl \
+  make build-essential libssl-dev zlib1g-dev libbz2-dev \
+  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+  libncursesw5-dev xz-utils tk-dev
 
-- ``curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash``
+on **OSX**, install `homebrew <https://brew.sh/>`_ and install a couple of
+utilities that are missing from OSX (or that are too old)::
 
-- ``pyenv install 3.6.5`` and the same for ``2.7.15`` and ``3.7.1`` (an run
-  the "export ..."  instructions in the current shell (for use during this
-  bootstrapping session, they're already in my Dotfiles' bash profile
-  settings).
+  brew install wget gpg bash-completion svn htop siege python python3
 
-With pipsi, you can then install various packages nicely isolated in their own
-virtualenvs. First install "dotfiles" and "checkoutmanager" as we need them to
-set up the rest: ``pipsi install dotfiles`` (idem checkoutmanager).
+Then create an ssh key and arrange access to vanrees.org and github.com.
 
-- Do a git pull of ``ssh://vanrees.org/~/repos/Dotfiles`` into my homedir
-  and run ``dotfiles --sync``: this gives me my dotfiles, including the
-  checkoutmanager configuration. I need this because there are local
-  development items I need to run.
+Checkout ourselves::
 
-- Symlink the desired checkoutmanager config in the homedir (``ln -s
-  .checkoutmanager_linux.cfg .checkoutmanager.cfg``).
+  mkdir -p ~/zelf
+  cd ~/zelf
+  git clone git@github.com:reinout/tools.git
 
-- Run ``checkoutmanager co``.
+Now install pipx, pyenv, tools and dotfiles and checkouts and local dev installs::
 
-Now you can install this repo itself with a quick ``make install`` in
-``~/zelf/tools``. It installs itself with pipsi.
-
-Use pipsi to install a bunch of packages::
-
-  pipsi install ansible
-  pipsi install cookiecutter
-  pipsi install docutils
-  pipsi install flake8
-  pipsi install isort
-  pipsi install legit
-  pipsi install oplop
-  pipsi install pipenv
+  cd ~/zelf/tools
+  make linux  # or make osx!
 
 Note: I installed flake8 also with "pip install flake8" because that helps
 emacs' flycheck to pick it up.
 
-And, as documentation, some of the debian packages I install::
+
+Extra linux install notes
+-------------------------
+
+And, as documentation, some of the ubuntu packages I install::
 
   apt install etckeeper gpg xclip emacs25 gnome-tweaks
 
@@ -79,42 +69,8 @@ For nextcloud, I `used the PPA
 <https://launchpad.net/~nextcloud-devs/+archive/ubuntu/client>`_.
 
 
-Bootstrap installation notes for myself, to use on OSX
-------------------------------------------------------
-
-These are the installations for OSX for really bootstrapping without anything
-present.
-
-homebrew
-
-brew install python3
-
-pip3 install pipx
-
-pipx install dotfiles
-
-pipx install checkoutmanager
-
-
-- Do a git pull of ``ssh://vanrees.org/~/repos/Dotfiles`` into my homedir
-  and run ``dotfiles --sync``: this gives me my dotfiles, including the
-  checkoutmanager configuration. I need this because there are local
-  development items I need to run. There's a bit of a bootstrap problem that
-  ``dotfiles`` is actually installed by this tools dir :-)
-
-- Symlink ``osx.cfg`` (on osx) to buildout.cfg`` first. The other ``.cfg`` are
-  used inside virtualbox/vmware machines or on my own webserver.
-
-- Run ``make`` inside this directory.
-
-
 Extra OSX install notes
 -----------------------
-
-Install `homebrew <http://mxcl.github.com/homebrew/>`_ and install a couple of
-utilities that are missing from OSX (or that are too old)::
-
-    $ brew install wget gpg bash-completion svn htop siege python
 
 And, for the `git annex <http://git-annex.branchable.com/>`_ dependencies,
 install::
