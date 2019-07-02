@@ -77,6 +77,10 @@ install::
 
     $ brew install haskell-platform git ossp-uuid md5sha1sum coreutils pcre
 
+TODO: add to this list
+
+TODO: add bash-profile stuff to the makefile
+
 
 Documentation generation
 ------------------------
