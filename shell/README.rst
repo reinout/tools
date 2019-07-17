@@ -358,6 +358,21 @@ Source code::
 
 
 
+hadolint
+------------------------------------------------------------------------
+
+Run 'hadolint', a Dockerfile syntax checker, via docker, as suggested by
+https://github.com/hadolint/hadolint. hadolint is used by emacs' flycheck,
+see http://www.flycheck.org/en/latest/languages.html#dockerfile
+
+Source code::
+
+    #!/bin/bash
+    
+    docker run --rm -i hadolint/hadolint
+
+
+
 headdiff
 ------------------------------------------------------------------------
 

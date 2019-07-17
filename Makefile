@@ -72,3 +72,4 @@ local-dev:
 	pipx install --force --editable --spec ~/opensource/checkoutmanager checkoutmanager
 	pipx install --force --editable --spec ~/opensource/zest.releaser zest.releaser
 	pipx install --force --editable --spec ~/opensource/z3c.dependencychecker z3c.dependencychecker
+	pip3 install flake8
