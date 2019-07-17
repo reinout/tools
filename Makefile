@@ -2,9 +2,10 @@ usage:
 	echo "make linux or make osx, please"
 
 
-osx: /usr/local/bin/pipx install osx-checkoutmanager local-dev
+osx: /usr/local/bin/pipx /usr/local/bin/shellcheck install osx-checkoutmanager local-dev
 
-linux: /usr/bin/pipx readlinehack install linux-checkoutmanager local-dev
+linux: /usr/bin/pipx /usr/bin/shellcheck readlinehack install linux-checkoutmanager local-dev
+
 
 /usr/bin/pipx:
 	sudo aptitude install pipx
@@ -12,9 +13,12 @@ linux: /usr/bin/pipx readlinehack install linux-checkoutmanager local-dev
 /usr/local/bin/pipx:
 	brew install pipx
 
-# ~/.local/bin/pipx:
-# 	python3 -m pip install --user --upgrade pipx
-# 	echo "Note: ~/.local/bin should be on your path"
+/usr/bin/shellcheck:
+	sudo aptitude install shellcheck
+
+/usr/local/bin/shellcheck:
+	brew install shellcheck
+
 
 readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
 	sudo pip3 install readline
