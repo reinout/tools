@@ -7,17 +7,22 @@ top of the Python scripts.
 
 
 
-python_coding_cleanup.py
+add_time.py
 ------------------------------------------------------------------------
 
-Zap 'coding: utf-8' header from python files in the current directory.
 
-The header isn't needed anymore in python 3, so for most projects, it can be
-removed.
+Simple script to add the current time to a screenshot.
+
+Pass in the filename of the screenshot as an argument and the script will
+create a new file (named after the time, in the current directory) with the
+time written in the lower right corner.
+
+The location of the time string and the location of the font to use is
+hardcoded.
 
 
 
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/python_coding_cleanup.py>`_).
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/add_time.py>`_).
 
 
 
@@ -42,37 +47,14 @@ what this script does.
 
 
 
-git.py
+sommen.py
 ------------------------------------------------------------------------
 
 
-Add/commit/push a git checkout in one command ("gac", for "Git Add Commit").
-
-Lots of my personal stuff is in git, so I need to do a lot of ``git add -u``,
-``git commit -m "update"`` and ``git push``. Note the ``"update"``
-message. I'm often not bothering with more descriptive commit messages.
-
-The script *does* ask for confirmation after first showing the status:
-prevent accidents.
+Small utility script for printing a bunch of calculations for my kids.
 
 
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/git.py>`_).
-
-
-
-jsonformatter.py
-------------------------------------------------------------------------
-
-(Re-)indent json on stdin and send it to stdout.
-
-Handy for webservices that return json as one big long string. With ``curl
-http://the.json.url/ | jsonformatter`` you can actually read it.
-
-
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/jsonformatter.py>`_).
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/sommen.py>`_).
 
 
 
@@ -90,22 +72,22 @@ django app's ``$APP/management/commands/`` directory.
 
 
 
-add_time.py
+git.py
 ------------------------------------------------------------------------
 
 
-Simple script to add the current time to a screenshot.
+Add/commit/push a git checkout in one command ("gac", for "Git Add Commit").
 
-Pass in the filename of the screenshot as an argument and the script will
-create a new file (named after the time, in the current directory) with the
-time written in the lower right corner.
+Lots of my personal stuff is in git, so I need to do a lot of ``git add -u``,
+``git commit -m "update"`` and ``git push``. Note the ``"update"``
+message. I'm often not bothering with more descriptive commit messages.
 
-The location of the time string and the location of the font to use is
-hardcoded.
+The script *does* ask for confirmation after first showing the status:
+prevent accidents.
 
 
 
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/add_time.py>`_).
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/git.py>`_).
 
 
 
@@ -127,17 +109,6 @@ This script removes the holes.
 
 
 
-sommen.py
-------------------------------------------------------------------------
-
-
-Small utility script for printing a bunch of calculations for my kids.
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/sommen.py>`_).
-
-
-
 blog.py
 ------------------------------------------------------------------------
 
@@ -156,6 +127,35 @@ instead of here. TODO.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/blog.py>`_).
+
+
+
+jsonformatter.py
+------------------------------------------------------------------------
+
+(Re-)indent json on stdin and send it to stdout.
+
+Handy for webservices that return json as one big long string. With ``curl
+http://the.json.url/ | jsonformatter`` you can actually read it.
+
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/jsonformatter.py>`_).
+
+
+
+python_coding_cleanup.py
+------------------------------------------------------------------------
+
+Zap 'coding: utf-8' header from python files in the current directory.
+
+The header isn't needed anymore in python 3, so for most projects, it can be
+removed.
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/python_coding_cleanup.py>`_).
 
 
 
