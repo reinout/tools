@@ -26,6 +26,27 @@ hardcoded.
 
 
 
+blog.py
+------------------------------------------------------------------------
+
+
+Helper scripts for me to manage my blog.
+
+I write my blog entries as restructured text files. The ``copytoblog`` command
+copies the text file to the correct date's blog subdirectory, creating it if
+necessary.
+
+There's also a command to open today's entries in emacs.
+
+Note that some of this might be better placed inside my website project
+instead of here. TODO.
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/blog.py>`_).
+
+
+
 engineerlog.py
 ------------------------------------------------------------------------
 
@@ -44,31 +65,6 @@ what this script does.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/engineerlog.py>`_).
-
-
-
-sommen.py
-------------------------------------------------------------------------
-
-
-Small utility script for printing a bunch of calculations for my kids.
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/sommen.py>`_).
-
-
-
-mkinit.py
-------------------------------------------------------------------------
-
-
-Create a directory and pre-fill it with an ``__init__.py``
-
-Basically: mkdir plus the creation of the init file. Handy for creating a
-django app's ``$APP/management/commands/`` directory.
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/mkinit.py>`_).
 
 
 
@@ -91,42 +87,23 @@ prevent accidents.
 
 
 
-thunderbird.py
-------------------------------------------------------------------------
-
-Fix the thunderbird newsrc settings
-
-The settings sometimes contain lines like::
-
-  gmane.comp.python.distutils.devel: 1-12428,12431-12446
-
-There's a two-article 'hole' in there that shows up as two unread messages.
-This script removes the holes.
-
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/thunderbird.py>`_).
-
-
-
-blog.py
+github.py
 ------------------------------------------------------------------------
 
 
-Helper scripts for me to manage my blog.
+Open github page for your current directory in your browser.
 
-I write my blog entries as restructured text files. The ``copytoblog`` command
-copies the text file to the correct date's blog subdirectory, creating it if
-necessary.
+You're working on the commandline and want to check something for the github
+project you're working on. This script (called ``gh``) looks up the github url
+for your project and opens it in your webbrowser.
 
-There's also a command to open today's entries in emacs.
+If you call it like ``gh issues``, you'll get the issues page.
 
-Note that some of this might be better placed inside my website project
-instead of here. TODO.
-
+I got the idea from https://github.com/myusuf3/octogit.
 
 
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/blog.py>`_).
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/github.py>`_).
 
 
 
@@ -145,6 +122,20 @@ http://the.json.url/ | jsonformatter`` you can actually read it.
 
 
 
+mkinit.py
+------------------------------------------------------------------------
+
+
+Create a directory and pre-fill it with an ``__init__.py``
+
+Basically: mkdir plus the creation of the init file. Handy for creating a
+django app's ``$APP/management/commands/`` directory.
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/mkinit.py>`_).
+
+
+
 python_coding_cleanup.py
 ------------------------------------------------------------------------
 
@@ -159,21 +150,30 @@ removed.
 
 
 
-github.py
+sommen.py
 ------------------------------------------------------------------------
 
 
-Open github page for your current directory in your browser.
+Small utility script for printing a bunch of calculations for my kids.
 
-You're working on the commandline and want to check something for the github
-project you're working on. This script (called ``gh``) looks up the github url
-for your project and opens it in your webbrowser.
 
-If you call it like ``gh issues``, you'll get the issues page.
-
-I got the idea from https://github.com/myusuf3/octogit.
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/sommen.py>`_).
 
 
 
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/github.py>`_).
+thunderbird.py
+------------------------------------------------------------------------
+
+Fix the thunderbird newsrc settings
+
+The settings sometimes contain lines like::
+
+  gmane.comp.python.distutils.devel: 1-12428,12431-12446
+
+There's a two-article 'hole' in there that shows up as two unread messages.
+This script removes the holes.
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/thunderbird.py>`_).
 

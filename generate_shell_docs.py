@@ -57,6 +57,7 @@ def main():
     readme = README_HEADER
     os.chdir("shell")
     scripts = [script for script in os.listdir(".") if script not in OMIT]
+    scripts.sort()
     for script in scripts:
         code, documentation = extract(script)
         readme += SCRIPT_TEMPLATE.format(

@@ -34,6 +34,7 @@ def main():
         for script in os.listdir(".")
         if script.endswith(".py") and script not in OMIT
     ]
+    scripts.sort()
     for script in scripts:
         module_name = "tools." + script[:-3]
         __import__(module_name)
