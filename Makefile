@@ -6,13 +6,15 @@ osx: /usr/local/bin/pipx install osx-checkoutmanager local-dev
 
 linux: /usr/bin/pipx readlinehack install linux-checkoutmanager local-dev
 
-
 /usr/bin/pipx:
 	sudo aptitude install pipx
 
 /usr/local/bin/pipx:
 	brew install pipx
 
+# ~/.local/bin/pipx:
+# 	python3 -m pip install --user --upgrade pipx
+# 	echo "Note: ~/.local/bin should be on your path"
 
 readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
 	sudo pip3 install readline
@@ -68,5 +70,5 @@ install: pipx-deps pyenv ~/Dotfiles
 local-dev:
 	checkoutmanager co
 	pipx install --force --editable --spec ~/opensource/checkoutmanager checkoutmanager
-	pipx install --editable --spec ~/opensource/zest.releaser zest.releaser
-	pipx install --editable --spec ~/opensource/z3c.dependencychecker z3c.dependencychecker
+	pipx install --force --editable --spec ~/opensource/zest.releaser zest.releaser
+	pipx install --force --editable --spec ~/opensource/z3c.dependencychecker z3c.dependencychecker
