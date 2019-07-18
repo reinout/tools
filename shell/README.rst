@@ -22,25 +22,6 @@ Source code::
 
 
 
-bzrdiff
-------------------------------------------------------------------------
-
-Show local differences in a bzr repository. In a bit nicer way than the bzr
-default.
-
-Source code::
-
-    #!/bin/bash
-    
-    if [[ $* ]]; then
-        WHERE=$*;
-    else
-        WHERE=".";
-    fi
-    bzr diff $WHERE | colordiff | less -R
-
-
-
 create_git_repo.sh
 ------------------------------------------------------------------------
 
@@ -52,13 +33,14 @@ Source code::
 
     #!/bin/bash
     
+    set -e
     cd /tmp
-    git init $1
-    cd $1
+    git init "$1"
+    cd "$1"
     echo "hurray" > README.rst
     git add README.rst
     git commit -m "Added readme"
-    git remote add origin ssh://vanrees.org/~/repos/$1
+    git remote add origin "ssh://vanrees.org/~/repos/$1"
     git push origin master
 
 
@@ -73,7 +55,7 @@ Source code::
     #!/bin/bash
     
     echo "(The password is your sudo password)"
-    sudo -u postgres createdb --template=template_postgis --owner=buildout $1
+    sudo -u postgres createdb --template=template_postgis --owner=buildout "$1"
 
 
 
@@ -204,28 +186,6 @@ Source code::
 
 
 
-drm
-------------------------------------------------------------------------
-
-Remove all the intermediary/on-the-fly docker images that aren't used
-anymore. Every time you run a docker/docker-compose command a new image is
-created and stored. Probably not big, but you don't need it.
-
-You can start docker-compose with the ``--rm`` option to clean up after
-itself. This ``drm`` command cleans up the cases where you didn't use
-``--rm``.
-
-Source code::
-
-    #!/bin/bash
-    
-    echo "If there is nothing to remove, some commands will raise an error. That's OK."
-    docker rm $(docker ps -aq)
-    docker rm -v $(docker ps --filter status=exited -q 2>/dev/null)
-    docker rmi $(docker images --quiet --filter "dangling=true")
-
-
-
 duh
 ------------------------------------------------------------------------
 
@@ -243,32 +203,6 @@ Source code::
 
 
 
-editexternals
-------------------------------------------------------------------------
-
-Shortcut for editing svn's externals property.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn propedit svn:externals .
-
-
-
-editignores
-------------------------------------------------------------------------
-
-Shortcut for editing svn's ignore property.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn propedit svn:ignore .
-
-
-
 es
 ------------------------------------------------------------------------
 
@@ -283,19 +217,6 @@ Source code::
     #!/bin/bash
     
     /usr/bin/emacs &
-
-
-
-et
-------------------------------------------------------------------------
-
-Edit the gtimelog time logfile.
-
-Source code::
-
-    #!/bin/bash
-    
-    emacsclient -n ~/.gtimelog/timelog.txt
 
 
 
@@ -318,8 +239,8 @@ Source code::
 
     #!/bin/bash
     
-    clear
-    find -L . | grep --colour=never -i $1 | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
+    clear -x
+    find -L . | grep --colour=never -i "$1" | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
     # grep -i --color=auto $1
 
 
@@ -339,25 +260,6 @@ Source code::
 
 
 
-fixvagrantnetwork
-------------------------------------------------------------------------
-
-Fix the vagrant box' network after changing wifi connections.
-When I go home from work (or the other way), the vagrant box has no
-network connections anymore. This script uses the solution from
-http://stackoverflow.com/a/10388844/27401.
-
-Note: I use my own ``bin/vc`` command, so this script needs to be executed
-inside the vm's directory (``~/vm/django/`` for instance).
-
-Source code::
-
-    #!/bin/bash
-    
-    vc sudo /etc/init.d/networking restart
-
-
-
 hadolint
 ------------------------------------------------------------------------
 
@@ -373,53 +275,6 @@ Source code::
 
 
 
-headdiff
-------------------------------------------------------------------------
-
-Show the changes made since our last "svn up" to trunk on the server.
-Very handy if you suspect someone changed a lot and you want to review
-whatever it is that an "svn up" is going to dump on your plate.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn diff -rBASE:HEAD|colordiff|less
-
-
-
-hgdiff
-------------------------------------------------------------------------
-
-Show colorized "hg diff" output for the current directory or for specific
-files.
-
-Source code::
-
-    #!/bin/bash
-    
-    if [[ $* ]]; then
-      WHERE=$*;
-    else WHERE=".";
-    fi
-    hg diff -g $WHERE | colordiff | less -R
-
-
-
-hglog
-------------------------------------------------------------------------
-
-Handy way to look at "hg log" without having to pipe it through "less"
-ourselves. It uses the "-v" verbose flag, too.
-
-Source code::
-
-    #!/bin/bash
-    
-    hg -v log | less
-
-
-
 makegitdir.sh
 ------------------------------------------------------------------------
 
@@ -428,9 +283,10 @@ makegitdir.sh
 Source code::
 
     #!/bin/bash
+    set -e
     cd ~/repos
-    mkdir $1
-    cd $1
+    mkdir "$1"
+    cd "$1"
     git init --bare
 
 
@@ -459,7 +315,9 @@ Source code::
     # pyflakes $1 | grep -v /migrations/
     # echo "## pyflakes above, pep8 below ##"
     # pep8 --repeat --exclude migrations $1
-    flake8 $1
+    
+    set -e
+    flake8 "$1"
 
 
 
@@ -484,7 +342,7 @@ Source code::
       shift
       # check if we have 2 parameters left, if so the first is the new ID file
       if [ -n "$2" ]; then
-        if expr "$1" : ".*\.pub" > /dev/null ; then
+        if expr "$1" : ".*\\.pub" > /dev/null ; then
           ID_FILE="$1"
         else
           ID_FILE="$1.pub"
@@ -492,7 +350,7 @@ Source code::
         shift         # and this should leave $1 as the target name
       fi
     else
-      if [ x$SSH_AUTH_SOCK != x ] && ssh-add -L >/dev/null 2>&1; then
+      if [ "x$SSH_AUTH_SOCK" != x ] && ssh-add -L >/dev/null 2>&1; then
         GET_ID="$GET_ID ssh-add -L"
       fi
     fi
@@ -524,24 +382,6 @@ Source code::
 
 
 
-svndiff
-------------------------------------------------------------------------
-
-Show "svn diff", but colorized and piped through "less".
-
-Source code::
-
-    #!/bin/bash
-    
-    if [[ $* ]]; then
-        WHERE=$*;
-    else
-        WHERE=".";
-    fi
-    svn diff $WHERE | colordiff | less -R
-
-
-
 svngrep
 ------------------------------------------------------------------------
 
@@ -554,6 +394,8 @@ Grep for a term in the current directory, but with some twists:
 - Same with ``egg-info`` and ``*.pyc`` files.
 
 - The search term is highlighted in the output.
+
+TODO: ignore big files (like combined js files).
 
 Source code::
 
@@ -574,23 +416,4 @@ Source code::
     #!/bin/bash
     
     rsync -av ~/zelf/reinout.vanrees.org/docs/build/html/ vanrees.org:/srv/reinout.vanrees.org/var/www
-
-
-
-vlog
-------------------------------------------------------------------------
-
-Shows svn log, but with some better defaults:
-
-- It uses verbose mode (``-v``); this way it actually shows the files that
-  have been changed. This is often clearer than the log message itself.
-
-- It pipes it through "less" instead of blubbering your terminal full with
-  several pages' worth of logs.
-
-Source code::
-
-    #!/bin/bash
-    
-    svn -v log | less
 
