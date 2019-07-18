@@ -1,6 +1,0 @@
-#!/bin/bash
-# Show the changes made since our last "svn up" to trunk on the server.
-# Very handy if you suspect someone changed a lot and you want to review
-# whatever it is that an "svn up" is going to dump on your plate.
-
-svn diff -rBASE:HEAD|colordiff|less

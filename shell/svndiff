@@ -1,9 +1,0 @@
-#!/bin/bash
-# Show "svn diff", but colorized and piped through "less".
-
-if [[ $* ]]; then
-    WHERE=$*;
-else
-    WHERE=".";
-fi
-svn diff $WHERE | colordiff | less -R

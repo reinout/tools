@@ -1,5 +1,0 @@
-#!/bin/bash
-# Handy way to look at "hg log" without having to pipe it through "less"
-# ourselves. It uses the "-v" verbose flag, too.
-
-hg -v log | less
