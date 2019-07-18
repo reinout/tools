@@ -2,22 +2,26 @@ usage:
 	echo "make linux or make osx, please"
 
 
-osx: /usr/local/bin/pipx /usr/local/bin/shellcheck install osx-checkoutmanager local-dev
+osx: osx-deps install osx-checkoutmanager local-dev
 
-linux: /usr/bin/pipx /usr/bin/shellcheck readlinehack install linux-checkoutmanager local-dev
+linux: linux-deps readlinehack install linux-checkoutmanager local-dev
+
+osx-deps: /usr/local/bin/pipx \
+	  /usr/local/bin/shellcheck \
+	  /usr/local/bin/npm \
+	  /usr/local/bin/tidy
+
+linux-deps: /usr/bin/pipx \
+	    /usr/bin/shellcheck \
+	    /usr/bin/npm \
+	    /usr/bin/tidy
 
 
-/usr/bin/pipx:
-	sudo aptitude install pipx
+/usr/bin/%:
+	sudo aptitude install $*
 
-/usr/local/bin/pipx:
-	brew install pipx
-
-/usr/bin/shellcheck:
-	sudo aptitude install shellcheck
-
-/usr/local/bin/shellcheck:
-	brew install shellcheck
+/usr/local/bin/%:
+	brew install %*
 
 
 readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
@@ -64,7 +68,19 @@ linux-checkoutmanager: ~/.checkoutmanager.cfg ~/.checkoutmanager_linux.cfg
 	echo "You might want to run dotfiles --sync --force, btw"
 
 
-install: pipx-deps pyenv ~/Dotfiles
+npm-deps: ~/Dotfiles ~/.npm-packages \
+		~/.npm-packages/bin/js-yaml \
+		~/.npm-packages/bin/csslint \
+		~/.npm-packages/bin/jshint
+
+~/.npm-packages:
+	mkdir $@
+
+~/.npm-packages/bin/%:
+	npm install -g $*
+
+
+install: pipx-deps pyenv ~/Dotfiles npm-deps
 	pipx install --force --editable --spec . tools
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
