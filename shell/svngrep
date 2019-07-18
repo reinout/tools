@@ -8,6 +8,8 @@
 # - Same with ``egg-info`` and ``*.pyc`` files.
 #
 # - The search term is highlighted in the output.
+#
+# TODO: ignore big files (like combined js files).
 
 SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
 grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"

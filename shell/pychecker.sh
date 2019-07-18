@@ -16,4 +16,6 @@
 # pyflakes $1 | grep -v /migrations/
 # echo "## pyflakes above, pep8 below ##"
 # pep8 --repeat --exclude migrations $1
-flake8 $1
+
+set -e
+flake8 "$1"

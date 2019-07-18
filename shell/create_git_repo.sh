@@ -3,11 +3,12 @@
 # server. I should have created a repository there on the server already with
 # ``git init ~/repos/the_project_name --bare``.
 
+set -e
 cd /tmp
-git init $1
-cd $1
+git init "$1"
+cd "$1"
 echo "hurray" > README.rst
 git add README.rst
 git commit -m "Added readme"
-git remote add origin ssh://vanrees.org/~/repos/$1
+git remote add origin "ssh://vanrees.org/~/repos/$1"
 git push origin master
