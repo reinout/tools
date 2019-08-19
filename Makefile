@@ -39,7 +39,8 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/oplop\
 	   ~/.local/pipx/venvs/dotfiles\
 	   ~/.local/pipx/venvs/checkoutmanager\
-	   ~/.local/pipx/venvs/pipenv
+	   ~/.local/pipx/venvs/pipenv\
+	   ~/.local/pipx/venvs/tox
 
 
 ~/.local/pipx/venvs/%:
