@@ -6,22 +6,25 @@ osx: osx-deps install osx-checkoutmanager local-dev
 
 linux: linux-deps readlinehack install linux-checkoutmanager local-dev
 
-osx-deps: /usr/local/bin/pipx \
-	  /usr/local/bin/shellcheck \
-	  /usr/local/bin/npm \
-	  /usr/local/bin/tidy
+osx-deps:
+	brew install \
+	ack \
+	entr \
+	npm \
+	pipx \
+	shellcheck \
+	the_silver_searcher \
+	tidy
 
-linux-deps: /usr/bin/pipx \
-	    /usr/bin/shellcheck \
-	    /usr/bin/npm \
-	    /usr/bin/tidy
-
-
-/usr/bin/%:
-	sudo aptitude install $*
-
-/usr/local/bin/%:
-	brew install %*
+linux-deps:
+	sudo aptitude install \
+	ack \
+	entr \
+	npm \
+	pipx \
+	shellcheck \
+	silversearcher-ag \
+	tidy
 
 
 readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
@@ -47,7 +50,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	pipx install $*
 
 
-pyenv: ~/.pyenv ~/.pyenv/versions/2.7.15 ~/.pyenv/versions/3.5.6 ~/.pyenv/versions/3.6.5 ~/.pyenv/versions/3.7.3
+pyenv: ~/.pyenv ~/.pyenv/versions/2.7.15 ~/.pyenv/versions/3.5.6 ~/.pyenv/versions/3.6.5 ~/.pyenv/versions/3.7.3 pyenv-activate
 
 ~/.pyenv:
 	curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
@@ -55,6 +58,8 @@ pyenv: ~/.pyenv ~/.pyenv/versions/2.7.15 ~/.pyenv/versions/3.5.6 ~/.pyenv/versio
 ~/.pyenv/versions/%:
 	pyenv install $*
 
+pyenv-activate:
+	pyenv global 3.7.3 3.6.5 3.5.6
 
 osx-checkoutmanager: ~/.checkoutmanager.cfg ~/.checkoutmanager_osx.cfg
 	ln -sf ~/.checkoutmanager_osx.cfg ~/.checkoutmanager.cfg
