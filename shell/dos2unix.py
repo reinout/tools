@@ -18,20 +18,21 @@ import sys
 
 
 def dos2unix(data):
-    return '\n'.join(data.split('\r\n'))
+    return "\n".join(data.split("\r\n"))
 
 
 def unix2dos(data):
-    return '\r\n'.join(dos2unix(data).split('\n'))
+    return "\r\n".join(dos2unix(data).split("\n"))
 
 
 def confirm(file_):
-    s = raw_input('%s? ' % file_)
-    return s and s[0] == 'y'
+    s = raw_input("%s? " % file_)
+    return s and s[0] == "y"
 
 
 def usage():
-    print("""\
+    print(
+        """\
 USAGE
     dos2unix.py [-iuvnfcd] [-b extension] file {file}
 DESCRIPTION
@@ -47,7 +48,8 @@ OPTIONS
     -b ext  use 'ext' as backup extension (default .bak)
     -c      don't make a backup
     -d      keep modification date and mode
-""")
+"""
+    )
     sys.exit()
 
 
@@ -62,48 +64,48 @@ def main():
     convert = dos2unix
     verbose = 0
     copystat = shutil.copymode
-    backup = '.bak'
+    backup = ".bak"
     nobackup = 0
     interactive = 0
     for k, v in opts:
-        if k == '-f':
+        if k == "-f":
             force = 1
-        elif k == '-n':
+        elif k == "-n":
             noaction = 1
             verbose = 1
-        elif k == '-i':
+        elif k == "-i":
             interactive = 1
-        elif k == '-u':
+        elif k == "-u":
             convert = unix2dos
-        elif k == '-v':
+        elif k == "-v":
             verbose = 1
-        elif k == '-b':
+        elif k == "-b":
             backup = v
-        elif k == '-d':
+        elif k == "-d":
             copystat = shutil.copystat
-        elif k == '-c':
+        elif k == "-c":
             nobackup = 1
-    asciiregex = re.compile('[ -~\r\n\t\f]+')
+    asciiregex = re.compile("[ -~\r\n\t\f]+")
     for file_ in args:
-        if not os.path.isfile(file_) or file_[-len(backup):] == backup:
+        if not os.path.isfile(file_) or file_[-len(backup) :] == backup:
             continue
         fp = open(file_)
         head = fp.read(10000)
         if force or len(head) == asciiregex.match(head):
-            data = head+fp.read()
+            data = head + fp.read()
             newdata = convert(data)
             if newdata != data:
                 if verbose and not interactive:
                     print(file_)
                 if not interactive or confirm(file_):
                     if not noaction:
-                        newfile = file_+'.@'
-                        f = open(newfile, 'w')
+                        newfile = file_ + ".@"
+                        f = open(newfile, "w")
                         f.write(newdata)
                         f.close()
                         copystat(file_, newfile)
                         if backup:
-                            backfile = file_+backup
+                            backfile = file_ + backup
                             os.rename(file_, backfile)
                         else:
                             os.unlink(file_)

@@ -12,7 +12,7 @@ TO_REMOVE = "# -*- coding: utf-8 -*-"
 
 def main():
     p = Path(".")
-    for python_file in p.glob('**/*.py'):
+    for python_file in p.glob("**/*.py"):
         contents = python_file.read_text()
         if contents.startswith(TO_REMOVE):
             new_contents = contents.lstrip(TO_REMOVE).lstrip("\n")
