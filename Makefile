@@ -34,6 +34,7 @@ readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
 	sudo ln -s /lib/x86_64-linux-gnu/libreadline.so.8 $@
 
 pipx-deps: ~/.local/pipx/venvs/ansible\
+	   ~/.local/pipx/venvs/beautysh\
 	   ~/.local/pipx/venvs/checkoutmanager\
 	   ~/.local/pipx/venvs/cookiecutter\
 	   ~/.local/pipx/venvs/docutils\
