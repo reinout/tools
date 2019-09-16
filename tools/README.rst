@@ -176,4 +176,3 @@ This script removes the holes.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/thunderbird.py>`_).
-

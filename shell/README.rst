@@ -17,7 +17,7 @@ Note that I'm mostly running django inside dockers nowadays :-)
 Source code::
 
     #!/bin/bash
-    
+
     docker-compose run --service-ports web python manage.py runserver 0.0.0.0:5000
 
 
@@ -32,7 +32,7 @@ server. I should have created a repository there on the server already with
 Source code::
 
     #!/bin/bash
-    
+
     set -e
     cd /tmp
     git init "$1"
@@ -53,7 +53,7 @@ Create a local postgis database for the 'buildout' database user.
 Source code::
 
     #!/bin/bash
-    
+
     echo "(The password is your sudo password)"
     sudo -u postgres createdb --template=template_postgis --owner=buildout "$1"
 
@@ -76,27 +76,27 @@ TODO:
 Source code::
 
     #!/usr/bin/env python
-    
+
     import getopt
     import os
     import re
     import shutil
     import sys
-    
-    
+
+
     def dos2unix(data):
         return '\n'.join(data.split('\r\n'))
-    
-    
+
+
     def unix2dos(data):
         return '\r\n'.join(dos2unix(data).split('\n'))
-    
-    
+
+
     def confirm(file_):
         s = raw_input('%s? ' % file_)
         return s and s[0] == 'y'
-    
-    
+
+
     def usage():
         print("""\
     USAGE
@@ -116,8 +116,8 @@ Source code::
         -d      keep modification date and mode
     """)
         sys.exit()
-    
-    
+
+
     def main():
         try:
             opts, args = getopt.getopt(sys.argv[1:], "fniuvdc")
@@ -177,8 +177,8 @@ Source code::
                             os.rename(newfile, file_)
                             if nobackup:
                                 os.unlink(backfile)
-    
-    
+
+
     try:
         main()
     except KeyboardInterrupt:
@@ -198,7 +198,7 @@ directory.
 Source code::
 
     #!/bin/bash
-    
+
     du -m -d1
 
 
@@ -215,7 +215,7 @@ case, "e" is for editing with emacs itself :-)
 Source code::
 
     #!/bin/bash
-    
+
     /usr/bin/emacs &
 
 
@@ -238,7 +238,7 @@ Find filenames in the current directory.
 Source code::
 
     #!/bin/bash
-    
+
     clear -x
     find -L . | grep --colour=never -i "$1" | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
     # grep -i --color=auto $1
@@ -254,7 +254,7 @@ http://www.leancrew.com/all-this/2013/02/getting-rid-of-open-with-duplicates/
 Source code::
 
     #!/bin/bash
-    
+
     /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
     killall Finder
 
@@ -270,7 +270,7 @@ see http://www.flycheck.org/en/latest/languages.html#dockerfile
 Source code::
 
     #!/bin/bash
-    
+
     docker run --rm -i hadolint/hadolint
 
 
@@ -311,11 +311,11 @@ Tip: add this to your emacs configuration and hook it up to ctrl-c ctrl-w
 Source code::
 
     #!/bin/bash
-    
+
     # pyflakes $1 | grep -v /migrations/
     # echo "## pyflakes above, pep8 below ##"
     # pep8 --repeat --exclude migrations $1
-    
+
     set -e
     flake8 "$1"
 
@@ -335,9 +335,9 @@ In ubuntu it is included, but not on my OSX.
 Source code::
 
     #!/bin/sh
-    
+
     ID_FILE="${HOME}/.ssh/id_rsa.pub"
-    
+
     if [ "-i" = "$1" ]; then
       shift
       # check if we have 2 parameters left, if so the first is the new ID file
@@ -354,30 +354,30 @@ Source code::
         GET_ID="$GET_ID ssh-add -L"
       fi
     fi
-    
+
     if [ -z "`eval $GET_ID`" ] && [ -r "${ID_FILE}" ] ; then
       GET_ID="cat ${ID_FILE}"
     fi
-    
+
     if [ -z "`eval $GET_ID`" ]; then
       echo "$0: ERROR: No identities found" >&2
       exit 1
     fi
-    
+
     if [ "$#" -lt 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
       echo "Usage: $0 [-i [identity_file]] [user@]machine" >&2
       exit 1
     fi
-    
+
     { eval "$GET_ID" ; } | ssh ${1%:} "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys" || exit 1
-    
+
     cat <<EOF
     Now try logging into the machine, with "ssh '${1%:}'", and check in:
-    
+
       .ssh/authorized_keys
-    
+
     to make sure we haven't added extra keys that you weren't expecting.
-    
+
     EOF
 
 
@@ -400,7 +400,7 @@ TODO: ignore big files (like combined js files).
 Source code::
 
     #!/bin/bash
-    
+
     SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
     grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
 
@@ -414,6 +414,5 @@ Purely personal. rsyncs my local html files with my webserver :-)
 Source code::
 
     #!/bin/bash
-    
-    rsync -av ~/zelf/reinout.vanrees.org/docs/build/html/ vanrees.org:/srv/reinout.vanrees.org/var/www
 
+    rsync -av ~/zelf/reinout.vanrees.org/docs/build/html/ vanrees.org:/srv/reinout.vanrees.org/var/www
