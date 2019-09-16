@@ -21,7 +21,6 @@ SCRIPT_TEMPLATE = """
 {documentation}
 
 (See `source code on github <{github_url}>`_).
-
 """
 
 

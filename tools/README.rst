@@ -25,7 +25,6 @@ hardcoded.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/add_time.py>`_).
 
 
-
 blog.py
 ------------------------------------------------------------------------
 
@@ -44,7 +43,6 @@ instead of here. TODO.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/blog.py>`_).
-
 
 
 engineerlog.py
@@ -67,7 +65,6 @@ what this script does.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/engineerlog.py>`_).
 
 
-
 git.py
 ------------------------------------------------------------------------
 
@@ -84,7 +81,6 @@ prevent accidents.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/git.py>`_).
-
 
 
 github.py
@@ -106,7 +102,6 @@ I got the idea from https://github.com/myusuf3/octogit.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/github.py>`_).
 
 
-
 jsonformatter.py
 ------------------------------------------------------------------------
 
@@ -119,7 +114,6 @@ http://the.json.url/ | jsonformatter`` you can actually read it.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/jsonformatter.py>`_).
-
 
 
 mkinit.py
@@ -135,7 +129,6 @@ django app's ``$APP/management/commands/`` directory.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/mkinit.py>`_).
 
 
-
 python_coding_cleanup.py
 ------------------------------------------------------------------------
 
@@ -149,7 +142,6 @@ removed.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/python_coding_cleanup.py>`_).
 
 
-
 sommen.py
 ------------------------------------------------------------------------
 
@@ -158,7 +150,6 @@ Small utility script for printing a bunch of calculations for my kids.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/sommen.py>`_).
-
 
 
 thunderbird.py
