@@ -34,15 +34,16 @@ readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
 	sudo ln -s /lib/x86_64-linux-gnu/libreadline.so.8 $@
 
 pipx-deps: ~/.local/pipx/venvs/ansible\
+	   ~/.local/pipx/venvs/checkoutmanager\
 	   ~/.local/pipx/venvs/cookiecutter\
 	   ~/.local/pipx/venvs/docutils\
+	   ~/.local/pipx/venvs/dotfiles\
 	   ~/.local/pipx/venvs/flake8\
 	   ~/.local/pipx/venvs/isort\
 	   ~/.local/pipx/venvs/legit\
 	   ~/.local/pipx/venvs/oplop\
-	   ~/.local/pipx/venvs/dotfiles\
-	   ~/.local/pipx/venvs/checkoutmanager\
 	   ~/.local/pipx/venvs/pipenv\
+	   ~/.local/pipx/venvs/pre-commit\
 	   ~/.local/pipx/venvs/tox
 
 
