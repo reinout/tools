@@ -21,7 +21,6 @@ SCRIPT_TEMPLATE = """
 Source code::
 
 {code}
-
 """
 
 
@@ -48,6 +47,8 @@ def extract(script):
 
     doc = "\n".join(doc_lines)
     code_lines = ["    " + line for line in code_lines]
+    # The next line re-strips the spaces from space-only lines.
+    code_lines = [line.rstrip() for line in code_lines]
     code = "\n".join(code_lines)
     return code, doc
 

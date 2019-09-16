@@ -21,7 +21,6 @@ Source code::
     docker-compose run --service-ports web python manage.py runserver 0.0.0.0:5000
 
 
-
 create_git_repo.sh
 ------------------------------------------------------------------------
 
@@ -44,7 +43,6 @@ Source code::
     git push origin master
 
 
-
 create_postgis_db
 ------------------------------------------------------------------------
 
@@ -56,7 +54,6 @@ Source code::
 
     echo "(The password is your sudo password)"
     sudo -u postgres createdb --template=template_postgis --owner=buildout "$1"
-
 
 
 dos2unix.py
@@ -187,7 +184,6 @@ Source code::
         pass
 
 
-
 duh
 ------------------------------------------------------------------------
 
@@ -204,7 +200,6 @@ Source code::
     du -m -d1
 
 
-
 es
 ------------------------------------------------------------------------
 
@@ -219,7 +214,6 @@ Source code::
     #!/bin/bash
 
     /usr/bin/emacs &
-
 
 
 filefind
@@ -246,7 +240,6 @@ Source code::
     # grep -i --color=auto $1
 
 
-
 fixopenwith
 ------------------------------------------------------------------------
 
@@ -259,7 +252,6 @@ Source code::
 
     /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
     killall Finder
-
 
 
 hadolint
@@ -276,7 +268,6 @@ Source code::
     docker run --rm -i hadolint/hadolint
 
 
-
 makegitdir.sh
 ------------------------------------------------------------------------
 
@@ -290,7 +281,6 @@ Source code::
     mkdir "$1"
     cd "$1"
     git init --bare
-
 
 
 pychecker.sh
@@ -320,7 +310,6 @@ Source code::
 
     set -e
     flake8 "$1"
-
 
 
 ssh-copy-id
@@ -383,7 +372,6 @@ Source code::
     EOF
 
 
-
 svngrep
 ------------------------------------------------------------------------
 
@@ -405,7 +393,6 @@ Source code::
 
     SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
     grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
-
 
 
 syncweblog.sh
