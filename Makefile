@@ -14,7 +14,7 @@ osx-deps:
 	pipx \
 	shellcheck \
 	the_silver_searcher \
-	tidy
+	tidy-html5
 
 linux-deps:
 	sudo aptitude install \
@@ -35,6 +35,7 @@ readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
 
 pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/beautysh\
+	   ~/.local/pipx/venvs/black\
 	   ~/.local/pipx/venvs/checkoutmanager\
 	   ~/.local/pipx/venvs/cookiecutter\
 	   ~/.local/pipx/venvs/docutils\
