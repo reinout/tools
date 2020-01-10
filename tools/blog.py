@@ -22,9 +22,9 @@ import webbrowser
 
 DOCS = os.path.expanduser("~/zelf/reinout.vanrees.org/docs")
 BUILD = os.path.join(DOCS, "build", "html")
-WEBSITECONTENT = os.path.expanduser("~/zelf/websitecontent")
-WEBLOGSOURCE = os.path.expanduser("~/zelf/websitecontent/source/weblog")
-SERMONSOURCE = os.path.expanduser("~/zelf/websitecontent/source/preken")
+WEBSITECONTENT = os.path.expanduser("~/zelf/rvo-websitecontent")
+WEBLOGSOURCE = os.path.expanduser("~/zelf/rvo-websitecontent/source/weblog")
+SERMONSOURCE = os.path.expanduser("~/zelf/rvo-websitecontent/source/preken")
 
 
 def conditional_copy(source, target):
@@ -82,7 +82,7 @@ def copytoblog():
     html_file = (
         target.replace("source/", "docs/build/html/")
         .replace(".txt", ".html")
-        .replace("websitecontent", "reinout.vanrees.org")
+        .replace("rvo-websitecontent", "reinout.vanrees.org")
     )
     webbrowser.open("file://" + html_file)
     if "y" in input("Sync and commit? [y/N] "):
