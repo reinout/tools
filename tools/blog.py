@@ -90,7 +90,7 @@ def copytoblog():
         os.chdir(WEBSITECONTENT)
         subprocess.call(["git", "commit", "-m", "new entry"])
         subprocess.call(["git", "push"])
-        on_site = "http://reinout.vanrees.org/weblog/%s/%s/%s/%s" % (
+        on_site = "https://reinout.vanrees.org/weblog/%s/%s/%s/%s" % (
             y,
             m,
             d,

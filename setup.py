@@ -12,7 +12,7 @@ setup(
     keywords="",
     author="Reinout van Rees",
     author_email="reinout@vanrees.org",
-    url="http://reinout.vanrees.org",
+    url="https://reinout.vanrees.org",
     license="GPL",
     packages=["tools"],
     namespace_packages=[],
