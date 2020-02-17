@@ -90,8 +90,10 @@ npm-deps: ~/Dotfiles ~/.npm-packages \
 	npm install -g $*
 
 
+# pipx install --force --editable --spec . tools
+
 install: pipx-deps pyenv ~/Dotfiles npm-deps
-	pipx install --force --editable --spec . tools
+	cd .. && pipx install --force --editable tools && cd tools
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
 	python3 generate_shell_docs.py
