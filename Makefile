@@ -17,6 +17,7 @@ osx-deps:
 	shellcheck \
 	the_silver_searcher \
 	tidy-html5
+	pipx reinstall-all
 
 linux-deps:
 	sudo aptitude install \
@@ -52,9 +53,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/tox
 
 
-# Brute force. Zap dir and re-create. Helps with switches in python minor versions.
 ~/.local/pipx/venvs/%:
-	rm -rf ~/.local/pipx/venvs/$*
 	pipx install $*
 
 
@@ -97,7 +96,7 @@ npm-deps: ~/Dotfiles ~/.npm-packages \
 # pipx install --force --editable --spec . tools
 
 install: pipx-deps pyenv ~/Dotfiles npm-deps
-	cd .. && pipx install --force --editable tools && cd tools
+	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
 	python3 generate_shell_docs.py
@@ -105,7 +104,7 @@ install: pipx-deps pyenv ~/Dotfiles npm-deps
 
 local-dev:
 	checkoutmanager co
-	pipx install --force --editable --spec ~/opensource/checkoutmanager checkoutmanager
-	pipx install --force --editable --spec ~/opensource/zest.releaser zest.releaser
-	pipx install --force --editable --spec ~/opensource/z3c.dependencychecker z3c.dependencychecker
+	pipx install --force --editable ~/opensource/checkoutmanager
+	pipx install --force --editable ~/opensource/zest.releaser
+	pipx install --force --editable ~/opensource/z3c.dependencychecker
 	pip3 install flake8
