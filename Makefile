@@ -7,6 +7,8 @@ osx: osx-deps install osx-checkoutmanager local-dev
 linux: linux-deps readlinehack install linux-checkoutmanager local-dev
 
 osx-deps:
+	brew update
+	brew upgrade
 	brew install \
 	ack \
 	entr \
@@ -50,11 +52,13 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/tox
 
 
+# Brute force. Zap dir and re-create. Helps with switches in python minor versions.
 ~/.local/pipx/venvs/%:
+	rm -rf ~/.local/pipx/venvs/$*
 	pipx install $*
 
 
-pyenv: ~/.pyenv ~/.pyenv/versions/2.7.15 ~/.pyenv/versions/3.5.6 ~/.pyenv/versions/3.6.5 ~/.pyenv/versions/3.7.3 pyenv-activate
+pyenv: ~/.pyenv ~/.pyenv/versions/2.7.15 ~/.pyenv/versions/3.5.6 ~/.pyenv/versions/3.6.5 ~/.pyenv/versions/3.7.3 ~/.pyenv/versions/3.8.2 pyenv-activate
 
 ~/.pyenv:
 	curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
