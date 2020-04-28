@@ -56,18 +56,6 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 ~/.local/pipx/venvs/%:
 	pipx install $*
 
-
-pyenv: ~/.pyenv ~/.pyenv/versions/2.7.15 ~/.pyenv/versions/3.5.6 ~/.pyenv/versions/3.6.5 ~/.pyenv/versions/3.7.3 ~/.pyenv/versions/3.8.2 pyenv-activate
-
-~/.pyenv:
-	curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-
-~/.pyenv/versions/%:
-	pyenv install $*
-
-pyenv-activate:
-	pyenv global 3.7.3 3.6.5 3.5.6
-
 osx-checkoutmanager: ~/.checkoutmanager.cfg ~/.checkoutmanager_osx.cfg
 	ln -sf ~/.checkoutmanager_osx.cfg ~/.checkoutmanager.cfg
 
@@ -95,7 +83,7 @@ npm-deps: ~/Dotfiles ~/.npm-packages \
 
 # pipx install --force --editable --spec . tools
 
-install: pipx-deps pyenv ~/Dotfiles npm-deps
+install: pipx-deps ~/Dotfiles npm-deps
 	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
