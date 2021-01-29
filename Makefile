@@ -2,22 +2,22 @@ usage:
 	echo "make linux or make osx, please"
 
 
-osx: osx-deps install osx-checkoutmanager local-dev
+osx: osx-deps install osx-checkoutmanager local-dev-osx
 
-linux: linux-deps readlinehack install linux-checkoutmanager local-dev
+linux: linux-deps readlinehack install linux-checkoutmanager local-dev-linux
 
 osx-deps:
 	brew update
 	brew upgrade
 	brew install \
-	ack \
-	entr \
+	bash-completion \
+	gpg \
+	htop \
 	npm \
 	pipx \
-	shellcheck \
-	the_silver_searcher \
 	tidy-html5
-	pipx reinstall-all
+	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
+#	pipx reinstall-all
 
 linux-deps:
 	sudo aptitude install \
@@ -29,6 +29,7 @@ linux-deps:
 	shellcheck \
 	silversearcher-ag \
 	tidy
+	cd /tmp && pipx install --spec ~/zelf/tools --force --editable tools && cd -
 
 
 readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
@@ -41,6 +42,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/ansible-lint\
 	   ~/.local/pipx/venvs/beautysh\
 	   ~/.local/pipx/venvs/black\
+	   ~/.local/pipx/venvs/checkoutmanager\
 	   ~/.local/pipx/venvs/cookiecutter\
 	   ~/.local/pipx/venvs/docutils\
 	   ~/.local/pipx/venvs/dotfiles\
@@ -48,13 +50,14 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/isort\
 	   ~/.local/pipx/venvs/legit\
 	   ~/.local/pipx/venvs/oplop\
-	   ~/.local/pipx/venvs/pipenv\
-	   ~/.local/pipx/venvs/pre-commit\
 	   ~/.local/pipx/venvs/tox
 
 
+~/.local/pipx/venvs/ansible:
+	pipx install --include-deps ansible
+
 ~/.local/pipx/venvs/%:
-	pipx install --include-deps $*
+	pipx install $*
 
 osx-checkoutmanager: ~/.checkoutmanager.cfg ~/.checkoutmanager_osx.cfg
 	ln -sf ~/.checkoutmanager_osx.cfg ~/.checkoutmanager.cfg
@@ -84,13 +87,19 @@ npm-deps: ~/Dotfiles ~/.npm-packages \
 # pipx install --force --editable --spec . tools
 
 install: pipx-deps ~/Dotfiles npm-deps
-	cd /tmp && pipx install --spec ~/zelf/tools --force --editable tools && cd -
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
 	python3 generate_shell_docs.py
 
 
-local-dev:
+local-dev-osx:
+	checkoutmanager co
+	pipx install --force --editable ~/opensource/checkoutmanager
+	pipx install --force --editable ~/opensource/zest.releaser
+	pipx install --force --editable ~/opensource/z3c.dependencychecker
+	pip3 install flake8
+
+local-dev-linux:
 	checkoutmanager co
 	pipx install --spec ~/opensource/checkoutmanager --force --editable checkoutmanager
 	pipx install --spec ~/opensource/zest.releaser --force --editable zest.releaser

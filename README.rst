@@ -37,9 +37,9 @@ On **linux**, first some apt-get::
   libncursesw5-dev xz-utils tk-dev
 
 on **OSX**, install `homebrew <https://brew.sh/>`_ and install a couple of
-utilities that are missing from OSX (or that are too old)::
+utilities that are missing from OSX::
 
-  brew install wget gpg bash-completion svn htop siege python python3
+  brew install git python@3.9
 
 Then create an ssh key and arrange access to vanrees.org and github.com.
 
@@ -72,14 +72,13 @@ For nextcloud, I `used the PPA
 Extra OSX install notes
 -----------------------
 
-And, for the `git annex <http://git-annex.branchable.com/>`_ dependencies,
-install::
+Programs to install:
 
-    $ brew install haskell-platform git ossp-uuid md5sha1sum coreutils pcre
+- 1password
 
-TODO: add to this list
+- iterm2
 
-TODO: add bash-profile stuff to the makefile
+- synology drive client  
 
 
 Documentation generation
