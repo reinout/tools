@@ -25,6 +25,7 @@ linux-deps:
 	entr \
 	npm \
 	pipx \
+	python3-venv \
 	shellcheck \
 	silversearcher-ag \
 	tidy
@@ -40,7 +41,6 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/ansible-lint\
 	   ~/.local/pipx/venvs/beautysh\
 	   ~/.local/pipx/venvs/black\
-	   ~/.local/pipx/venvs/checkoutmanager\
 	   ~/.local/pipx/venvs/cookiecutter\
 	   ~/.local/pipx/venvs/docutils\
 	   ~/.local/pipx/venvs/dotfiles\
@@ -54,7 +54,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 
 
 ~/.local/pipx/venvs/%:
-	pipx install $*
+	pipx install --include-deps $*
 
 osx-checkoutmanager: ~/.checkoutmanager.cfg ~/.checkoutmanager_osx.cfg
 	ln -sf ~/.checkoutmanager_osx.cfg ~/.checkoutmanager.cfg
@@ -84,7 +84,7 @@ npm-deps: ~/Dotfiles ~/.npm-packages \
 # pipx install --force --editable --spec . tools
 
 install: pipx-deps ~/Dotfiles npm-deps
-	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
+	cd /tmp && pipx install --spec ~/zelf/tools --force --editable tools && cd -
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
 	python3 generate_shell_docs.py
@@ -92,7 +92,7 @@ install: pipx-deps ~/Dotfiles npm-deps
 
 local-dev:
 	checkoutmanager co
-	pipx install --force --editable ~/opensource/checkoutmanager
-	pipx install --force --editable ~/opensource/zest.releaser
-	pipx install --force --editable ~/opensource/z3c.dependencychecker
+	pipx install --spec ~/opensource/checkoutmanager --force --editable checkoutmanager
+	pipx install --spec ~/opensource/zest.releaser --force --editable zest.releaser
+	pipx install --spec ~/opensource/z3c.dependencychecker --force --editable z3c.dependencychecker
 	pip3 install flake8
