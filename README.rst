@@ -49,7 +49,7 @@ Checkout ourselves::
   cd ~/zelf
   git clone git@github.com:reinout/tools.git
 
-Now install pipx, pyenv, tools and dotfiles and checkouts and local dev installs::
+Now install pipx, tools and dotfiles and checkouts and local dev installs::
 
   cd ~/zelf/tools
   make linux  # or make osx!
