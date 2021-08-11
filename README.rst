@@ -78,7 +78,19 @@ Programs to install:
 
 - iterm2
 
-- synology drive client  
+- synology drive client
+
+- omnifocus
+
+- tunnelblick
+
+- docker desktop
+
+Via app store:
+
+- pixelmator pro
+
+- BetterSnapTool
 
 
 Documentation generation
