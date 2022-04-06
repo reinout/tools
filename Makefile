@@ -13,6 +13,7 @@ osx-deps:
 	bash-completion@2 \
 	gpg \
 	htop \
+	jq \
 	npm \
 	tree \
 	pipx \
