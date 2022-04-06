@@ -4,7 +4,7 @@
 # - It greps case-insensitive for patial matches, so 'htm' finds
 #   ``index.HTML`` just fine.
 #
-# - It ignores ``.svn`` and ``.hg`` directories.
+# - It ignores ``.git`` and ``.hg`` directories.
 #
 # - It doesn't color code the output to help with emacs integration.
 #
@@ -12,5 +12,5 @@
 #   it opens that file.
 
 clear -x
-find -L . | grep --colour=never -i "$1" | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
+find -L . | grep --colour=never -i "$1" | grep -v '.git/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
 # grep -i --color=auto $1

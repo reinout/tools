@@ -58,17 +58,6 @@ Note: I installed flake8 also with "pip install flake8" because that helps
 emacs' flycheck to pick it up.
 
 
-Extra linux install notes
--------------------------
-
-And, as documentation, some of the ubuntu packages I install::
-
-  apt install etckeeper gpg xclip emacs25 gnome-tweaks
-
-For nextcloud, I `used the PPA
-<https://launchpad.net/~nextcloud-devs/+archive/ubuntu/client>`_.
-
-
 Extra OSX install notes
 -----------------------
 
@@ -79,8 +68,6 @@ Programs to install:
 - iterm2
 
 - synology drive client
-
-- omnifocus
 
 - tunnelblick
 

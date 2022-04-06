@@ -3,7 +3,7 @@
 #
 # - Multiple terms are taken to be one big space-separated term.
 #
-# - ``.svn`` and ``.hg`` directories are ignored.
+# - ``.git`` and ``.hg`` directories are ignored.
 #
 # - Same with ``egg-info`` and ``*.pyc`` files.
 #
@@ -12,4 +12,4 @@
 # TODO: ignore big files (like combined js files).
 
 SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
-grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
+grep -rin "$SEARCHFOR" * | grep -v \\.git | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
