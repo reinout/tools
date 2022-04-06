@@ -163,10 +163,10 @@ def complete_churches(text, state):
     return _complete(text, state, churches)
 
 
-def complete_referents(text, state):
-    referents_dir = os.path.join(SERMONSOURCE, "predikanten")
-    referents = [f[:-4] for f in os.listdir(referents_dir) if f.endswith(".txt")]
-    return _complete(text, state, referents)
+def complete_reverents(text, state):
+    reverents_dir = os.path.join(SERMONSOURCE, "predikanten")
+    reverents = [f[:-4] for f in os.listdir(reverents_dir) if f.endswith(".txt")]
+    return _complete(text, state, reverents)
 
 
 def new_sermon():
@@ -204,10 +204,10 @@ def new_sermon():
     while not church:
         church = input("Kerk: ")
 
-    readline.set_completer(complete_referents)
-    referent = None
-    while not referent:
-        referent = input("Predikant: ")
+    readline.set_completer(complete_reverents)
+    reverent = None
+    while not reverent:
+        reverent = input("Predikant: ")
     # ^^^ Refactor the while loops above.
 
     template = Template(
@@ -218,17 +218,17 @@ def new_sermon():
    :kerk: ${church}
    :toegevoegd: ${added}
    :datum: ${date}
-   :predikant: ${referent}
+   :predikant: ${reverent}
    :tekst: TODO
    :tags:
 
 """
     )
     output = template.substitute(
-        title=title, church=church, added=added, date=date, referent=referent
+        title=title, church=church, added=added, date=date, reverent=reverent
     )
     open(full_filename, "w").write(output)
     print("Opening with emacs: " + full_filename)
-    emacs = "/usr/bin/emacsclient"
+    emacs = "/opt/homebrew/bin/emacsclient"
     # subprocess.call(['emacs', full_filename])
     os.execl(emacs, "-n", full_filename)
