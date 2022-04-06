@@ -48,6 +48,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/cookiecutter\
 	   ~/.local/pipx/venvs/docutils\
 	   ~/.local/pipx/venvs/dotfiles\
+	   ~/.local/pipx/venvs/pipenv\
 	   ~/.local/pipx/venvs/flake8\
 	   ~/.local/pipx/venvs/isort\
 	   ~/.local/pipx/venvs/legit\
