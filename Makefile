@@ -10,10 +10,11 @@ osx-deps:
 	brew update
 	brew upgrade
 	brew install \
-	bash-completion \
+	bash-completion@2 \
 	gpg \
 	htop \
 	npm \
+	tree \
 	pipx \
 	tidy-html5
 	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
