@@ -43,19 +43,6 @@ Source code::
     git push origin master
 
 
-create_postgis_db
-------------------------------------------------------------------------
-
-Create a local postgis database for the 'buildout' database user.
-
-Source code::
-
-    #!/bin/bash
-
-    echo "(The password is your sudo password)"
-    sudo -u postgres createdb --template=template_postgis --owner=buildout "$1"
-
-
 dos2unix.py
 ------------------------------------------------------------------------
 
@@ -224,7 +211,7 @@ Find filenames in the current directory.
 - It greps case-insensitive for patial matches, so 'htm' finds
   ``index.HTML`` just fine.
 
-- It ignores ``.svn`` and ``.hg`` directories.
+- It ignores ``.git`` and ``.hg`` directories.
 
 - It doesn't color code the output to help with emacs integration.
 
@@ -236,22 +223,8 @@ Source code::
     #!/bin/bash
 
     clear -x
-    find -L . | grep --colour=never -i "$1" | grep -v '.svn/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
+    find -L . | grep --colour=never -i "$1" | grep -v '.git/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
     # grep -i --color=auto $1
-
-
-fixopenwith
-------------------------------------------------------------------------
-
-Remove duplicates from OSX's 'open with' menu. Tip taken from
-http://www.leancrew.com/all-this/2013/02/getting-rid-of-open-with-duplicates/
-
-Source code::
-
-    #!/bin/bash
-
-    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-    killall Finder
 
 
 hadolint
@@ -266,21 +239,6 @@ Source code::
     #!/bin/bash
 
     docker run --rm -i hadolint/hadolint
-
-
-makegitdir.sh
-------------------------------------------------------------------------
-
-
-
-Source code::
-
-    #!/bin/bash
-    set -e
-    cd ~/repos
-    mkdir "$1"
-    cd "$1"
-    git init --bare
 
 
 pychecker.sh
@@ -312,66 +270,6 @@ Source code::
     flake8 "$1"
 
 
-ssh-copy-id
-------------------------------------------------------------------------
-
-Shell script to install your public key on a remote machine
-Takes the remote machine name as an argument.
-Obviously, the remote machine must accept password authentication,
-or one of the other keys in your ssh-agent, for this to work.
-
-Note from Reinout: copied from somewhere, it is not mine.
-In ubuntu it is included, but not on my OSX.
-
-Source code::
-
-    #!/bin/sh
-
-    ID_FILE="${HOME}/.ssh/id_rsa.pub"
-
-    if [ "-i" = "$1" ]; then
-        shift
-        # check if we have 2 parameters left, if so the first is the new ID file
-        if [ -n "$2" ]; then
-            if expr "$1" : ".*\\.pub" > /dev/null ; then
-                ID_FILE="$1"
-            else
-                ID_FILE="$1.pub"
-            fi
-            shift         # and this should leave $1 as the target name
-        fi
-    else
-        if [ "x$SSH_AUTH_SOCK" != x ] && ssh-add -L >/dev/null 2>&1; then
-            GET_ID="$GET_ID ssh-add -L"
-        fi
-    fi
-
-    if [ -z "`eval $GET_ID`" ] && [ -r "${ID_FILE}" ] ; then
-        GET_ID="cat ${ID_FILE}"
-    fi
-
-    if [ -z "`eval $GET_ID`" ]; then
-        echo "$0: ERROR: No identities found" >&2
-        exit 1
-    fi
-
-    if [ "$#" -lt 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-        echo "Usage: $0 [-i [identity_file]] [user@]machine" >&2
-        exit 1
-    fi
-
-    { eval "$GET_ID" ; } | ssh ${1%:} "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys" || exit 1
-
-    cat <<EOF
-    Now try logging into the machine, with "ssh '${1%:}'", and check in:
-
-      .ssh/authorized_keys
-
-    to make sure we haven't added extra keys that you weren't expecting.
-
-    EOF
-
-
 svngrep
 ------------------------------------------------------------------------
 
@@ -379,7 +277,7 @@ Grep for a term in the current directory, but with some twists:
 
 - Multiple terms are taken to be one big space-separated term.
 
-- ``.svn`` and ``.hg`` directories are ignored.
+- ``.git`` and ``.hg`` directories are ignored.
 
 - Same with ``egg-info`` and ``*.pyc`` files.
 
@@ -392,7 +290,7 @@ Source code::
     #!/bin/bash
 
     SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
-    grep -rin "$SEARCHFOR" * | grep -v \\.svn | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
+    grep -rin "$SEARCHFOR" * | grep -v \\.git | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
 
 
 syncweblog.sh

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Generate a readme for the shell scripts."""
 import os
 import sys

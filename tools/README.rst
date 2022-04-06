@@ -102,20 +102,6 @@ I got the idea from https://github.com/myusuf3/octogit.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/github.py>`_).
 
 
-jsonformatter.py
-------------------------------------------------------------------------
-
-(Re-)indent json on stdin and send it to stdout.
-
-Handy for webservices that return json as one big long string. With ``curl
-http://the.json.url/ | jsonformatter`` you can actually read it.
-
-
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/jsonformatter.py>`_).
-
-
 mkinit.py
 ------------------------------------------------------------------------
 
