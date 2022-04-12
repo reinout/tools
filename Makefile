@@ -15,6 +15,7 @@ osx-deps:
 	htop \
 	jq \
 	npm \
+	mc \
 	tree \
 	pipx \
 	tidy-html5
