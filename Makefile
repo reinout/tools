@@ -19,6 +19,10 @@ osx-deps:
 	tree \
 	pipx \
 	youtube-dl \
+	wget \
+	fd \
+	ag \
+	rg \
 	tidy-html5
 	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
 #	pipx reinstall-all
