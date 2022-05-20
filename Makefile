@@ -10,19 +10,22 @@ osx-deps:
 	brew update
 	brew upgrade
 	brew install \
+	ag \
+	awscli \
 	bash-completion@2 \
+	fd \
 	gpg \
 	htop \
+	imagemagick \
 	jq \
-	npm \
 	mc \
-	tree \
+	npm \
 	pipx \
-	youtube-dl \
-	wget \
-	fd \
-	ag \
 	rg \
+	terraform \
+	tree \
+	wget \
+	youtube-dl \
 	tidy-html5
 	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
 #	pipx reinstall-all
