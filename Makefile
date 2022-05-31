@@ -15,6 +15,7 @@ osx-deps:
 	bash-completion@2 \
 	fd \
 	gpg \
+	hadolint \
 	htop \
 	imagemagick \
 	jq \
