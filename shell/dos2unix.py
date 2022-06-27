@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copied from somewhere, I don't know wherefrom anymore.  What it does is
 # convert from ``\r\n`` to just ``\n`` in case you've got files with windows
