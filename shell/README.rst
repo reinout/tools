@@ -59,7 +59,7 @@ TODO:
 
 Source code::
 
-    #!/usr/bin/env python
+    #!/usr/bin/env python3
 
     import getopt
     import os
@@ -223,6 +223,7 @@ Source code::
     #!/bin/bash
 
     clear -x
+    echo "Suggestion: use 'fd' instead"
     find -L . | grep --colour=never -i "$1" | grep -v '.git/' |grep -v '.hg/' |sed 's/^\.\///g'|sed 's/\(.*\)/\1:1:/g'
     # grep -i --color=auto $1
 

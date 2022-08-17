@@ -37,6 +37,7 @@ setup(
             "log = tools.engineerlog:main",
             "add_time = tools.add_time:main",
             "copytoblog = tools.blog:copytoblog",
+            "dtname = tools.dtname:main",
             "new_sermon = tools.blog:new_sermon",
             "fixthunderbird = tools.thunderbird:fix_thunderbird",
             "gh = tools.github:main",

@@ -45,6 +45,20 @@ instead of here. TODO.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/blog.py>`_).
 
 
+dtname.py
+------------------------------------------------------------------------
+
+
+Helper script to generate a zettelkasten ID (YYYYMMDDHHMM-some-info.md) filename
+
+dtname by itself just outputs ``202208171545.md``, ``dtname some info`` gives
+you ``202208171545-some-info.md``
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/dtname.py>`_).
+
+
 engineerlog.py
 ------------------------------------------------------------------------
 
