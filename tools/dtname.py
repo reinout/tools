@@ -12,6 +12,9 @@ import sys
 import unicodedata
 
 
+INBOX = "~/syn/notes/0-inbox/"
+
+
 def slugify(value):
     # Copied from https://github.com/django/django/blob/main/django/utils/text.py
     value = str(value)
@@ -25,12 +28,16 @@ def slugify(value):
 def main():
     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M")
     words = sys.argv[1:]
-    text = " ".join(words)
-    filename_save = slugify(text)
-    if filename_save:
-        print(timestamp + "-" + filename_save + ".md")
+    if words:
+        text = " ".join(words)
+        filename = timestamp + "-" + slugify(text) + ".md"
     else:
-        print(timestamp + ".md")
+        filename = timestamp + ".md"
+
+    print()
+    print(len(INBOX) * " " + filename)
+    print(INBOX + filename)
+    print()
 
 
 if __name__ == "__main__":
