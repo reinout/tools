@@ -67,7 +67,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 
 
 ~/.local/pipx/venvs/ansible:
-	pipx install --include-deps ansible
+	pipx install --include-deps ansible --pip-args dnspython
 
 ~/.local/pipx/venvs/%:
 	pipx install $*
