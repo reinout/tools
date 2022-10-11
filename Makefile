@@ -16,6 +16,7 @@ osx-deps:
 	fd \
 	gpg \
 	hadolint \
+	pinentry-mac \
 	htop \
 	imagemagick \
 	jq \
