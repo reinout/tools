@@ -22,9 +22,5 @@ def main():
         sys.exit(1)
     input("Hit enter to continue add/commit/push cycle, ctrl-c to quit. ")
     print(subprocess.check_output(["git", "add", "-u"], text=True))
-    print(
-        subprocess.check_output(
-            ["git", "commit", "-m", '"Update"'], text=True
-        )
-    )
+    print(subprocess.check_output(["git", "commit", "-m", '"Update"'], text=True))
     print(subprocess.check_output(["git", "push"], text=True))
