@@ -11,7 +11,6 @@ import re
 import sys
 import unicodedata
 
-
 INBOX = "~/syn/notes/0-inbox/"
 
 

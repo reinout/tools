@@ -6,7 +6,6 @@ removed.
 """
 from pathlib import Path
 
-
 TO_REMOVE = "# -*- coding: utf-8 -*-"
 
 

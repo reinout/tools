@@ -10,8 +10,8 @@ If you call it like ``gh issues``, you'll get the issues page.
 I got the idea from https://github.com/myusuf3/octogit.
 
 """
-import subprocess
 import re
+import subprocess
 import sys
 import webbrowser
 
