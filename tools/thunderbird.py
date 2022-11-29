@@ -33,7 +33,7 @@ def fix_thunderbird():
         # new = '%s: %s-%s\n' % (newsgroup,
         #                        parts[0],
         #                        parts[-1])
-        new = "%s: 1-%s\n" % (newsgroup, parts[-1])
+        new = "{}: 1-{}\n".format(newsgroup, parts[-1])
         print(new)
         outfile.write(new)
     outfile.close()

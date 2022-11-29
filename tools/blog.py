@@ -29,10 +29,10 @@ SERMONSOURCE = os.path.expanduser("~/zelf/websitecontent/source/preken")
 
 def conditional_copy(source, target):
     if os.path.exists(target):
-        old = open(target, "r").read()
+        old = open(target).read()
     else:
         old = None
-    new = open(source, "r").read()
+    new = open(source).read()
     if new != old:
         open(target, "w").write(new)
         print(".")
@@ -90,7 +90,7 @@ def copytoblog():
         os.chdir(WEBSITECONTENT)
         subprocess.call(["git", "commit", "-m", "new entry"])
         subprocess.call(["git", "push"])
-        on_site = "https://reinout.vanrees.org/weblog/%s/%s/%s/%s" % (
+        on_site = "https://reinout.vanrees.org/weblog/{}/{}/{}/{}".format(
             y,
             m,
             d,
@@ -197,7 +197,7 @@ def new_sermon():
         title.replace(" ", "-").replace(",", "").replace("'", "").lower()[:50] + ".txt"
     )
     full_filename = os.path.join(yeardir, filename)
-    print("Using filename {}".format(full_filename))
+    print(f"Using filename {full_filename}")
 
     readline.set_completer(complete_churches)
     church = None

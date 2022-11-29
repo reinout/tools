@@ -24,7 +24,7 @@ def find_git_url(url_template):
     # origin	git@github.com:reinout/tools.git (fetch)
     pattern = r"git@github.com:([^/]+)/(.+)\.git"
     regex = re.compile(pattern)
-    output = subprocess.check_output(["git", "remote", "-v"], universal_newlines=True)
+    output = subprocess.check_output(["git", "remote", "-v"], text=True)
     for line in output.split("\n"):
         matches = regex.search(line)
         if matches:

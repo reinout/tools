@@ -42,7 +42,7 @@ def main():
     else:
         actions = [plus, minus, times]
     for i in range(NUMBER_OF_LINES):
-        line = "%s                          %s\n\n" % (
+        line = "{}                          {}\n\n".format(
             random.choice(actions)(),
             random.choice(actions)(),
         )
