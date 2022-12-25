@@ -20,6 +20,7 @@ osx-deps:
 	htop \
 	imagemagick \
 	jq \
+	mactex-no-gui \
 	mc \
 	npm \
 	pipx \
