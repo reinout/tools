@@ -289,4 +289,4 @@ Source code::
 
     #!/bin/bash
 
-    rsync -av ~/zelf/reinout.vanrees.org/docs/build/html/ vanrees.org:/srv/reinout.vanrees.org/var/www
+    rsync -av ~/zelf/reinout.vanrees.org/docs/build/html/ tweetwee.vanrees.org:/srv/reinout.vanrees.org/var/www

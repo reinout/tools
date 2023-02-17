@@ -14,6 +14,7 @@ osx-deps:
 	awscli \
 	bash-completion@2 \
 	fd \
+	ffmpeg \
 	gpg \
 	hadolint \
 	pinentry-mac \
@@ -23,10 +24,15 @@ osx-deps:
 	mactex-no-gui \
 	mc \
 	npm \
+	odt2txt \
+	pinentry-mac \
 	pipx \
+	pre-commit \
+	pv \
 	rg \
 	terraform \
 	tree \
+	watch \
 	wget \
 	youtube-dl \
 	tidy-html5
