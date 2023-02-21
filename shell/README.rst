@@ -228,6 +228,32 @@ Source code::
     # grep -i --color=auto $1
 
 
+md-to-doc
+------------------------------------------------------------------------
+
+Use pandoc to convert a .md file to docx.
+
+Source code::
+
+    #!/bin/bash
+    set -e
+    set -u
+    pandoc -f markdown -t docx $1 -o ${1%.md}.docx
+
+
+md-to-pdf
+------------------------------------------------------------------------
+
+Use pandoc to convert a .md file to pdf.
+
+Source code::
+
+    #!/bin/bash
+    set -e
+    set -u
+    pandoc -f markdown -t pdf $1 -o ${1%.md}.pdf
+
+
 pychecker.sh
 ------------------------------------------------------------------------
 

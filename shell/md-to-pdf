@@ -1,0 +1,5 @@
+#!/bin/bash
+# Use pandoc to convert a .md file to pdf.
+set -e
+set -u
+pandoc -f markdown -t pdf $1 -o ${1%.md}.pdf

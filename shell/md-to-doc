@@ -1,0 +1,5 @@
+#!/bin/bash
+# Use pandoc to convert a .md file to docx.
+set -e
+set -u
+pandoc -f markdown -t docx $1 -o ${1%.md}.docx
