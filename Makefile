@@ -58,8 +58,10 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 ~/.local/pipx/venvs/ansible:
 	pipx install --include-deps ansible --pip-args dnspython
 
+
 ~/.local/pipx/venvs/%:
 	pipx install $*
+
 
 ~/Dotfiles:
 	cd ~ && git clone ssh://vanrees.org/~/repos/Dotfiles
@@ -78,4 +80,3 @@ local-dev:
 	pipx install --force --editable ~/opensource/checkoutmanager
 	pipx install --force --editable ~/opensource/zest.releaser
 	pipx install --force --editable ~/opensource/z3c.dependencychecker
-	pip3 install flake8
