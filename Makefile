@@ -33,8 +33,10 @@ osx-deps:
 	wget \
 	youtube-dl \
 	tidy-html5
+	@echo "================================================================================="
+	@echo "A 'pipx reinstall-all' might be needed if there was a brew python version upgrade"
+	@echo "================================================================================="
 	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
-#	pipx reinstall-all
 
 
 pipx-deps: ~/.local/pipx/venvs/ansible\
