@@ -1,10 +1,7 @@
-usage:
-	echo "make linux or make osx, please"
+# 'osx' is the default install-everything target, 'install' installs
+# ourselves.
+osx: osx-deps install local-dev
 
-
-osx: osx-deps install osx-checkoutmanager local-dev-osx
-
-linux: linux-deps readlinehack install linux-checkoutmanager local-dev-linux
 
 osx-deps:
 	brew update
@@ -39,24 +36,6 @@ osx-deps:
 	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
 #	pipx reinstall-all
 
-linux-deps:
-	sudo aptitude install \
-	ack \
-	entr \
-	npm \
-	pipx \
-	python3-venv \
-	shellcheck \
-	silversearcher-ag \
-	tidy
-	cd /tmp && pipx install --spec ~/zelf/tools --force --editable tools && cd -
-
-
-readlinehack: /lib/x86_64-linux-gnu/libreadline.so.7
-	sudo pip3 install readline
-
-/lib/x86_64-linux-gnu/libreadline.so.7:
-	sudo ln -s /lib/x86_64-linux-gnu/libreadline.so.8 $@
 
 pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/ansible-lint\
@@ -80,13 +59,6 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 
 ~/.local/pipx/venvs/%:
 	pipx install $*
-
-osx-checkoutmanager: ~/.checkoutmanager.cfg ~/.checkoutmanager_osx.cfg
-	ln -sf ~/.checkoutmanager_osx.cfg ~/.checkoutmanager.cfg
-
-linux-checkoutmanager: ~/.checkoutmanager.cfg ~/.checkoutmanager_linux.cfg
-	ln -sf ~/.checkoutmanager_linux.cfg ~/.checkoutmanager.cfg
-
 
 ~/Dotfiles:
 	cd ~ && git clone ssh://vanrees.org/~/repos/Dotfiles
@@ -114,16 +86,9 @@ install: pipx-deps ~/Dotfiles npm-deps
 	python3 generate_shell_docs.py
 
 
-local-dev-osx:
+local-dev:
 	checkoutmanager co
 	pipx install --force --editable ~/opensource/checkoutmanager
 	pipx install --force --editable ~/opensource/zest.releaser
 	pipx install --force --editable ~/opensource/z3c.dependencychecker
-	pip3 install flake8
-
-local-dev-linux:
-	checkoutmanager co
-	pipx install --spec ~/opensource/checkoutmanager --force --editable checkoutmanager
-	pipx install --spec ~/opensource/zest.releaser --force --editable zest.releaser
-	pipx install --spec ~/opensource/z3c.dependencychecker --force --editable z3c.dependencychecker
 	pip3 install flake8
