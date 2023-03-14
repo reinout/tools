@@ -51,7 +51,8 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/isort\
 	   ~/.local/pipx/venvs/legit\
 	   ~/.local/pipx/venvs/oplop\
-	   ~/.local/pipx/venvs/tox
+	   ~/.local/pipx/venvs/tox \
+	   ~/.local/pipx/venvs/youtube-dl
 
 
 ~/.local/pipx/venvs/ansible:
