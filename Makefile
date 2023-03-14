@@ -66,21 +66,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	echo "You might want to run dotfiles --sync --force, btw"
 
 
-npm-deps: ~/Dotfiles ~/.npm-packages \
-		~/.npm-packages/bin/js-yaml \
-		~/.npm-packages/bin/csslint \
-		~/.npm-packages/bin/jshint
-
-~/.npm-packages:
-	mkdir $@
-
-~/.npm-packages/bin/%:
-	npm install -g $*
-
-
-# pipx install --force --editable --spec . tools
-
-install: pipx-deps ~/Dotfiles npm-deps
+install: pipx-deps ~/Dotfiles
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
 	python3 generate_shell_docs.py
