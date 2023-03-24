@@ -1,11 +1,16 @@
 # 'osx' is the default install-everything target, 'install' installs
 # ourselves.
-osx: osx-deps install local-dev
+install: osx-deps ourselves_install local-dev
+
+
+upgrade:
+	brew update
+	brew upgrade
+	pipx reinstall-all
 
 
 osx-deps:
 	brew update
-	brew upgrade
 	brew install \
 	ag \
 	awscli \
@@ -31,7 +36,6 @@ osx-deps:
 	tree \
 	watch \
 	wget \
-	youtube-dl \
 	tidy-html5
 	@echo "================================================================================="
 	@echo "A 'pipx reinstall-all' might be needed if there was a brew python version upgrade"
@@ -71,7 +75,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	echo "You might want to run dotfiles --sync --force, btw"
 
 
-install: pipx-deps ~/Dotfiles
+ourselves_install: pipx-deps ~/Dotfiles
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
 	python3 generate_shell_docs.py
