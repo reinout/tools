@@ -233,12 +233,15 @@ md-to-doc
 
 Use pandoc to convert a .md file to docx.
 
+I originally used the `markdown` format, but I've switched to `gfm`, github
+flavoured markdown, because that auto-renders URLS.
+
 Source code::
 
     #!/bin/bash
     set -e
     set -u
-    pandoc -f markdown -t docx $1 -o ${1%.md}.docx
+    pandoc -f gfm -t docx $1 -o ${1%.md}.docx
 
 
 md-to-pdf
@@ -246,12 +249,15 @@ md-to-pdf
 
 Use pandoc to convert a .md file to pdf.
 
+I originally used the `markdown` format, but I've switched to `gfm`, github
+flavoured markdown, because that auto-renders URLS.
+
 Source code::
 
     #!/bin/bash
     set -e
     set -u
-    pandoc -f markdown -t pdf $1 -o ${1%.md}.pdf
+    pandoc -f gfm -t pdf $1 -o ${1%.md}.pdf
 
 
 pychecker.sh

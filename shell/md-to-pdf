@@ -1,5 +1,8 @@
 #!/bin/bash
 # Use pandoc to convert a .md file to pdf.
+#
+# I originally used the `markdown` format, but I've switched to `gfm`, github
+# flavoured markdown, because that auto-renders URLS.
 set -e
 set -u
-pandoc -f markdown -t pdf $1 -o ${1%.md}.pdf
+pandoc -f gfm -t pdf $1 -o ${1%.md}.pdf
