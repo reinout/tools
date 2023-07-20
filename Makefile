@@ -86,3 +86,4 @@ local-dev:
 	pipx install --force --editable ~/opensource/checkoutmanager
 	pipx install --force --editable ~/opensource/zest.releaser
 	pipx install --force --editable ~/opensource/z3c.dependencychecker
+	pipx install --force --editable ~/zelf/denoter
