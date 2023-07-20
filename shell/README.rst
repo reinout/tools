@@ -187,6 +187,28 @@ Source code::
     du -m -d1
 
 
+emacsclient-from-iterm
+------------------------------------------------------------------------
+
+Script to edit files in emacs by clicking on them in iterm
+
+Enable it in iterm by going to the config. Look in the "profiles" section
+for "advanced", there you can enable "semantic history" with a command like
+this:
+
+/Users/reinout/zelf/tools/bin/emacsclient-from-iterm \1 \2
+
+\1 is the filename, \2 is the line number, if available.
+
+Source code::
+
+    #!/bin/bash
+    FILENAME=$1
+    LINENUMBER=$2
+
+    exec /opt/homebrew/bin/emacsclient -n +${LINENUMBER:=1} "${FILENAME}"
+
+
 es
 ------------------------------------------------------------------------
 
