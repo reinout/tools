@@ -51,12 +51,13 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/cookiecutter\
 	   ~/.local/pipx/venvs/docutils\
 	   ~/.local/pipx/venvs/dotfiles\
-	   ~/.local/pipx/venvs/pipenv\
-	   ~/.local/pipx/venvs/pyupgrade\
 	   ~/.local/pipx/venvs/flake8\
 	   ~/.local/pipx/venvs/isort\
 	   ~/.local/pipx/venvs/legit\
+	   ~/.local/pipx/venvs/mopup \
 	   ~/.local/pipx/venvs/oplop\
+	   ~/.local/pipx/venvs/pipenv\
+	   ~/.local/pipx/venvs/pyupgrade\
 	   ~/.local/pipx/venvs/tox \
 	   ~/.local/pipx/venvs/youtube-dl
 
