@@ -13,33 +13,29 @@ The idea is that this directory's bin subdirectory is on my path.
 - The ``setup.py`` lists the python scripts, in the ``tools/`` directory.
   These are installed with pipenv.
 
+And.... it is a way for me to be more **explicit** about my setup. A
+``Makefile`` for installing what I need (with homebrew and pipx) instead of
+trying to remember everything I need whenever I move laptops. And some
+notes on how I set up my laptop in the first place.
+
 
 Useful to others? Yes, as examples and for copy-pasting of handy scripts
 ------------------------------------------------------------------------
 
 The code in here can be useful to others: ideas for shell scripts and small
-Python utilities. The ``svngrep`` shell script has found its way to several
-colleagues' computers, for instance.
-
-So putting it on github seems like a good idea.
+Python utilities. So putting it on github seems like a good idea. I've
+sometimes pointed colleagues at a small utility here in this repo.
 
 
-Bootstrap installation notes for myself, to use on linux
+Bootstrap installation notes for myself (mac)
 --------------------------------------------------------
 
 These are the installations for really bootstrapping without anything present.
 
-On **linux**, first some apt-get::
-
-  sudo apt install python3-pip build-essential python3-venv git curl \
-  make build-essential libssl-dev zlib1g-dev libbz2-dev \
-  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
-  libncursesw5-dev xz-utils tk-dev
-
-on **OSX**, install `homebrew <https://brew.sh/>`_ and install a couple of
+On my mac, install `homebrew <https://brew.sh/>`_ and install a couple of
 utilities that are missing from OSX::
 
-  brew install git python@3.9
+  brew install git python@3.12
 
 Then create an ssh key and arrange access to vanrees.org and github.com.
 
@@ -52,10 +48,10 @@ Checkout ourselves::
 Now install pipx, tools and dotfiles and checkouts and local dev installs::
 
   cd ~/zelf/tools
-  make linux  # or make osx!
+  make install
 
-Note: I installed flake8 also with "pip install flake8" because that helps
-emacs' flycheck to pick it up.
+Note: the makefile also functions as a documentation on what I brew-install
+and pipx-install.
 
 
 Extra OSX install notes
