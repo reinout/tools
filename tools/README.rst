@@ -129,19 +129,6 @@ django app's ``$APP/management/commands/`` directory.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/mkinit.py>`_).
 
 
-python_coding_cleanup.py
-------------------------------------------------------------------------
-
-Zap 'coding: utf-8' header from python files in the current directory.
-
-The header isn't needed anymore in python 3, so for most projects, it can be
-removed.
-
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/python_coding_cleanup.py>`_).
-
-
 sommen.py
 ------------------------------------------------------------------------
 

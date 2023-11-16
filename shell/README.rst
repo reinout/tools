@@ -282,58 +282,6 @@ Source code::
     pandoc -f gfm -t pdf $1 -o ${1%.md}.pdf
 
 
-pychecker.sh
-------------------------------------------------------------------------
-
-Runs both pyflakes and pep8 on the current directory or on a specific
-file. Very handy for code quality checks.
-
-Note that it excludes the "migrations" directory that exists in Django
-projects where you use South for database migrations. Those south-generated
-files aren't the best pep8/pyflakes citizens (nor do they need to be).
-
-Tip: add this to your emacs configuration and hook it up to ctrl-c ctrl-w
-(which normally runs pychecker, hence the name) in python-mode::
-
-    '(py-pychecker-command "pychecker.sh")
-    '(py-pychecker-command-args (quote ("")))
-    '(python-check-command "pychecker.sh")
-
-Source code::
-
-    #!/bin/bash
-
-    # pyflakes $1 | grep -v /migrations/
-    # echo "## pyflakes above, pep8 below ##"
-    # pep8 --repeat --exclude migrations $1
-
-    set -e
-    flake8 "$1"
-
-
-svngrep
-------------------------------------------------------------------------
-
-Grep for a term in the current directory, but with some twists:
-
-- Multiple terms are taken to be one big space-separated term.
-
-- ``.git`` and ``.hg`` directories are ignored.
-
-- Same with ``egg-info`` and ``*.pyc`` files.
-
-- The search term is highlighted in the output.
-
-TODO: ignore big files (like combined js files).
-
-Source code::
-
-    #!/bin/bash
-
-    SEARCHFOR=`echo "$*" | sed "s/ \/dev\/null//g"`
-    grep -rin "$SEARCHFOR" * | grep -v \\.git | grep -v \\.hg | grep -v egg-info | grep -v \\.pyc: | grep -v \\.po: | grep -v bundle\\.js | grep -i --color=auto "$SEARCHFOR"
-
-
 syncweblog.sh
 ------------------------------------------------------------------------
 
