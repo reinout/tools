@@ -5,4 +5,4 @@
 # flavoured markdown, because that auto-renders URLS.
 set -e
 set -u
-pandoc -f gfm -t pdf $1 -o ${1%.md}.pdf
+pandoc -f gfm+smart -t pdf $1 -o ${1%.md}.pdf
