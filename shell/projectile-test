@@ -1,0 +1,36 @@
+#!/bin/bash
+# Run tests from emacs' projectile
+#
+# Emacs' projectile project tool can run tests with `C-c p P`. I have
+# that coupled to `C-c t`. In one project, you need to run
+# `bin/pytest`, in another `make test`, in another
+# `venv/bin/pytest`... This script attempts a couple of them. Note
+# that projectile runs it in the project's root directory: handy.
+#
+# - If the environment variable `PROJECTILE_TEST` is set, run that
+#   command. The direnv program can help you set it automatically.
+#
+# - bin/pytest (and the venv/.venv variants) is searched for and run
+#   if found.
+#
+# - If a makefile is present, `make test` is run.
+
+set -e
+if [ -n "$PROJECTILE_TEST" ]; then
+    eval $PROJECTILE_TEST
+    exit
+fi
+
+for program in bin/pytest venv/bin/pytest .venv/bin/pytest
+do
+    if [ -f $program ]; then
+        exec $program
+    fi
+done
+
+if [ -f Makefile ]; then
+    exec make test
+fi
+
+echo "No test program found"
+exit 1
