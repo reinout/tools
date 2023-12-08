@@ -282,6 +282,74 @@ Source code::
     pandoc -f gfm+smart -t pdf $1 -o ${1%.md}.pdf
 
 
+projectile-beautiful
+------------------------------------------------------------------------
+
+Run code beautification from emacs' projectile
+
+I often want to run `black` or `ruff format` and so on the code for
+basic code beautification. This script is coupled to `C-c b` in
+emacs, it is intended to work inside a projectile project.
+
+- If the environment variable `PROJECTILE_BEAUTIFUL` is set, run that
+  command. The direnv program can help you set it automatically.
+
+- If a makefile is present, `make beautiful` is run.
+
+- `ruff format` is run
+
+
+Source code::
+
+    #!/bin/bash
+
+    set -e
+    if [ -n "$PROJECTILE_BEAUTIFUL" ]; then
+        eval $PROJECTILE_BEAUTIFUL
+        exit
+    fi
+
+    if [ -f Makefile ]; then
+        exec make beautiful
+    fi
+
+    exec ruff format .
+
+
+projectile-check
+------------------------------------------------------------------------
+
+Run code checks from emacs' projectile
+
+I often want to run `pyflakes` or `ruff check` and so on the code
+for basic structure and syntax checking. This script is coupled to
+C-c c` in emacs, it is intended to work inside a projectile project.
+
+- If the environment variable `PROJECTILE_CHECK` is set, run that
+  command. The direnv program can help you set it automatically.
+
+- If a makefile is present, `make check` is run.
+
+- `ruff` is run with check+fix as a fallback.
+
+
+Source code::
+
+    #!/bin/bash
+
+    set -e
+    if [ -n "$PROJECTILE_CHECK" ]; then
+        eval $PROJECTILE_CHECK
+        exit
+    fi
+
+    if [ -f Makefile ]; then
+        exec make check
+    fi
+
+    exec ruff check . --fix
+
+
 projectile-test
 ------------------------------------------------------------------------
 
