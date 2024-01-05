@@ -88,3 +88,7 @@ local-dev:
 	pipx install --force --editable ~/opensource/zest.releaser
 	pipx install --force --editable ~/opensource/z3c.dependencychecker
 	pipx install --force --editable ~/zelf/denoter
+
+
+# NPM:
+# npm install -g dockerfile-language-server-nodejs
