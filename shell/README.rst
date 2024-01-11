@@ -364,10 +364,10 @@ that projectile runs it in the project's root directory: handy.
 - If the environment variable `PROJECTILE_TEST` is set, run that
   command. The direnv program can help you set it automatically.
 
+- If a makefile is present, `make test` is run.
+
 - bin/pytest (and the venv/.venv variants) is searched for and run
   if found.
-
-- If a makefile is present, `make test` is run.
 
 Source code::
 
@@ -379,16 +379,16 @@ Source code::
         exit
     fi
 
+    if [ -f Makefile ]; then
+        exec make test
+    fi
+
     for program in bin/pytest venv/bin/pytest .venv/bin/pytest
     do
         if [ -f $program ]; then
             exec $program
         fi
     done
-
-    if [ -f Makefile ]; then
-        exec make test
-    fi
 
     echo "No test program found"
     exit 1
