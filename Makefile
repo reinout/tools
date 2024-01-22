@@ -92,4 +92,3 @@ local-dev:
 
 # NPM:
 # npm install -g dockerfile-language-server-nodejs
-# npm install -g @ansible/ansible-language-server
