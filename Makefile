@@ -13,13 +13,15 @@ osx-deps:
 	brew update
 	brew install \
 	ag \
+	age \
+	arduino-cli \
 	awscli \
 	bash-completion@2 \
 	fd \
 	ffmpeg \
 	gpg \
+	graphviz \
 	hadolint \
-	pinentry-mac \
 	htop \
 	imagemagick \
 	jq \
@@ -28,11 +30,14 @@ osx-deps:
 	npm \
 	odt2txt \
 	pinentry-mac \
+	pinentry-mac \
 	pipx \
 	pre-commit \
 	pv \
 	rg \
+	tectonic \
 	terraform \
+	texlab \
 	tree \
 	watch \
 	wget \
