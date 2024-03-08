@@ -1,6 +1,6 @@
 # 'osx' is the default install-everything target, 'install' installs
 # ourselves.
-install: osx-deps ourselves_install local-dev
+install: osx-deps ourselves_install local-dev extra-pipx
 
 
 upgrade:
@@ -29,7 +29,6 @@ osx-deps:
 	mc \
 	npm \
 	odt2txt \
-	pinentry-mac \
 	pinentry-mac \
 	pipx \
 	pre-commit \
@@ -64,6 +63,7 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/pipenv\
 	   ~/.local/pipx/venvs/pyupgrade\
 	   ~/.local/pipx/venvs/tox \
+	   ~/.local/pipx/venvs/uv \
 	   ~/.local/pipx/venvs/youtube-dl
 
 
@@ -94,6 +94,10 @@ local-dev:
 	pipx install --force --editable ~/opensource/z3c.dependencychecker
 	pipx install --force --editable ~/zelf/denoter
 
+
+extra-pipx:
+	pipx inject tox tox-uv
+	pipx inject zest.releaser --editable ~/opensource/qgispluginreleaser
 
 # NPM:
 # npm install -g dockerfile-language-server-nodejs
