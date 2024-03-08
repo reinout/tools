@@ -17,3 +17,6 @@ repos:
     rev: 24.2.0
     hooks:
       - id: black
+
+ci:
+  autoupdate_branch: master
