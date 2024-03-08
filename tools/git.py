@@ -9,6 +9,7 @@ The script *does* ask for confirmation after first showing the status:
 prevent accidents.
 
 """
+
 import subprocess
 import sys
 

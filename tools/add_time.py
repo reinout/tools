@@ -9,6 +9,7 @@ The location of the time string and the location of the font to use is
 hardcoded.
 
 """
+
 import datetime
 import sys
 
