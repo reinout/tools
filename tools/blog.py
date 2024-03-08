@@ -11,6 +11,7 @@ Note that some of this might be better placed inside my website project
 instead of here. TODO.
 
 """
+
 from datetime import datetime
 from string import Template
 import os

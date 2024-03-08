@@ -1,6 +1,7 @@
 """
 Small utility script for printing a bunch of calculations for my kids.
 """
+
 import random
 import sys
 import webbrowser

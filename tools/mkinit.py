@@ -4,6 +4,7 @@ Create a directory and pre-fill it with an ``__init__.py``
 Basically: mkdir plus the creation of the init file. Handy for creating a
 django app's ``$APP/management/commands/`` directory.
 """
+
 import os
 import sys
 
