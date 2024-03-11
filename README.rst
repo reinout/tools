@@ -1,6 +1,10 @@
 Tools and scripts directory
 ===========================
 
+.. image:: https://results.pre-commit.ci/badge/github/reinout/tools/master.svg
+   :target: https://results.pre-commit.ci/latest/github/reinout/tools/master
+   :alt: pre-commit.ci status
+
 I (`Reinout van Rees <https://reinout.vanrees.org>`_) use quite a number of shell
 scripts, small custom Python utilities, other Python programs and so on. In this
 project, I collect most of them.
