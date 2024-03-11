@@ -24,6 +24,7 @@ Source code::
 """
 
 
+
 def extract(script):
     """Return extracted code and documentation from script.
 
