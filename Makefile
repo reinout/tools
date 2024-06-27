@@ -1,6 +1,6 @@
 # 'osx' is the default install-everything target, 'install' installs
 # ourselves.
-install: osx-deps ourselves_install local-dev extra-pipx
+install: osx-deps npm ourselves_install local-dev extra-pipx
 
 
 upgrade:
@@ -97,7 +97,8 @@ local-dev:
 
 extra-pipx:
 	pipx inject tox tox-uv
-	pipx inject zest.releaser --editable ~/opensource/qgispluginreleaser
+	pipx inject --editable zest.releaser ~/opensource/qgispluginreleaser
 
-# NPM:
-# npm install -g dockerfile-language-server-nodejs
+
+npm:
+	npm install -g @mermaid-js/mermaid-cli
