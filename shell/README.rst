@@ -250,6 +250,21 @@ Source code::
     # grep -i --color=auto $1
 
 
+git-undelete
+------------------------------------------------------------------------
+
+Undelete a file from git which has been git-rm'ed and git-commit'ed somewhere in the
+past. See https://stackoverflow.com/a/1113140/27401
+
+Pass a filename (some_dir/some_file.txt) you want restored.
+
+Source code::
+
+    #!/bin/bash
+
+    git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
+
+
 md-to-doc
 ------------------------------------------------------------------------
 
