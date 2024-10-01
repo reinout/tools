@@ -9,6 +9,7 @@ install: osx-deps ourselves_install uv-tools local-dev npm
 upgrade:
 	uv self update
 	uv tool upgrade --all
+	uv cache prune
 	brew update
 	brew upgrade
 
