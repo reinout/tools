@@ -11,3 +11,4 @@ develop-eggs/
 buildout.cfg
 .installed.cfg
 parts/
+/uv.lock
