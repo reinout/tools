@@ -14,8 +14,8 @@ The idea is that this directory's bin subdirectory is on my path.
 - Shell scripts are located in ``shell/``. Running
   ``./install_shell_scripts.sh`` symlinks these into the ``bin/`` directory.
 
-- The ``setup.py`` lists the python scripts, in the ``tools/`` directory.
-  These are installed with pipenv.
+- The ``pyproject.toml`` lists the python scripts, in the ``tools/`` directory.
+  These are installed with ``uv`` by the ``Makefile``.
 
 And.... it is a way for me to be more **explicit** about my setup. A ``Makefile`` for
 installing what I need (with homebrew and pipx) instead of trying to remember everything
@@ -49,13 +49,13 @@ Checkout ourselves::
   cd ~/zelf
   git clone git@github.com:reinout/tools.git
 
-Now install pipx, tools and dotfiles and checkouts and local dev installs::
+Now install uv, tools and dotfiles and checkouts and local dev installs::
 
   cd ~/zelf/tools
   make install
 
 Note: the makefile also functions as a documentation on what I brew-install and
-pipx-install.
+uv-tools-install.
 
 
 Extra OSX install notes
@@ -94,3 +94,12 @@ Likewise I've got a README for the python scripts. Look `at /tools on github
 formatted README at the bottom. This is generated from the scripts' docstrings with
 ``generate_python_docs.py`` (I just want a simple README, not full Sphinx
 documentation).
+
+
+Local dev install notes
+-----------------------
+
+Some hints::
+
+  $ uv sync
+  $ uv run dtname (or another command)
