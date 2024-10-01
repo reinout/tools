@@ -1,16 +1,16 @@
 doc:
 	@echo make install: install everything, including ourselves
-	@echo make upgrade: update/upgrade uv, brew, pipx
+	@echo make upgrade: update/upgrade uv, brew, uv tool
 
 
-install: osx-deps npm ourselves_install local-dev extra-pipx
+install: osx-deps ourselves_install uv-tools local-dev npm
 
 
 upgrade:
 	uv self update
+	uv tool upgrade --all
 	brew update
 	brew upgrade
-	pipx reinstall-all
 
 
 osx-deps:
@@ -34,7 +34,6 @@ osx-deps:
 	npm \
 	odt2txt \
 	pinentry-mac \
-	pipx \
 	pre-commit \
 	pv \
 	rg \
@@ -45,42 +44,39 @@ osx-deps:
 	watch \
 	wget \
 	tidy-html5
-	@echo "================================================================================="
-	@echo "A 'pipx reinstall-all' might be needed if there was a brew python version upgrade"
-	@echo "================================================================================="
-	cd /tmp && pipx install --force --editable ~/zelf/tools && cd -
 
 
-pipx-deps: ~/.local/pipx/venvs/ansible\
-	   ~/.local/pipx/venvs/ansible-lint\
-	   ~/.local/pipx/venvs/beautysh\
-	   ~/.local/pipx/venvs/black\
-	   ~/.local/pipx/venvs/checkoutmanager\
-	   ~/.local/pipx/venvs/cookiecutter\
-	   ~/.local/pipx/venvs/docutils\
-	   ~/.local/pipx/venvs/dotfiles\
-	   ~/.local/pipx/venvs/flake8\
-	   ~/.local/pipx/venvs/isort\
-	   ~/.local/pipx/venvs/legit\
-	   ~/.local/pipx/venvs/mopup \
-	   ~/.local/pipx/venvs/oplop\
-	   ~/.local/pipx/venvs/pipenv\
-	   ~/.local/pipx/venvs/pyupgrade\
-	   ~/.local/pipx/venvs/tox \
-	   ~/.local/pipx/venvs/youtube-dl
+uv-tools: ~/.local/share/uv/tools/ansible\
+	  ~/.local/share/uv/tools/ansible-lint\
+	  ~/.local/share/uv/tools/beautysh\
+	  ~/.local/share/uv/tools/black\
+	  ~/.local/share/uv/tools/cookiecutter\
+	  ~/.local/share/uv/tools/docutils\
+	  ~/.local/share/uv/tools/dotfiles\
+	  ~/.local/share/uv/tools/flake8\
+	  ~/.local/share/uv/tools/isort\
+	  ~/.local/share/uv/tools/legit\
+	  ~/.local/share/uv/tools/oplop\
+	  ~/.local/share/uv/tools/pyupgrade\
+	  ~/.local/share/uv/tools/tox \
+	  ~/.local/share/uv/tools/youtube-dl
+# mopup pipenv
+
+~/.local/share/uv/tools/ansible:
+	uv tool install ansible --with dnspython
 
 
-~/.local/pipx/venvs/ansible:
-	pipx install --include-deps ansible --pip-args dnspython
+~/.local/share/uv/tools/tox:
+	uv tool install tox --with tox-uv
 
 
-~/.local/pipx/venvs/%:
-	pipx install $*
+~/.local/share/uv/tools/%:
+	 uv tool install $*
 
 
 ~/Dotfiles:
 	cd ~ && git clone ssh://vanrees.org/~/repos/Dotfiles
-	dotfiles --sync
+	uvx dotfiles --sync
 	echo "You might want to run dotfiles --sync --force, btw"
 
 
@@ -88,23 +84,17 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 
-ourselves_install: /Users/reinout/.cargo/bin/uv pipx-deps ~/Dotfiles
+ourselves_install: /Users/reinout/.cargo/bin/uv ~/Dotfiles
 	./install_shell_scripts.sh
-	python3 generate_python_docs.py
-	python3 generate_shell_docs.py
+	uv run ./generate_python_docs.py
+	uv run ./generate_shell_docs.py
 
 
 local-dev:
-	checkoutmanager co
-	pipx install --force --editable ~/opensource/checkoutmanager
-	pipx install --force --editable ~/opensource/zest.releaser
-	pipx install --force --editable ~/opensource/z3c.dependencychecker
-	pipx install --force --editable ~/zelf/denoter
-
-
-extra-pipx:
-	pipx inject tox tox-uv
-	pipx inject --editable zest.releaser ~/opensource/qgispluginreleaser
+	uvx checkoutmanager co
+	uv tool install --editable ~/opensource/zest.releaser/ --with ~/opensource/qgispluginreleaser
+	uv tool install --editable ~/opensource/checkoutmanager/
+	uv tool install --editable ~/zelf/denoter/
 
 
 npm:
