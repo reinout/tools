@@ -1,7 +1,35 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "tools"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.dev0"
+description = "Tools and scripts for Reinout"
+authors = [
+    {name = "Reinout van Rees", email = "reinout@vanrees.org"},
+]
 readme = "README.rst"
 requires-python = ">=3.12"
 dependencies = []
+
+[project.scripts]
+log = "tools.engineerlog:main"
+add_time = "tools.add_time:main"
+copytoblog = "tools.blog:copytoblog"
+dtname = "tools.dtname:main"
+new_sermon = "tools.blog:new_sermon"
+fixthunderbird = "tools.thunderbird:fix_thunderbird"
+gh = "tools.github:main"
+latestentries = "tools.blog:list_todays_entries"
+makedocs = "tools.blog:makedocs"
+sommen = "tools.sommen:main"
+gac = "tools.git:main"
+mkinit = "tools.mkinit:main"
+python_coding_cleanup = "tools.python_coding_cleanup:main"
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "C901"]
