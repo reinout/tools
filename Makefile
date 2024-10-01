@@ -1,9 +1,13 @@
-# 'osx' is the default install-everything target, 'install' installs
-# ourselves.
+doc:
+	@echo make install: install everything, including ourselves
+	@echo make upgrade: update/upgrade uv, brew, pipx
+
+
 install: osx-deps npm ourselves_install local-dev extra-pipx
 
 
 upgrade:
+	uv self update
 	brew update
 	brew upgrade
 	pipx reinstall-all
@@ -63,7 +67,6 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	   ~/.local/pipx/venvs/pipenv\
 	   ~/.local/pipx/venvs/pyupgrade\
 	   ~/.local/pipx/venvs/tox \
-	   ~/.local/pipx/venvs/uv \
 	   ~/.local/pipx/venvs/youtube-dl
 
 
@@ -81,7 +84,11 @@ pipx-deps: ~/.local/pipx/venvs/ansible\
 	echo "You might want to run dotfiles --sync --force, btw"
 
 
-ourselves_install: pipx-deps ~/Dotfiles
+/Users/reinout/.cargo/bin/uv:
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+
+
+ourselves_install: /Users/reinout/.cargo/bin/uv pipx-deps ~/Dotfiles
 	./install_shell_scripts.sh
 	python3 generate_python_docs.py
 	python3 generate_shell_docs.py
