@@ -26,7 +26,7 @@ def unix2dos(data):
 
 
 def confirm(file_):
-    s = raw_input("%s? " % file_)
+    s = raw_input(f"{file_}? ")
     return s and s[0] == "y"
 
 

@@ -42,4 +42,4 @@ def main():
 
     out_filename = date_string.replace(":", "_") + ".png"
     image.save(out_filename, "png")
-    print("Saved %s" % out_filename)
+    print(f"Saved {out_filename}")

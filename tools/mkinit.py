@@ -13,8 +13,8 @@ def main():
     dirname = sys.argv[1]
     if not os.path.exists(dirname):
         os.mkdir(dirname)
-        print("Created directory %s" % dirname)
+        print(f"Created directory {dirname}")
     initfile = os.path.join(dirname, "__init__.py")
     if not os.path.exists(initfile):
         open(initfile, "w").write("# package\n")
-        print("Created file %s" % initfile)
+        print(f"Created file {initfile}")

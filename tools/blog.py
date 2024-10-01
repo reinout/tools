@@ -45,7 +45,7 @@ def copytoblog():
         print("pass along filename!")
     filename = sys.argv[1]
     if not os.path.exists(filename):
-        print("%s doesn't exist" % filename)
+        print(f"{filename} doesn't exist")
 
     now = datetime.now()
     y = "%04d" % now.year
@@ -100,7 +100,7 @@ def copytoblog():
         webbrowser.open(on_site)
         if "y" in input("Delete file in ~/blog/? [y/N] "):
             os.remove(os.path.join(os.path.expanduser("~/blog"), filename))
-            print("%s removed" % filename)
+            print(f"{filename} removed")
 
 
 def makedocs():
@@ -137,7 +137,7 @@ def list_todays_entries():
     monthdir = os.path.join(yeardir, m)
     daydir = os.path.join(monthdir, d)
     if not os.path.exists(daydir):
-        print("Nothing posted yet in %s" % daydir)
+        print(f"Nothing posted yet in {daydir}")
         sys.exit(1)
     entries = [
         entry
@@ -188,7 +188,7 @@ def new_sermon():
     yeardir = os.path.join(SERMONSOURCE, yyyy)
     if not os.path.exists(yeardir):
         os.mkdir(yeardir)
-        print("Created %s" % yeardir)
+        print(f"Created {yeardir}")
 
     title = None
     while not title:
