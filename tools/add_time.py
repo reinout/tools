@@ -14,10 +14,7 @@ import datetime
 import sys
 
 try:
-    from PIL import Image
-    from PIL import ImageDraw
-    from PIL import ImageFont
-    from PIL import ImageOps
+    from PIL import Image, ImageDraw, ImageFont, ImageOps
 except ImportError:
     print("No PIL available.")
 

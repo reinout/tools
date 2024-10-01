@@ -12,14 +12,14 @@ instead of here. TODO.
 
 """
 
-from datetime import datetime
-from string import Template
 import os
 import readline
 import shutil
 import subprocess
 import sys
 import webbrowser
+from datetime import datetime
+from string import Template
 
 DOCS = os.path.expanduser("~/zelf/reinout.vanrees.org/docs")
 BUILD = os.path.join(DOCS, "build", "html")
