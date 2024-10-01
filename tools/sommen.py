@@ -43,10 +43,7 @@ def main():
     else:
         actions = [plus, minus, times]
     for i in range(NUMBER_OF_LINES):
-        line = "{}                          {}\n\n".format(
-            random.choice(actions)(),
-            random.choice(actions)(),
-        )
+        line = f"{random.choice(actions)()}                          {random.choice(actions)()}\n\n"
         outfile.write(line)
     outfile.close()
     webbrowser.open("file:///tmp/sommen.txt")

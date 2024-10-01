@@ -14,10 +14,7 @@ import datetime
 import sys
 
 try:
-    from PIL import Image
-    from PIL import ImageDraw
-    from PIL import ImageFont
-    from PIL import ImageOps
+    from PIL import Image, ImageDraw, ImageFont, ImageOps
 except ImportError:
     print("No PIL available.")
 
@@ -45,4 +42,4 @@ def main():
 
     out_filename = date_string.replace(":", "_") + ".png"
     image.save(out_filename, "png")
-    print("Saved %s" % out_filename)
+    print(f"Saved {out_filename}")
