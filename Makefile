@@ -74,6 +74,10 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	 uv tool install $*
 
 
+pythons:
+	uv python install 3.12 3.11
+
+
 ~/Dotfiles:
 	cd ~ && git clone ssh://vanrees.org/~/repos/Dotfiles
 	uvx dotfiles --sync
@@ -84,7 +88,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 
-ourselves_install: /Users/reinout/.cargo/bin/uv ~/Dotfiles
+ourselves_install: /Users/reinout/.cargo/bin/uv pythons ~/Dotfiles
 	./install_shell_scripts.sh
 	uv run ./generate_python_docs.py
 	uv run ./generate_shell_docs.py
