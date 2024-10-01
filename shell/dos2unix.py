@@ -26,7 +26,7 @@ def unix2dos(data):
 
 
 def confirm(file_):
-    s = raw_input(f"{file_}? ")
+    s = input(f"{file_}? ")
     return s and s[0] == "y"
 
 
@@ -53,11 +53,11 @@ OPTIONS
     sys.exit()
 
 
-def main():
+def main():  # noqa: C901
     try:
         opts, args = getopt.getopt(sys.argv[1:], "fniuvdc")
         args[0]
-    except:
+    except:  # noqa: E722
         usage()
     force = 0
     noaction = 0
