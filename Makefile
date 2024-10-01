@@ -91,6 +91,7 @@ pythons:
 
 ourselves_install: /Users/reinout/.cargo/bin/uv pythons ~/Dotfiles
 	./install_shell_scripts.sh
+	uv tool install .
 	uv run ./generate_python_docs.py
 	uv run ./generate_shell_docs.py
 
