@@ -38,6 +38,7 @@ osx-deps:
 	pre-commit \
 	pv \
 	rg \
+	starship \
 	tectonic \
 	terraform \
 	texlab \
