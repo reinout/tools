@@ -22,6 +22,7 @@ osx-deps:
 	arduino-cli \
 	awscli \
 	bash-completion@2 \
+	bat \
 	fd \
 	ffmpeg \
 	gpg \
