@@ -105,6 +105,7 @@ local-dev:
 	uv tool install --editable ~/opensource/zest.releaser/ --with ~/opensource/qgispluginreleaser
 	uv tool install --editable ~/opensource/checkoutmanager/
 	uv tool install --editable ~/zelf/denoter/
+	uv tool install --editable ~/nens/nens-meta/
 
 
 npm:
