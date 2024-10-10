@@ -38,6 +38,8 @@ osx-deps:
 	pinentry-mac \
 	pre-commit \
 	pv \
+	python@3.12 \
+	python@3.13 \
 	rg \
 	starship \
 	tectonic \
@@ -68,7 +70,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 # mopup pipenv
 
 ~/.local/share/uv/tools/ansible:
-	uv tool install ansible --with dnspython
+	uv tool install ansible-core --with dnspython --with ansible
 
 
 ~/.local/share/uv/tools/tox:
@@ -76,11 +78,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 
 
 ~/.local/share/uv/tools/%:
-	 uv tool install $*
-
-
-pythons:
-	uv python install 3.12 3.11
+	uv tool install $*
 
 
 ~/Dotfiles:
@@ -93,7 +91,7 @@ pythons:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 
-ourselves_install: /Users/reinout/.cargo/bin/uv pythons ~/Dotfiles
+ourselves_install: /Users/reinout/.cargo/bin/uv ~/Dotfiles
 	./install_shell_scripts.sh
 	uv tool install .
 	uv run ./generate_python_docs.py
