@@ -25,6 +25,7 @@ osx-deps:
 	bat \
 	fd \
 	ffmpeg \
+	git-lfs \
 	gpg \
 	graphviz \
 	hadolint \
