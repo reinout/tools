@@ -25,6 +25,7 @@ osx-deps:
 	bat \
 	fd \
 	ffmpeg \
+	git-annex \
 	git-lfs \
 	gpg \
 	graphviz \
