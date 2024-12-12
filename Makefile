@@ -23,6 +23,7 @@ osx-deps:
 	awscli \
 	bash-completion@2 \
 	bat \
+	direnv \
 	fd \
 	ffmpeg \
 	git-annex \
