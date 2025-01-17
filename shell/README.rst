@@ -281,6 +281,22 @@ Source code::
     pandoc -f gfm -t docx $1 -o ${1%.md}.docx
 
 
+md-to-html
+------------------------------------------------------------------------
+
+Use pandoc to convert a .md file to docx.
+
+I originally used the `markdown` format, but I've switched to `gfm`, github
+flavoured markdown, because that auto-renders URLS.
+
+Source code::
+
+    #!/bin/bash
+    set -e
+    set -u
+    pandoc -f gfm -t html5 $1 -o ${1%.md}.html
+
+
 md-to-pdf
 ------------------------------------------------------------------------
 
