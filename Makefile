@@ -34,6 +34,7 @@ osx-deps:
 	htop \
 	imagemagick \
 	jq \
+	kicad \
 	mactex-no-gui \
 	mc \
 	npm \
