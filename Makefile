@@ -39,6 +39,7 @@ osx-deps:
 	mc \
 	npm \
 	odt2txt \
+	orbstack \
 	pinentry-mac \
 	pre-commit \
 	pv \
