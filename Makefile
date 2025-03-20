@@ -41,11 +41,13 @@ osx-deps:
 	odt2txt \
 	orbstack \
 	pinentry-mac \
+	pulumi/tap/pulumi \
 	pre-commit \
 	pv \
 	python@3.12 \
 	python@3.13 \
 	rg \
+	siderolabs/tap/sidero-tools \
 	starship \
 	tectonic \
 	terraform \
