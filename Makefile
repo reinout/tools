@@ -73,6 +73,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	  ~/.local/share/uv/tools/pyright\
 	  ~/.local/share/uv/tools/pyupgrade\
 	  ~/.local/share/uv/tools/tox \
+	  ~/.local/share/uv/tools/ty \
 	  ~/.local/share/uv/tools/youtube-dl
 
 
