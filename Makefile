@@ -77,7 +77,8 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 
 
 ~/.local/share/uv/tools/ansible:
-	uv tool install ansible-core --with dnspython --with ansible
+	uv tool install --with-executables-from ansible-core,ansible-lint ansible
+	# uv tool install ansible-core --with dnspython --with ansible
 
 
 ~/.local/share/uv/tools/tox:
