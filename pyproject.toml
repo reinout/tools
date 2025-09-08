@@ -17,19 +17,20 @@ dependencies = []
 packages = ["tools"]
 
 [project.scripts]
-log = "tools.engineerlog:main"
 add_time = "tools.add_time:main"
 copytoblog = "tools.blog:copytoblog"
 dtname = "tools.dtname:main"
-new_sermon = "tools.blog:new_sermon"
 fixthunderbird = "tools.thunderbird:fix_thunderbird"
+gac = "tools.git:main"
 gh = "tools.github:main"
 latestentries = "tools.blog:list_todays_entries"
+log = "tools.engineerlog:main"
 makedocs = "tools.blog:makedocs"
-sommen = "tools.sommen:main"
-gac = "tools.git:main"
 mkinit = "tools.mkinit:main"
+new_sermon = "tools.blog:new_sermon"
 python_coding_cleanup = "tools.python_coding_cleanup:main"
+sommen = "tools.sommen:main"
+week = "tools.week:main"
 
 [tool.ruff]
 target-version = "py312"

@@ -154,3 +154,22 @@ This script removes the holes.
 
 
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/thunderbird.py>`_).
+
+
+week.py
+------------------------------------------------------------------------
+
+
+Print which week of my life I'm in, according to '4000 weeks'
+
+The nice '4000 weeks' book tries to put everything into a bit of perspective by stating
+you'll live approximately 4000 weeks. 80 years * 50, to make it easy. 4000 weeks makes
+your life sound distinctly finite. You cannot possibly do everything there is to do and
+to visit and to read and to follow. So: you don't need to become super-efficient in
+order to achieve 0.0011 instead of 0.0010 of what you could achieve. Relax a bit.
+
+"Don't worry about tomorrow's problems, the current day has enough evil on its own".
+
+
+
+(See `source code on github <https://github.com/reinout/tools/blob/master/tools/week.py>`_).
