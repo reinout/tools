@@ -102,7 +102,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 
 ourselves_install: /Users/reinout/.cargo/bin/uv ~/Dotfiles
 	./install_shell_scripts.sh
-	uv tool install .
+	uv tool install --editable .
 	uv run ./generate_python_docs.py
 	uv run ./generate_shell_docs.py
 
