@@ -26,37 +26,48 @@ osx-deps:
 	direnv \
 	fd \
 	ffmpeg \
+	gdal \
 	git-annex \
 	git-lfs \
 	gpg \
 	graphviz \
 	hadolint \
+	helm \
 	htop \
 	imagemagick \
-	just \
 	jq \
+	just \
 	kicad \
+	languagetool \
+	ltex-ls-plus \
 	mactex-no-gui \
 	mc \
+	nmap \
 	npm \
 	odt2txt \
 	orbstack \
+	pgadmin4 \
 	pinentry-mac \
-	pulumi/tap/pulumi \
 	pre-commit \
+	pulumi/tap/pulumi \
 	pv \
 	python@3.12 \
 	python@3.13 \
 	rg \
+	siderolabs/tap/omnictl \
 	siderolabs/tap/sidero-tools \
+	siderolabs/tap/talosctl \
+	sops \
+	spatialite-tools \
 	starship \
 	tectonic \
 	terraform \
 	texlab \
+	tidy-html5 \
 	tree \
 	watch \
 	wget \
-	tidy-html5
+	wine-stable
 
 
 uv-tools: ~/.local/share/uv/tools/ansible\
