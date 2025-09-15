@@ -1,9 +1,10 @@
 doc:
 	@echo make install: install everything, including ourselves
 	@echo make upgrade: update/upgrade uv, brew, uv tool
+	@echo make ourselves: install ourselves + other editables
 
 
-install: osx-deps ourselves_install uv-tools local-dev npm
+install: osx-deps ourselves uv-tools local-dev npm
 
 
 upgrade:
@@ -90,7 +91,6 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 
 ~/.local/share/uv/tools/ansible:
 	uv tool install --with-executables-from ansible-core,ansible-lint ansible
-	# uv tool install ansible-core --with dnspython --with ansible
 
 
 ~/.local/share/uv/tools/tox:
@@ -111,7 +111,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 
-ourselves_install: /Users/reinout/.cargo/bin/uv ~/Dotfiles
+ourselves: /Users/reinout/.cargo/bin/uv ~/Dotfiles
 	./install_shell_scripts.sh
 	uv tool install --editable .
 	uv run ./generate_python_docs.py
