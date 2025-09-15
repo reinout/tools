@@ -74,20 +74,15 @@ osx-deps:
 uv-tools: ~/.local/share/uv/tools/ansible\
 	  ~/.local/share/uv/tools/ansible-lint\
 	  ~/.local/share/uv/tools/beautysh\
-	  ~/.local/share/uv/tools/black\
 	  ~/.local/share/uv/tools/cookiecutter\
 	  ~/.local/share/uv/tools/docutils\
 	  ~/.local/share/uv/tools/dotfiles\
-	  ~/.local/share/uv/tools/flake8\
-	  ~/.local/share/uv/tools/isort\
 	  ~/.local/share/uv/tools/legit\
 	  ~/.local/share/uv/tools/oplop\
 	  ~/.local/share/uv/tools/pyright\
 	  ~/.local/share/uv/tools/pyupgrade\
 	  ~/.local/share/uv/tools/tox \
-	  ~/.local/share/uv/tools/ty \
-	  ~/.local/share/uv/tools/youtube-dl
-
+	  ~/.local/share/uv/tools/ty
 
 ~/.local/share/uv/tools/ansible:
 	uv tool install --with-executables-from ansible-core,ansible-lint ansible
