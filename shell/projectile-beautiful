@@ -8,9 +8,7 @@
 # - If the environment variable `PROJECTILE_BEAUTIFUL` is set, run that
 #   command. The direnv program can help you set it automatically.
 #
-# - If a makefile is present, `make beautiful` is run.
-#
-# - `ruff format` is run
+# - Normally `pre-commit run --all` is run
 #
 
 set -e
@@ -19,8 +17,4 @@ if [ -n "$PROJECTILE_BEAUTIFUL" ]; then
     exit
 fi
 
-if [ -f Makefile ]; then
-    exec make beautiful
-fi
-
-exec ruff format .
+exec pre-commit run --all
