@@ -361,7 +361,6 @@ Source code::
     #!/bin/bash
 
     set -e
-    direnv reload
     if [ -n "$PROJECTILE_COMPILE" ]; then
         eval $PROJECTILE_COMPILE
         exit
