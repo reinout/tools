@@ -341,16 +341,16 @@ Source code::
     exec pre-commit run --all
 
 
-projectile-compile
+projectile-make
 ------------------------------------------------------------------------
 
-Run some compile/create job from emacs' projectile
+Run some make/make/create job from emacs' projectile
 
 I often want to run `make html` or an arduino compilation and so on the code. This
 script is coupled to `C-c c` in emacs, it is intended to work inside a projectile
 project.
 
-- If the environment variable `PROJECTILE_COMPILE` is set, run that
+- If the environment variable `PROJECTILE_MAKE` is set, run that
   command. The direnv program can help you set it automatically.
 
 - If a makefile is present, `make` is run.
@@ -361,8 +361,8 @@ Source code::
     #!/bin/bash
 
     set -e
-    if [ -n "$PROJECTILE_COMPILE" ]; then
-        eval $PROJECTILE_COMPILE
+    if [ -n "$PROJECTILE_MAKE" ]; then
+        eval $PROJECTILE_MAKE
         exit
     fi
 
@@ -370,7 +370,7 @@ Source code::
         exec make
     fi
 
-    echo "No Makefile found, set PROJECTILE_COMPILE to some command"
+    echo "No Makefile found, set PROJECTILE_MAKE to some command"
     exit 1
 
 
