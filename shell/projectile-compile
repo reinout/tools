@@ -1,14 +1,14 @@
 #!/bin/bash
-# Run code checks from emacs' projectile
+# Run some compile/create job from emacs' projectile
 #
-# I often want to run `pyflakes` or `ruff check` and so on the code
-# for basic structure and syntax checking. This script is coupled to
-#`C-c c` in emacs, it is intended to work inside a projectile project.
+# I often want to run `make html` or an arduino compilation and so on the code. This
+# script is coupled to `C-c c` in emacs, it is intended to work inside a projectile
+# project.
 #
-# - If the environment variable `PROJECTILE_CHECK` is set, run that
+# - If the environment variable `PROJECTILE_COMPILE` is set, run that
 #   command. The direnv program can help you set it automatically.
 #
-# - If a makefile is present, `make check` is run.
+# - If a makefile is present, `make` is run.
 #
 # - `ruff` is run with check+fix as a fallback.
 #
@@ -20,7 +20,8 @@ if [ -n "$PROJECTILE_CHECK" ]; then
 fi
 
 if [ -f Makefile ]; then
-    exec make check
+    exec make
 fi
 
-exec ruff check . --fix
+echo "No Makefile found, set PROJECTILE_CHECK to some command"
+exit 1
