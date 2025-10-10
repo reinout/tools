@@ -17,7 +17,6 @@ dependencies = []
 packages = ["tools"]
 
 [project.scripts]
-add_time = "tools.add_time:main"
 copytoblog = "tools.blog:copytoblog"
 dtname = "tools.dtname:main"
 fixthunderbird = "tools.thunderbird:fix_thunderbird"
@@ -26,9 +25,7 @@ gh = "tools.github:main"
 latestentries = "tools.blog:list_todays_entries"
 log = "tools.engineerlog:main"
 makedocs = "tools.blog:makedocs"
-mkinit = "tools.mkinit:main"
 new_sermon = "tools.blog:new_sermon"
-python_coding_cleanup = "tools.python_coding_cleanup:main"
 sommen = "tools.sommen:main"
 week = "tools.week:main"
 

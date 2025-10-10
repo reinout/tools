@@ -98,19 +98,6 @@ I got the idea from https://github.com/myusuf3/octogit.
 (See `source code on github <https://github.com/reinout/tools/blob/master/tools/github.py>`_).
 
 
-mkinit.py
-------------------------------------------------------------------------
-
-
-Create a directory and pre-fill it with an ``__init__.py``
-
-Basically: mkdir plus the creation of the init file. Handy for creating a
-django app's ``$APP/management/commands/`` directory.
-
-
-(See `source code on github <https://github.com/reinout/tools/blob/master/tools/mkinit.py>`_).
-
-
 sommen.py
 ------------------------------------------------------------------------
 
