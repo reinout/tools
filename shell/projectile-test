@@ -10,10 +10,8 @@
 # - If the environment variable `PROJECTILE_TEST` is set, run that
 #   command. The direnv program can help you set it automatically.
 #
-# - If a makefile is present, `make test` is run.
-#
-# - bin/pytest (and the venv/.venv variants) is searched for and run
-#   if found.
+# - .venv/bin/pytest (and the venv/bin and bin variants) is searched
+#   for and run if found.
 
 set -e
 if [ -n "$PROJECTILE_TEST" ]; then
@@ -21,11 +19,7 @@ if [ -n "$PROJECTILE_TEST" ]; then
     exit
 fi
 
-if [ -f Makefile ]; then
-    exec make test
-fi
-
-for program in bin/pytest venv/bin/pytest .venv/bin/pytest
+for program in .venv/bin/pytest bin/pytest venv/bin/pytest
 do
     if [ -f $program ]; then
         exec $program
