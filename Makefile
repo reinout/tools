@@ -1,7 +1,7 @@
 doc:
 	@echo make install: install everything, including ourselves
 	@echo make upgrade: update/upgrade uv, brew, uv tool
-	@echo make ourselves: install ourselves + other editables
+	@echo make ourselves: generate docs and install ourselves
 
 
 install: osx-deps ourselves uv-tools local-dev npm

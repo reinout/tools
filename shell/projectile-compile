@@ -10,12 +10,10 @@
 #
 # - If a makefile is present, `make` is run.
 #
-# - `ruff` is run with check+fix as a fallback.
-#
 
 set -e
-if [ -n "$PROJECTILE_CHECK" ]; then
-    eval $PROJECTILE_CHECK
+if [ -n "$PROJECTILE_COMPILE" ]; then
+    eval $PROJECTILE_COMPILE
     exit
 fi
 
@@ -23,5 +21,5 @@ if [ -f Makefile ]; then
     exec make
 fi
 
-echo "No Makefile found, set PROJECTILE_CHECK to some command"
+echo "No Makefile found, set PROJECTILE_COMPILE to some command"
 exit 1

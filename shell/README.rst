@@ -325,9 +325,7 @@ emacs, it is intended to work inside a projectile project.
 - If the environment variable `PROJECTILE_BEAUTIFUL` is set, run that
   command. The direnv program can help you set it automatically.
 
-- If a makefile is present, `make beautiful` is run.
-
-- `ruff format` is run
+- Normally `pre-commit run --all` is run
 
 
 Source code::
@@ -340,28 +338,22 @@ Source code::
         exit
     fi
 
-    if [ -f Makefile ]; then
-        exec make beautiful
-    fi
-
-    exec ruff format .
+    exec pre-commit run --all
 
 
-projectile-check
+projectile-compile
 ------------------------------------------------------------------------
 
-Run code checks from emacs' projectile
+Run some compile/create job from emacs' projectile
 
-I often want to run `pyflakes` or `ruff check` and so on the code
-for basic structure and syntax checking. This script is coupled to
-C-c c` in emacs, it is intended to work inside a projectile project.
+I often want to run `make html` or an arduino compilation and so on the code. This
+script is coupled to `C-c c` in emacs, it is intended to work inside a projectile
+project.
 
-- If the environment variable `PROJECTILE_CHECK` is set, run that
+- If the environment variable `PROJECTILE_COMPILE` is set, run that
   command. The direnv program can help you set it automatically.
 
-- If a makefile is present, `make check` is run.
-
-- `ruff` is run with check+fix as a fallback.
+- If a makefile is present, `make` is run.
 
 
 Source code::
@@ -369,16 +361,18 @@ Source code::
     #!/bin/bash
 
     set -e
-    if [ -n "$PROJECTILE_CHECK" ]; then
-        eval $PROJECTILE_CHECK
+    direnv reload
+    if [ -n "$PROJECTILE_COMPILE" ]; then
+        eval $PROJECTILE_COMPILE
         exit
     fi
 
     if [ -f Makefile ]; then
-        exec make check
+        exec make
     fi
 
-    exec ruff check . --fix
+    echo "No Makefile found, set PROJECTILE_COMPILE to some command"
+    exit 1
 
 
 projectile-test
@@ -395,10 +389,8 @@ that projectile runs it in the project's root directory: handy.
 - If the environment variable `PROJECTILE_TEST` is set, run that
   command. The direnv program can help you set it automatically.
 
-- If a makefile is present, `make test` is run.
-
-- bin/pytest (and the venv/.venv variants) is searched for and run
-  if found.
+- .venv/bin/pytest (and the venv/bin and bin variants) is searched
+  for and run if found.
 
 Source code::
 
@@ -410,11 +402,7 @@ Source code::
         exit
     fi
 
-    if [ -f Makefile ]; then
-        exec make test
-    fi
-
-    for program in bin/pytest venv/bin/pytest .venv/bin/pytest
+    for program in .venv/bin/pytest bin/pytest venv/bin/pytest
     do
         if [ -f $program ]; then
             exec $program
