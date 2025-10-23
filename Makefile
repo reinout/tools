@@ -81,6 +81,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	  ~/.local/share/uv/tools/oplop\
 	  ~/.local/share/uv/tools/pyright\
 	  ~/.local/share/uv/tools/pyupgrade\
+	  ~/.local/share/uv/tools/tombi \
 	  ~/.local/share/uv/tools/tox \
 	  ~/.local/share/uv/tools/ty
 
