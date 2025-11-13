@@ -19,12 +19,14 @@ osx-deps:
 	brew update
 	brew install \
 	ag \
+	argocd \
 	age \
 	arduino-cli \
 	awscli \
 	bash-completion@2 \
 	bat \
 	direnv \
+	editorconfig \
 	fd \
 	ffmpeg \
 	gdal \

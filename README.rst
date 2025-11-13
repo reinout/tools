@@ -39,7 +39,7 @@ These are the installations for really bootstrapping without anything present.
 On my mac, install `homebrew <https://brew.sh/>`_ and install a couple of utilities that
 are missing from OSX::
 
-  brew install git python@3.12
+  brew install git python@3.13
 
 Then create an ssh key and arrange access to vanrees.org and github.com.
 
@@ -103,3 +103,13 @@ Some hints::
 
   $ uv sync
   $ uv run dtname (or another command)
+
+
+Fresh laptop (2025) extra notes
+-------------------------------
+
+Settings:
+
+- Dock: right + auto-hide.
+
+- Modifier keys: caps=control, control=command, option=option, command=option.
