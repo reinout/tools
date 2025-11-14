@@ -75,7 +75,6 @@ osx-deps:
 
 
 uv-tools: ~/.local/share/uv/tools/ansible\
-	  ~/.local/share/uv/tools/ansible-lint\
 	  ~/.local/share/uv/tools/beautysh\
 	  ~/.local/share/uv/tools/cookiecutter\
 	  ~/.local/share/uv/tools/docutils\
