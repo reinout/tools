@@ -38,6 +38,7 @@ osx-deps:
 	helm \
 	htop \
 	imagemagick \
+	iterm2 \
 	jq \
 	just \
 	kicad \
