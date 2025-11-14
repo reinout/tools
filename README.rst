@@ -113,3 +113,5 @@ Settings:
 - Dock: right + auto-hide.
 
 - Modifier keys: caps=control, control=command, option=option, command=option.
+
+- Display corners: top left "switch off screensaver".
