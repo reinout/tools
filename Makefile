@@ -27,6 +27,8 @@ osx-deps:
 	bat \
 	direnv \
 	editorconfig \
+	emacs-app \
+	firefox \
 	fd \
 	ffmpeg \
 	gdal \
