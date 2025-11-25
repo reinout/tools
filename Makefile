@@ -18,6 +18,7 @@ upgrade:
 osx-deps:
 	brew update
 	brew install \
+	1password \
 	ag \
 	argocd \
 	age \
@@ -40,18 +41,24 @@ osx-deps:
 	helm \
 	htop \
 	imagemagick \
+	istat-menus \
 	iterm2 \
 	jq \
 	just \
+	karabiner-elements \
 	kicad \
+	kubeseal \
 	languagetool \
+	languagetool-desktop \
 	ltex-ls-plus \
 	mactex-no-gui \
 	mc \
+	microsoft-teams \
 	nmap \
 	npm \
 	odt2txt \
 	orbstack \
+	pandoc \
 	pgadmin4 \
 	pinentry-mac \
 	pre-commit \
@@ -63,14 +70,18 @@ osx-deps:
 	siderolabs/tap/omnictl \
 	siderolabs/tap/sidero-tools \
 	siderolabs/tap/talosctl \
+	slack \
 	sops \
 	spatialite-tools \
 	starship \
+	synology-drive \
 	tectonic \
 	terraform \
 	texlab \
+	thunderbird \
 	tidy-html5 \
 	tree \
+	tunnelblick \
 	watch \
 	wget \
 	wine-stable
@@ -92,6 +103,8 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 ~/.local/share/uv/tools/ansible:
 	uv tool install --with-executables-from ansible-core,ansible-lint ansible
 
+~/.local/share/uv/tools/docutils:
+	uv tool install docutils --with pygments
 
 ~/.local/share/uv/tools/tox:
 	uv tool install tox --with tox-uv
