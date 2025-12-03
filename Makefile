@@ -101,7 +101,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	  ~/.local/share/uv/tools/ty
 
 ~/.local/share/uv/tools/ansible:
-	uv tool install --with-executables-from ansible-core,ansible-lint ansible
+	uv tool install --with-executables-from ansible-core,ansible-lint --with=dnspython ansible
 
 ~/.local/share/uv/tools/docutils:
 	uv tool install docutils --with pygments
