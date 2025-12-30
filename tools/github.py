@@ -16,21 +16,21 @@ import subprocess
 import sys
 import webbrowser
 
-URL = "https://github.com/{user}/{project}"
+URL = "https://{site}.com/{user}/{project}"
 ISSUES_URL = "https://github.com/{user}/{project}/issues"
 
 
 def find_git_url(url_template):
     # A remotes line looks like this:
     # origin	git@github.com:reinout/tools.git (fetch)
-    pattern = r"git@github.com:([^/]+)/(.+)\.git"
+    pattern = r"git@(github|gitlab).com:([^/]+)/(.+)\.git"
     regex = re.compile(pattern)
     output = subprocess.check_output(["git", "remote", "-v"], text=True)
     for line in output.split("\n"):
         matches = regex.search(line)
         if matches:
-            user, project = matches.groups()
-            return url_template.format(user=user, project=project)
+            site, user, project = matches.groups()
+            return url_template.format(site=site, user=user, project=project)
 
 
 def main():
