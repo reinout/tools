@@ -211,8 +211,7 @@ def new_sermon():
         reverent = input("Predikant: ")
     # ^^^ Refactor the while loops above.
 
-    template = Template(
-        """${title}
+    template = Template("""${title}
 ======================================================================
 
 .. preek::
@@ -223,8 +222,7 @@ def new_sermon():
    :tekst: TODO
    :tags:
 
-"""
-    )
+""")
     output = template.substitute(
         title=title, church=church, added=added, date=date, reverent=reverent
     )

@@ -13,7 +13,6 @@ order to achieve 0.0011 instead of 0.0010 of what you could achieve. Relax a bit
 
 import datetime
 
-
 BIRTHDAY = datetime.date(1972, 12, 25)  # A sunday, btw
 
 
