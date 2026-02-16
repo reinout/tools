@@ -424,9 +424,28 @@ backed up.
 Source code::
 
     #!/bin/bash
+    set -e
     source ~/.restic-env-vars
     cd ~
     restic backup --files-from ~/.restic-files
+
+
+restic-with-env
+------------------------------------------------------------------------
+
+Run restic (https://restic.readthedocs.io) with my env varis
+
+`.restic-env-vars` contains environment variables like the S3 credentials and the
+repository location.
+
+See restic-backup, that also passes my standard list of to-be-backed-up dirs.
+
+Source code::
+
+    #!/bin/bash
+    set -e
+    source ~/.restic-env-vars
+    restic $*
 
 
 syncweblog.sh

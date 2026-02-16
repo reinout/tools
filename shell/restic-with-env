@@ -1,0 +1,10 @@
+#!/bin/bash
+# Run restic (https://restic.readthedocs.io) with my env varis
+#
+# `.restic-env-vars` contains environment variables like the S3 credentials and the
+# repository location.
+#
+# See restic-backup, that also passes my standard list of to-be-backed-up dirs.
+set -e
+source ~/.restic-env-vars
+restic $*
