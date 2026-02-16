@@ -412,6 +412,23 @@ Source code::
     exit 1
 
 
+restic-backup
+------------------------------------------------------------------------
+
+Make a backup with restic (https://restic.readthedocs.io)
+
+`.restic-env-vars` contains environment variables like the S3 credentials and the
+repository location. `.restic-files` has the list of directories that need to be
+backed up.
+
+Source code::
+
+    #!/bin/bash
+    source ~/.restic-env-vars
+    cd ~
+    restic backup --files-from ~/.restic-files
+
+
 syncweblog.sh
 ------------------------------------------------------------------------
 
