@@ -82,8 +82,7 @@ Source code::
 
 
     def usage():
-        print(
-            """\
+        print("""\
     USAGE
         dos2unix.py [-iuvnfcd] [-b extension] file {file}
     DESCRIPTION
@@ -99,8 +98,7 @@ Source code::
         -b ext  use 'ext' as backup extension (default .bak)
         -c      don't make a backup
         -d      keep modification date and mode
-    """
-        )
+    """)
         sys.exit()
 
 
