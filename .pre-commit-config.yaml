@@ -8,12 +8,12 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/lovesegfault/beautysh
-    rev: v6.2.1
+    rev: v6.4.2
     hooks:
       - id: beautysh
         language_version: "3.11"
 
   - repo: https://github.com/psf/black
-    rev: 25.9.0
+    rev: 26.1.0
     hooks:
       - id: black
