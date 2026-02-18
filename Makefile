@@ -19,7 +19,9 @@ osx-deps:
 	brew update
 	brew install \
 	1password \
+	4k-video-downloader+ \
 	ag \
+	arduino-ide \
 	argocd \
 	age \
 	arduino-cli \
@@ -43,8 +45,10 @@ osx-deps:
 	imagemagick \
 	istat-menus \
 	iterm2 \
+	java11 \
 	jq \
 	just \
+	k9s \
 	karabiner-elements \
 	kicad \
 	kubeseal \
@@ -57,6 +61,7 @@ osx-deps:
 	nmap \
 	npm \
 	odt2txt \
+	omnictl \
 	orbstack \
 	pandoc \
 	pgadmin4 \
@@ -66,6 +71,7 @@ osx-deps:
 	pv \
 	python@3.12 \
 	python@3.13 \
+	qgis \
 	rg \
 	siderolabs/tap/omnictl \
 	siderolabs/tap/sidero-tools \
@@ -75,6 +81,7 @@ osx-deps:
 	spatialite-tools \
 	starship \
 	synology-drive \
+	tailwindcss \
 	tectonic \
 	terraform \
 	texlab \
@@ -82,6 +89,7 @@ osx-deps:
 	tidy-html5 \
 	tree \
 	tunnelblick \
+	visual-studio-code \
 	watch \
 	wget \
 	wine-stable
@@ -94,6 +102,7 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	  ~/.local/share/uv/tools/dotfiles\
 	  ~/.local/share/uv/tools/legit\
 	  ~/.local/share/uv/tools/oplop\
+	  ~/.local/share/uv/tools/prek\
 	  ~/.local/share/uv/tools/pyright\
 	  ~/.local/share/uv/tools/pyupgrade\
 	  ~/.local/share/uv/tools/tombi \
