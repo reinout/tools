@@ -425,9 +425,9 @@ Source code::
     set -e
     source ~/.restic-env-vars
     cd ~
-    restic backup --files-from ~/.restic-files > ~/backup.log
+    restic backup --files-from ~/.restic-files
 
-    restic forget --keep-daily 7 --keep-monthly 12 --group-by '' --prune >> ~/backup.log
+    restic forget --keep-daily 7 --keep-monthly 12 --group-by '' --prune
 
 
 restic-with-env
