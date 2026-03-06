@@ -7,6 +7,6 @@
 set -e
 source ~/.restic-env-vars
 cd ~
-restic backup --files-from ~/.restic-files
+/opt/homebrew/bin/restic backup --files-from ~/.restic-files
 
-restic forget --keep-daily 7 --keep-monthly 12 --group-by '' --prune
+/opt/homebrew/bin/restic forget --keep-daily 7 --keep-monthly 12 --group-by '' --prune
