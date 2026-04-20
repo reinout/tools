@@ -57,7 +57,6 @@ osx-deps:
 	ltex-ls-plus \
 	mactex-no-gui \
 	mc \
-	microsoft-teams \
 	nmap \
 	npm \
 	odt2txt \
