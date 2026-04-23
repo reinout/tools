@@ -336,7 +336,7 @@ Source code::
         exit
     fi
 
-    exec pre-commit run --all
+    exec prek run -a
 
 
 projectile-make

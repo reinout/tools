@@ -17,4 +17,4 @@ if [ -n "$PROJECTILE_BEAUTIFUL" ]; then
     exit
 fi
 
-exec pre-commit run --all
+exec prek run -a
