@@ -19,6 +19,7 @@ osx-deps:
 	brew update
 	brew install \
 	1password \
+	1password-cli \
 	4k-video-downloader+ \
 	ag \
 	arduino-ide \
@@ -52,8 +53,10 @@ osx-deps:
 	karabiner-elements \
 	kicad \
 	kubeseal \
+	kustomize \
 	languagetool \
 	languagetool-desktop \
+	libreoffice \
 	ltex-ls-plus \
 	mactex-no-gui \
 	mc \
@@ -71,6 +74,7 @@ osx-deps:
 	python@3.12 \
 	python@3.13 \
 	qgis \
+	restic \
 	rg \
 	siderolabs/tap/omnictl \
 	siderolabs/tap/sidero-tools \
@@ -106,7 +110,8 @@ uv-tools: ~/.local/share/uv/tools/ansible\
 	  ~/.local/share/uv/tools/pyupgrade\
 	  ~/.local/share/uv/tools/tombi \
 	  ~/.local/share/uv/tools/tox \
-	  ~/.local/share/uv/tools/ty
+	  ~/.local/share/uv/tools/ty \
+	  ~/.local/share/uv/tools/zuban
 
 ~/.local/share/uv/tools/ansible:
 	uv tool install --with-executables-from ansible-core,ansible-lint --with=dnspython ansible
