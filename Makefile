@@ -150,6 +150,7 @@ local-dev:
 	uv tool install --editable ~/opensource/checkoutmanager/
 	uv tool install --editable ~/zelf/denoter/
 	uv tool install --editable ~/nens/nens-meta/
+	uv tool install --editable ~/zelf/jd-helper/
 
 
 npm:
