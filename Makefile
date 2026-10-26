@@ -73,6 +73,8 @@ osx-deps:
 	pv \
 	python@3.12 \
 	python@3.13 \
+	python@3.14 \
+	python@3.15 \
 	qgis \
 	restic \
 	rg \
@@ -95,7 +97,9 @@ osx-deps:
 	visual-studio-code \
 	watch \
 	wget \
-	wine-stable
+	frankea/whisky/whisky
+
+# wine-stable
 
 
 uv-tools: ~/.local/share/uv/tools/ansible\
