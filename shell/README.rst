@@ -248,6 +248,20 @@ Source code::
     # grep -i --color=auto $1
 
 
+gcm
+------------------------------------------------------------------------
+
+Git checkout main or master
+
+Git(hub)'s default changed from master to main, so my repositories are split about
+alf/half. This script supports both.
+
+Source code::
+
+    #!/bin/bash
+    git checkout main || git checkout master
+
+
 git-undelete
 ------------------------------------------------------------------------
 

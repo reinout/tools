@@ -1,0 +1,6 @@
+#!/bin/bash
+# Git checkout main or master
+#
+# Git(hub)'s default changed from master to main, so my repositories are split about
+#half/half. This script supports both.
+git checkout main || git checkout master
